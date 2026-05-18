@@ -16,7 +16,7 @@ Rejection_model_castco/
 │   └── updater_ui.py            # Update prompts & UI
 │
 ├── core/                        # Core AI engine (customer-agnostic)
-│   ├── ui/                      # Streamlit web UI (5 tabs)
+│   ├── ui/                      # Pipeline orchestration & run_pipeline entry point
 │   ├── pipeline/                # Defect detection pipeline orchestration
 │   ├── reasoning/               # Signal scoring, multi-signal fusion, root cause
 │   ├── vision/                  # YOLO + patch classifier + signal features
@@ -110,10 +110,10 @@ Rejection_model_castco/
 
 | Entry Point | Mode | Use Case |
 |------------|------|----------|
-| `launcher/launcher.py` | Development | License check → updates → Streamlit UI |
+| `launcher/launcher.py` | Development | License check → updates → FastAPI server |
 | `launcher.exe` | Production | Compiled launcher (native desktop via PyWebView) |
-| `services/api/api.py` | API Server | REST API for external integrations |
-| `run_app.py` | Legacy | Direct Streamlit start (bypasses license/updates) |
+| `services/api/api.py` | API Server | REST API + static frontend serving |
+| `run_app.py` | Legacy | Direct server start (bypasses license/updates) |
 
 ---
 
@@ -123,7 +123,7 @@ Rejection_model_castco/
 launcher/
   ├─→ core/security          (license validation, tier check)
   ├─→ core/update            (update check, download, install)
-  └─→ core/ui                (Streamlit app launch)
+  └─→ services/api           (FastAPI server launch)
 
 core/ui/
   ├─→ core/pipeline          (run_pipeline, CastingState)
@@ -285,7 +285,7 @@ Image Upload/Batch
 
 ### Mode 3: Development
 - Run `python launcher/launcher.py`
-- Streamlit in browser mode
+- FastAPI server with Next.js frontend at http://localhost:8000/pi/
 - Hot-reload enabled
 - Full logging
 - Edge-native, on-premise, offline-capable industrial runtime

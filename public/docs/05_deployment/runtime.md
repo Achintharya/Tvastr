@@ -142,7 +142,7 @@ image002.jpg,CAST-002,201044,CC388,Shift1,2026-04-06
 
 ### Mode 3: Upload (Interactive)
 
-**UI-based:** User uploads images via Streamlit dashboard (Tab 1)
+**UI-based:** User uploads images via Next.js dashboard (Inspection tab)
 
 **No configuration required** — always available in all tiers.
 
@@ -316,7 +316,7 @@ logging:
 2026-04-06 12:34:58,456 [INFO] [database] Connected to SQL Server: CastingDB
 2026-04-06 12:35:01,789 [INFO] [models] YOLO model loaded: casting_model.pt
 2026-04-06 12:35:03,012 [INFO] [models] Patch classifier loaded: patch_classifier.pt
-2026-04-06 12:35:03,345 [INFO] [ui] Streamlit UI launched at http://localhost:8501
+2026-04-06 12:35:03,345 [INFO] [api] FastAPI server started at http://localhost:8000
 ```
 
 ---

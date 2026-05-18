@@ -24,6 +24,42 @@ TvastrRAS is an AI-powered casting defect detection and root cause analysis syst
 
 ---
 
+## System Architecture
+
+```
+┌─────────────────────────────┐
+│ Next.js Frontend            │
+│ (served locally)            │
+└────────────┬────────────────┘
+             │
+             ▼
+┌─────────────────────────────┐
+│ FastAPI Runtime             │
+│ - APIs                      │
+│ - WebSockets                │
+│ - Artifact serving          │
+│ - Runtime orchestration     │
+└────────────┬────────────────┘
+             │
+             ▼
+┌─────────────────────────────┐
+│ Industrial Cognition Core   │
+│ - perception                │
+│ - reasoning                 │
+│ - telemetry                 │
+│ - defectograph              │
+│ - process intelligence      │
+└─────────────────────────────┘
+```
+
+**Frontend** serves as the operator interface (inspection runtime, batch management, defectograph, analytics).
+
+**FastAPI Runtime** provides REST APIs, WebSocket for real-time updates, static file serving, and orchestrates inspection requests.
+
+**Industrial Cognition Core** contains all AI/ML logic: YOLO detection, signal analysis, LLM reasoning, defect fingerprinting, and process intelligence.
+
+---
+
 ## Key Technologies
 
 | Layer | Technology |
@@ -33,7 +69,7 @@ TvastrRAS is an AI-powered casting defect detection and root cause analysis syst
 | **Reasoning** | Mistral LLM (multimodal), signal-driven classification, cavity analysis |
 | **Fusion** | Weighted multi-signal fusion (YOLO + Signal + LLM + Agreement) |
 | **Intelligence** | Fingerprinting, prototype matching, SCRATA recovery, auto-calibration |
-| **UI** | Streamlit (RAS dashboard), Next.js (PI dashboard - TIER_3) |
+| **UI** | Next.js (unified dashboard — inspection, batch, analytics, defectograph) |
 | **API** | FastAPI, WebSocket |
 | **Database** | SQL Server, SQLite |
 | **Deployment** | PyWebView (native desktop), Python embeddable distribution (compilation), Inno Setup (installer) |

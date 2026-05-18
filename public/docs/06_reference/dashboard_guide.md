@@ -7,7 +7,7 @@
 
 ## Startup
 
-Launcher validates license, checks for updates (if enabled), and launches Streamlit dashboard.
+Launcher validates license, checks for updates (if enabled), and launches FastAPI server with Next.js dashboard.
 
 **License info logged at startup:**
 ```

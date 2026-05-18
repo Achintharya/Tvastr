@@ -144,7 +144,7 @@ cd "C:\Program Files\TvastrRAS"
 .\run_app.py
 ```
 
-- Starts Streamlit UI in browser
+- Starts FastAPI server with Next.js frontend at http://localhost:8000/pi/
 - Source code editable
 - Automatically reloads on file change
 - Use for testing and debugging
