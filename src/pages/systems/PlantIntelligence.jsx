@@ -11,18 +11,22 @@ import { useDocumentHead } from '../../hooks/useDocumentHead'
  * Each section maps to one PDF slide via .presentation-slide class.
  * Routes: /systems/plant-intelligence (public) OR /portal/pi (protected)
  *
+ * Part of the TvastrAI Unified Industrial Cognition Runtime.
+ * PI = Process Intelligence Layer (manufacturing analytics, SPC, temporal insights)
+ * 
  * Screenshot slides use images from /public/:
- *   pi_overview_ss.png   — Overview dashboard
- *   pi_aiquery_ss.png    — AI Query interface
- *   pi_decisions_ss.png  — Decision Intelligence
+ *   overview_tab.png       — Overview dashboard
+ *   aiquery_tab.png        — AI Query interface
+ *   decisions_tab.png      — Decision Intelligence
+ *   alerts_tab.png         — Alerts interface
  */
 export function PlantIntelligence() {
   const location = useLocation()
   const isPortalRoute = location.pathname.startsWith('/portal')
 
   useDocumentHead(
-    'Plant Intelligence — Process Analytics & AI Query | Tvastr Industrial Intelligence',
-    'Real-time process analytics for manufacturing. AI-powered insights, drift detection, decision intelligence, and conversational data access.',
+    'Plant Intelligence — Process Analytics & Manufacturing Intelligence | Tvastr Industrial Intelligence',
+    'Manufacturing process analytics within a unified industrial cognition runtime. SPC, drift detection, decision intelligence, and conversational data access.',
     'https://tvastr.co/systems/plant-intelligence'
   )
 
@@ -47,19 +51,14 @@ export function PlantIntelligence() {
       <section className="presentation-slide" style={{ background: '#ffffff' }}>
         <div className="max-w-[900px] mx-auto px-6 md:px-8 py-16 md:py-20 w-full">
           <p className="text-xs font-semibold tracking-[0.3em] uppercase text-slate-400 mb-6">
-            Tvastr · Industrial AI Systems
+            Tvastr · Industrial Cognition Runtime
           </p>
           <h1 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-6">
             Plant Intelligence
           </h1>
           <p className="text-xl text-slate-500 font-light max-w-[680px] leading-relaxed mb-3">
-            Plant-level analytics and decision support system built on structured inspection and production data.
+            The process intelligence layer of the Tvastr industrial cognition runtime — transforming inspection and production data into plant-level manufacturing analytics and operational insights.
           </p>
-          <div className="mt-6 p-4" style={{ background: '#fef3c7', border: '1px solid #fde68a', borderRadius: '6px' }}>
-            <p className="text-sm text-amber-900 leading-relaxed">
-              <strong>Note:</strong> Requires structured inspection data from RAS Enterprise or equivalent data sources.
-            </p>
-          </div>
         </div>
         <div className="slide-footer">
           <span>Tvastr</span>
@@ -68,51 +67,20 @@ export function PlantIntelligence() {
         </div>
       </section>
 
-      {/* ── SLIDE 2 — System Relationship ────────────────────────── */}
+      {/* ── SLIDE 2 — Unified Runtime Layers ────────────────────────── */}
       <SystemDetailSection
-        label="01 / System Relationship"
-        title="Data Flow: From Inspection to Intelligence"
-        body="Plant Intelligence transforms inspection data into plant-level insights. The typical data flow follows this pattern:"
-      >
-        <div className="mt-6 mb-6 flex items-center justify-center gap-4 flex-wrap">
-          {['Inspection', 'RAS', 'Structured Data', 'Plant Intelligence', 'Decisions'].map((step, i, arr) => (
-            <div key={i} className="flex items-center gap-4">
-              <div
-                className="px-4 py-2.5 text-center min-w-[140px]"
-                style={{
-                  background: i === 4 ? '#f0f9ff' : i === 1 || i === 3 ? '#f8fafc' : '#fafafa',
-                  border: i === 4 ? '1px solid #bae6fd' : '1px solid #e2e8f0',
-                  borderRadius: '6px',
-                }}
-              >
-                <p className="text-sm font-semibold text-gray-800">{step}</p>
-              </div>
-              {i < arr.length - 1 && (
-                <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
-                  <path d="M0 8h16M12 4l4 4-4 4" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              )}
-            </div>
-          ))}
-        </div>
-        <p className="text-sm text-slate-500 text-center italic">
-          Inspection becomes a continuous intelligence layer when structured data feeds analytics.
-        </p>
-      </SystemDetailSection>
-
-      {/* ── SLIDE 3 — Modular Product Architecture ───────────────── */}
-      <SystemDetailSection
-        label="02 / Product Architecture"
-        title="Layered Manufacturing Intelligence"
+        label="01 / Runtime Architecture"
+        title="Process Layer within Unified Industrial Runtime"
+        body="Plant Intelligence operates as the process analytics layer within the same unified cognition runtime. Inspection data flows directly into process analytics — no separate systems, no integration gaps."
       >
         <div className="mt-6 flex flex-col items-stretch gap-0" style={{ maxWidth: '600px' }}>
-          {/* Card 1 — RAS */}
+          {/* Card 1 — Inspection Layer */}
           <div className="p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px 8px 0 0' }}>
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0" />
-              <p className="text-sm font-bold text-gray-800">Rejection Analysis System</p>
+              <p className="text-sm font-bold text-gray-800">Inspection Intelligence Layer</p>
             </div>
-            <p className="text-xs text-slate-400 mb-3">Operational inspection intelligence.</p>
+            <p className="text-xs text-slate-400 mb-3">Real-time operational intelligence.</p>
             <ul className="space-y-1.5">
               {['Defect detection and classification','Root cause diagnostics','Traceable inspection records','Shop-floor decision support'].map((c, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
@@ -127,11 +95,11 @@ export function PlantIntelligence() {
               <path d="M7 0v14M1 10l6 8 6-8" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          {/* Card 2 — PI */}
+          {/* Card 2 — Process Layer */}
           <div className="p-5" style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '0 0 8px 8px' }}>
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-sky-400 flex-shrink-0" />
-              <p className="text-sm font-bold text-gray-800">Plant Intelligence</p>
+              <p className="text-sm font-bold text-gray-800">Process Intelligence Layer</p>
             </div>
             <p className="text-xs text-slate-400 mb-3">Plant-level manufacturing analytics.</p>
             <ul className="space-y-1.5">
@@ -144,15 +112,15 @@ export function PlantIntelligence() {
           </div>
         </div>
         <p className="mt-5 text-sm text-slate-500 italic" style={{ maxWidth: '600px' }}>
-          Plant Intelligence is designed to operate on data produced by RAS Enterprise or equivalent structured inspection sources.
+          Both layers operate within the same unified runtime. Data flows automatically from inspection to process analytics.
         </p>
       </SystemDetailSection>
 
-      {/* ── SLIDE 4 — Plant-Level Quality Analytics ──────────────── */}
+      {/* ── SLIDE 3 — Plant-Level Quality Analytics ──────────────── */}
       <SystemDetailSection
-        label="03 / Analytics"
+        label="02 / Analytics"
         title="Plant-Level Quality Analytics"
-        body="The system converts inspection and production records into measurable plant-level indicators."
+        body="The process intelligence layer converts inspection and production records into measurable plant-level indicators."
       >
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
@@ -175,24 +143,24 @@ export function PlantIntelligence() {
         </div>
       </SystemDetailSection>
 
-      {/* ── SLIDE 5 — Plant Overview (Screenshot) ────────────────── */}
+      {/* ── SLIDE 4 — Plant Overview (Screenshot) ────────────────── */}
       <SystemDetailSection
-        label="04 / Application — Overview"
+        label="03 / Application — Overview"
         title="Plant Overview"
         body="The overview dashboard provides a real-time summary of plant performance, combining production data with inspection outcomes to highlight key quality indicators."
       >
         <SystemImageBlock
-          src="/pi_overview_ss.png"
+          src="/overview_tab.png"
           alt="Plant Intelligence — Overview Dashboard"
           caption="Plant-level KPIs including total production, rejection rate trends, and dominant defect patterns."
         />
       </SystemDetailSection>
 
-      {/* ── SLIDE 6 — Quality Engineering Frameworks ─────────────── */}
+      {/* ── SLIDE 5 — Quality Engineering Frameworks ─────────────── */}
       <SystemDetailSection
-        label="05 / Quality Engineering"
+        label="04 / Quality Engineering"
         title="Integrated Quality Engineering Methods"
-        body="Plant Intelligence automatically generates structured quality analysis frameworks used by manufacturing engineers."
+        body="The process intelligence layer automatically generates structured quality analysis frameworks used by manufacturing engineers."
       >
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
@@ -212,11 +180,11 @@ export function PlantIntelligence() {
         </p>
       </SystemDetailSection>
 
-      {/* ── SLIDE 7 — Process Risk & SPC ─────────────────────────── */}
+      {/* ── SLIDE 6 — Process Risk & SPC ─────────────────────────── */}
       <SystemDetailSection
-        label="06 / Process Risk"
+        label="05 / Process Risk"
         title="Process Risk Monitoring"
-        body="The system continuously monitors process stability using statistical quality methods."
+        body="The runtime continuously monitors process stability using statistical quality methods."
       >
         <div className="mt-6 space-y-3">
           {[
@@ -237,9 +205,9 @@ export function PlantIntelligence() {
         </p>
       </SystemDetailSection>
 
-      {/* ── SLIDE 8 — Cost of Quality ────────────────────────────── */}
+      {/* ── SLIDE 7 — Cost of Quality ────────────────────────────── */}
       <SystemDetailSection
-        label="07 / Cost of Quality"
+        label="06 / Cost of Quality"
         title="Cost of Quality Analytics"
         body="Quality data is translated into financial impact metrics."
       >
@@ -260,11 +228,11 @@ export function PlantIntelligence() {
         </p>
       </SystemDetailSection>
 
-      {/* ── SLIDE 9 — Natural Language Queries + Screenshot ─────── */}
+      {/* ── SLIDE 8 — Natural Language Queries + Screenshot ─────── */}
       <SystemDetailSection
-        label="08 / Natural Language"
+        label="07 / Natural Language"
         title="Natural Language Process Queries"
-        body="Engineers can query plant performance using natural language. The system interprets queries, executes analytics pipelines, and returns structured answers based on inspection and production data."
+        body="Engineers can query plant performance using natural language. The runtime interprets queries, executes analytics pipelines, and returns structured answers based on inspection and production data."
       >
         <div className="mt-6 space-y-3 mb-6">
           {[
@@ -284,22 +252,47 @@ export function PlantIntelligence() {
           ))}
         </div>
         <SystemImageBlock
-          src="/pi_aiquery_ss.png"
+          src="/aiquery_tab.png"
           alt="Plant Intelligence — AI Query Interface"
           caption="Natural language interface for querying plant data."
         />
       </SystemDetailSection>
 
-      {/* ── SLIDE 11 — Operational Decision Support ──────────────── */}
+      {/* ── SLIDE 9 — Alerts ──────────────────────────────────────── */}
       <SystemDetailSection
-        label="10 / Decision Support"
+        label="08 / Application — Alerts"
+        title="Real-Time Alerts"
+        body="The runtime generates automated alerts when process conditions exceed configured thresholds. Alerts are surfaced in the dashboard and can trigger notifications to operators and managers."
+      >
+        <SystemImageBlock
+          src="/alerts_tab.png"
+          alt="Plant Intelligence — Alerts Interface"
+          caption="Real-time alerts for rejection rate thresholds, process anomalies, and quality events."
+        />
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { title: 'Threshold Alerts', detail: 'Triggered when rejection rates, defect counts, or severity scores exceed defined limits.' },
+            { title: 'Anomaly Alerts', detail: 'Flagged when patterns deviate significantly from historical baseline.' },
+            { title: 'Trend Alerts', detail: 'Surfaced when rolling metrics show consistent directional drift.' },
+          ].map((item, i) => (
+            <div key={i} className="p-4" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+              <p className="text-sm font-semibold text-gray-800 mb-2">{item.title}</p>
+              <p className="text-sm text-gray-500 leading-relaxed">{item.detail}</p>
+            </div>
+          ))}
+        </div>
+      </SystemDetailSection>
+
+      {/* ── SLIDE 10 — Operational Decision Support ──────────────── */}
+      <SystemDetailSection
+        label="09 / Decision Support"
         title="Operational Decision Support"
-        body="Plant Intelligence provides continuous monitoring of manufacturing performance."
+        body="The process intelligence layer provides continuous monitoring of manufacturing performance."
       >
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
             { title: 'Automated Reports', detail: 'Daily plant quality reports generated automatically from inspection and production data.' },
-            { title: 'Rejection Rate Alerts', detail: 'Automated alert notifications triggered when rejection rates exceed defined thresholds.' },
+            { title: 'Rejection Rate Monitoring', detail: 'Continuous tracking with automated notifications when rates exceed thresholds.' },
             { title: 'Dashboard Updates', detail: 'Real-time dashboard updates reflecting the latest production and inspection data.' },
           ].map((item, i) => (
             <div key={i} className="p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
@@ -313,30 +306,30 @@ export function PlantIntelligence() {
         </p>
       </SystemDetailSection>
 
-      {/* ── SLIDE 12 — Decision Intelligence (Screenshot) ────────── */}
+      {/* ── SLIDE 11 — Decision Intelligence (Screenshot) ────────── */}
       <SystemDetailSection
-        label="11 / Application — Decisions"
+        label="10 / Application — Decisions"
         title="Decision Intelligence"
-        body="The system generates and prioritizes corrective actions based on defect patterns, process risk, and cost impact. Actions can be tracked and evaluated over time to measure effectiveness."
+        body="The runtime generates and prioritizes corrective actions based on defect patterns, process risk, and cost impact. Actions can be tracked and evaluated over time to measure effectiveness."
       >
         <SystemImageBlock
-          src="/pi_decisions_ss.png"
+          src="/decisions_tab.png"
           alt="Plant Intelligence — Decision Intelligence"
           caption="Ranked corrective actions generated from process signals."
         />
       </SystemDetailSection>
 
-      {/* ── SLIDE 13 — Combined System Value ─────────────────────── */}
+      {/* ── SLIDE 12 — Unified Intelligence Flow ─────────────────── */}
       <SystemDetailSection
-        label="12 / Combined System"
-        title="RAS + Plant Intelligence"
-        body="When deployed together, the two systems create a continuous loop from casting-level inspection to plant-level process intelligence."
+        label="11 / Unified Intelligence"
+        title="Inspection → Process → Decision"
+        body="Within the unified runtime, intelligence flows continuously from casting-level inspection through plant-level process analytics to operational decisions."
       >
         <div className="mt-6 flex flex-col md:flex-row items-stretch gap-0">
-          {/* LEFT — RAS */}
+          {/* LEFT — Inspection */}
           <div className="flex-1 p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px 0 0 8px' }}>
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400 mb-4">
-              Rejection Analysis System
+              Inspection Layer
             </p>
             <ul className="space-y-2">
               {['Detects defects at casting level','Records structured inspection data','Identifies likely process causes'].map((item, i) => (
@@ -355,10 +348,10 @@ export function PlantIntelligence() {
               <path d="M0 8h18M14 4l4 4-4 4" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          {/* RIGHT — PI */}
+          {/* RIGHT — Process */}
           <div className="flex-1 p-5" style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '0 8px 8px 0' }}>
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-slate-400 mb-4">
-              Plant Intelligence
+              Process Layer
             </p>
             <ul className="space-y-2">
               {['Analyzes plant-level quality trends','Detects process drift across production','Generates engineering insights and reports'].map((item, i) => (
@@ -369,13 +362,16 @@ export function PlantIntelligence() {
             </ul>
           </div>
         </div>
+        <p className="mt-5 text-sm text-slate-500 italic text-center">
+          Same runtime. Automatic data flow. No integration overhead.
+        </p>
       </SystemDetailSection>
 
-      {/* ── SLIDE 14 — Business Impact ───────────────────────────── */}
+      {/* ── SLIDE 13 — Business Impact ───────────────────────────── */}
       <SystemDetailSection
-        label="13 / Business Impact"
+        label="12 / Business Impact"
         title="Measurable impact across operational and strategic dimensions."
-        body="Plant Intelligence reduces the time from question to insight — enabling faster decisions grounded in actual production data."
+        body="Process intelligence reduces the time from question to insight — enabling faster decisions grounded in actual production data."
       >
         <SystemImpactGrid
           operational={[

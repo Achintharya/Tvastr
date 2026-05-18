@@ -2,23 +2,23 @@ export const platformOverviewContent = {
   id: "platform-overview",
   type: "platform-overview",
   title: "The Tvastr Platform",
-  subtitle: "Inspection intelligence and process analytics in a unified manufacturing system.",
-  body: "Tvastr operates as two integrated systems: RAS handles perception and defect analysis at inspection stations, while PI provides plant-wide process intelligence and manufacturing analytics.",
+  subtitle: "Unified industrial cognition runtime with inspection and process intelligence layers.",
+  body: "Tvastr operates as a unified industrial cognition runtime. Inspection intelligence and process analytics run together as layers within the same edge-native platform — no separate systems, no integration gaps.",
   systems: [
     {
       id: "ras",
-      name: "Tvastr RAS",
+      name: "Inspection Intelligence",
       tagline: "Rejection Analysis System",
-      description: "Signal-first inspection intelligence with multi-stage reasoning, automated reporting, and complete traceability.",
+      description: "Real-time inspection runtime with signal-first defect intelligence, multi-stage reasoning, and complete manufacturing traceability.",
       route: "/systems/rejection-analysis-system"
     },
     {
       id: "pi",
-      name: "Tvastr PI",
+      name: "Process Intelligence",
       tagline: "Plant Intelligence",
-      description: "Manufacturing analytics and process intelligence that transforms inspection data into operational insights and early warnings.",
+      description: "Manufacturing analytics layer with SPC, drift detection, quality frameworks, and natural language process queries.",
       route: "/systems/plant-intelligence"
     }
   ],
-  keyMessage: "One system for inspection. One system for process intelligence. Unified traceability and manufacturing memory underneath."
+  keyMessage: "One unified runtime. Inspection and process intelligence layers. Persistent industrial memory underneath."
 }

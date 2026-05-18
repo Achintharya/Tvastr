@@ -11,11 +11,14 @@ import { useDocumentHead } from '../../hooks/useDocumentHead'
  * Light industrial theme. Structured like a consulting presentation deck.
  * Each section maps to one PDF slide via .presentation-slide class.
  * Route: /systems/rejection-analysis-system
+ * 
+ * Part of the TvastrAI Unified Industrial Cognition Runtime.
+ * RAS = Inspection Intelligence Layer (real-time operational intelligence)
  */
 export function RejectionAnalysisSystem() {
   useDocumentHead(
-    'Rejection Analysis System — AI Inspection & Quality Control | Tvastr Industrial Intelligence',
-    'AI-powered inspection platform for heavy manufacturing. Automated defect detection, root cause mapping, and process-aware quality intelligence.',
+    'Rejection Analysis System — Inspection Intelligence Runtime | Tvastr Industrial Intelligence',
+    'Industrial inspection intelligence runtime. Real-time defect detection, process-aware reasoning, and manufacturing traceability within a unified cognition platform.',
     'https://tvastr.co/systems/rejection-analysis-system'
   )
 
@@ -37,13 +40,13 @@ export function RejectionAnalysisSystem() {
       <section className="presentation-slide" style={{ background: '#ffffff' }}>
         <div className="max-w-[900px] mx-auto px-6 md:px-8 py-16 md:py-20 w-full">
           <p className="text-xs font-semibold tracking-[0.3em] uppercase text-slate-400 mb-6">
-            Tvastr · Industrial AI Systems
+            Tvastr · Industrial Cognition Runtime
           </p>
           <h1 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-6">
             Rejection Analysis System
           </h1>
           <p className="text-xl text-slate-500 font-light max-w-[680px] leading-relaxed">
-            An industrial AI platform that transforms casting inspection into structured plant-level quality intelligence.
+            The inspection intelligence layer of the Tvastr industrial cognition runtime — transforming casting inspection into structured operational intelligence with real-time defect reasoning and manufacturing traceability.
           </p>
         </div>
         <div className="slide-footer">
@@ -53,51 +56,40 @@ export function RejectionAnalysisSystem() {
         </div>
       </section>
 
-      {/* ── SLIDE 2 — Deployment Modes ────────────────────────────── */}
+      {/* ── SLIDE 2 — Unified Runtime Architecture ────────────────── */}
       <SystemDetailSection
-        label="01 / Deployment Modes"
-        title="Available in Two Configurations"
-        body="Rejection Analysis System is available in two configurations to match different deployment requirements."
+        label="01 / Runtime Architecture"
+        title="Inspection Layer within Unified Industrial Runtime"
+        body="RAS operates as the inspection intelligence layer within the Tvastr unified cognition runtime. All components — inspection, process intelligence, telemetry, and traceability — run together as a single edge-native industrial platform."
       >
-        <div className="mt-6 flex flex-col md:flex-row items-stretch gap-4 md:gap-0" style={{ maxWidth: '720px' }}>
-          {/* LEFT — Core (Standalone) */}
-          <div className="flex-1 p-6" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0" />
-              <p className="text-base font-bold text-gray-800">Core (Standalone)</p>
-            </div>
-            <p className="text-sm text-slate-500 mb-4 leading-relaxed">
-              Image-based inspection system with no integration requirements.
-            </p>
-            <ul className="space-y-2">
-              {['Image-based inspection','Defect detection and classification','Root cause analysis','PDF reporting'].map((c, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                  <span className="w-1 h-1 rounded-full bg-slate-300 flex-shrink-0" />{c}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* RIGHT — Enterprise (Integrated) */}
-          <div className="flex-1 p-6" style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '8px' }}>
+        <div className="mt-6 flex flex-col items-stretch gap-0" style={{ maxWidth: '680px' }}>
+          {/* Runtime Shell */}
+          <div className="p-5" style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '8px' }}>
             <div className="flex items-center gap-2 mb-4">
               <span className="w-2 h-2 rounded-full bg-sky-500 flex-shrink-0" />
-              <p className="text-base font-bold text-gray-800">Enterprise (Integrated)</p>
+              <p className="text-sm font-bold text-gray-800">TvastrAI Unified Industrial Runtime</p>
             </div>
-            <p className="text-sm text-slate-500 mb-4 leading-relaxed">
-              Fully integrated system with process-aware quality analysis.
-            </p>
-            <ul className="space-y-2">
-              {['SQL / ERP integration','Batch ingestion','Full manufacturing traceability','Process intelligence (drift detection, defect graph, heat analysis)'].map((c, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                  <span className="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0" />{c}
-                </li>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {[
+                'Inspection Runtime',
+                'Defect Intelligence',
+                'Process Intelligence',
+                'Defectograph',
+                'Batch Runtime',
+                'ERP Ingestion',
+                'Industrial Telemetry',
+                'SPC & Analytics',
+                'Traceability',
+              ].map((component, i) => (
+                <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-400 flex-shrink-0" />{component}
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
-        <p className="mt-5 text-sm text-slate-500 italic text-center" style={{ maxWidth: '720px' }}>
-          The Enterprise configuration transforms inspection into a continuous process intelligence layer.
+        <p className="mt-5 text-sm text-slate-500 italic" style={{ maxWidth: '680px' }}>
+          One unified runtime. Edge-native deployment. No cloud dependency.
         </p>
       </SystemDetailSection>
 
@@ -151,65 +143,53 @@ export function RejectionAnalysisSystem() {
 
       {/* ── SLIDE 6 — Inspection Interface ──────────────────────── */}
       <SystemDetailSection
-        label="05 / Application Screens"
+        label="05 / Application — Inspection"
         title="Inspection Interface"
-        body="Operators upload casting images and manufacturing context before running inspection."
+        body="Operators work through a unified dashboard that captures casting images with manufacturing context. The inspection runtime processes each casting through the full intelligence pipeline in real time."
       >
         <SystemImageBlock
-          src="/inspection_app_ss.png"
+          src="/inspection_tab.png"
           alt="Rejection Analysis System — Inspection Interface"
-          caption="Operators upload casting images and manufacturing context before running inspection."
+          caption="Unified inspection interface with real-time defect intelligence and manufacturing context capture."
         />
       </SystemDetailSection>
 
       {/* ── SLIDE 7 — Batch Processing ───────────────────────────── */}
       <SystemDetailSection
-        label="06 / Application Screens"
+        label="06 / Application — Batch Runtime"
         title="Batch Processing"
-        body="Multiple castings can be queued and processed in a single batch run, enabling high-throughput inspection across production shifts."
+        body="Multiple castings can be queued and processed through the batch runtime, enabling high-throughput inspection across production shifts with complete traceability."
       >
         <SystemImageBlock
-          src="/batchProc_app_ss.png"
+          src="/batch_inspection_tab.png"
           alt="Rejection Analysis System — Batch Processing"
-          caption="Multiple castings queued and processed in a single batch run for high-throughput inspection."
+          caption="Batch runtime for high-throughput inspection with queue management and traceability."
         />
       </SystemDetailSection>
 
-      {/* ── SLIDE 8 — Analytics Dashboard ───────────────────────── */}
+      {/* ── SLIDE 8 — Process Intelligence ──────────────────────── */}
       <SystemDetailSection
-        label="07 / Application Screens"
-        title="Analytics Dashboard"
-      >
-        <SystemImageBlock
-          src="/analytics_app_ss.png"
-          alt="Rejection Analysis System — Analytics Dashboard"
-          caption="Inspection results automatically generate plant-level quality analytics and operational KPIs."
-        />
-      </SystemDetailSection>
-
-      {/* ── SLIDE 9 — Process Intelligence ──────────────────────── */}
-      <SystemDetailSection
-        label="08 / Application Screens"
+        label="07 / Application — Process Intelligence"
         title="Process Intelligence"
-        body="Plant managers query inspection and production data using natural language to surface operational insights and quality trends."
+        body="The same unified runtime provides process-level visibility — SPC charts, defect trends, and manufacturing analytics surface directly from inspection data."
       >
         <SystemImageBlock
-          src="/procInt_app_ss.png"
+          src="/process_intelligence_tab.png"
           alt="Rejection Analysis System — Process Intelligence"
-          caption="Natural language queries against plant data surface quality and operational insights directly."
+          caption="Manufacturing analytics with SPC charts, defect trends, and process monitoring."
         />
       </SystemDetailSection>
 
-      {/* ── SLIDE 10 — Inference Engine ───────────────────────────── */}
+      {/* ── SLIDE 9 — Inference Engine ───────────────────────────── */}
       <SystemDetailSection
-        label="09 / Inference Engine"
-        title="Rule-based decision engine converts AI predictions into operational outcomes."
-        body="The inference pipeline culminates in a decision engine that applies configurable rules to determine inspection outcomes."
+        label="08 / Cognition Engine"
+        title="Industrial cognition engine converts signals into operational decisions."
+        body="The inspection runtime applies multi-signal reasoning — combining visual analysis, signal features, and process context to generate traceable inspection decisions."
       >
         <div className="mt-6 p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
-          <p className="text-sm font-semibold text-gray-700 mb-3">Decision Engine Rules</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {['Area thresholds', 'Defect severity weights', 'Zone-based inspection sensitivity', 'Critical zone sensitivity', 'Customer-specific rules'].map((rule, i) => (
+          <p className="text-sm font-semibold text-gray-700 mb-3">Reasoning Components</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {['Signal-first classification', 'Multi-signal fusion', 'Energy-based reasoning', 'Topology analysis', 'Defectograph matching', 'Process-aware severity'].map((rule, i) => (
               <div key={i} className="text-sm text-slate-600 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-slate-300" />{rule}
               </div>
@@ -218,9 +198,9 @@ export function RejectionAnalysisSystem() {
         </div>
       </SystemDetailSection>
 
-      {/* ── SLIDE 11 — Root Cause Mapping ───────────────────────── */}
+      {/* ── SLIDE 10 — Root Cause Mapping ───────────────────────── */}
       <SystemDetailSection
-        label="10 / Root Cause Mapping"
+        label="09 / Root Cause Intelligence"
         title="Root Cause Mapping"
         body="Each inspection event carries structured manufacturing context. Aggregated across multiple inspections, these records reveal recurring process-level patterns and their likely root causes. The system generates plain-language root cause explanations alongside statistical patterns."
       >
@@ -333,37 +313,39 @@ export function RejectionAnalysisSystem() {
         </p>
       </SystemDetailSection>
 
-      {/* ── SLIDE 12 — System Architecture ──────────────────────── */}
+      {/* ── SLIDE 11 — Edge-Native Deployment ──────────────────────── */}
       <SystemDetailSection
-        label="11 / System Architecture"
-        title="On-premise deployment within the plant network."
-        body="The system runs entirely on-premise on a dedicated inspection workstation. No casting images or production data leave the plant network."
+        label="10 / Deployment Architecture"
+        title="Edge-native deployment within the plant network."
+        body="The unified runtime runs entirely on-premise on dedicated industrial hardware. No casting images or production data leave the plant network. Full offline operation capability."
         bullets={[
-          'Processes images in real time at the inspection station',
-          'Stores inspection records in a local SQL database',
-          'Integrates with ERP and MES data for manufacturing context',
+          'Local FastAPI runtime with Next.js dashboard',
+          'GPU-accelerated inference on local hardware',
+          'Local telemetry and artifact serving',
+          'SQL database with ERP integration',
           'Full data sovereignty — no cloud dependency',
+          'Automatic recovery on network restoration',
         ]}
       />
 
-      {/* ── SLIDE 13 — Traceability ──────────────────────────────── */}
+      {/* ── SLIDE 12 — Traceability ──────────────────────────────── */}
       <SystemDetailSection
-        label="12 / Traceability"
+        label="11 / Traceability"
         title="Every inspection generates a fully traceable structured record."
-        body="The system stores a complete audit trail for every inspection event. Records link AI decisions to casting metadata, enabling post-hoc analysis and compliance reporting."
+        body="The runtime stores a complete audit trail for every inspection event. Records link AI decisions to casting metadata, enabling post-hoc analysis and compliance reporting."
         bullets={[
           'Inspection ID and timestamp',
           'Casting metadata: heat number, shift, mold ID, operator',
           'Defect severity profile per surface zone',
           'Overall surface risk score',
           'Final inspection decision outcome',
-          'Model version used for inference',
+          'Model version and reasoning trace',
         ]}
       />
 
-      {/* ── SLIDE 14 — Continuous Learning ──────────────────────── */}
+      {/* ── SLIDE 13 — Continuous Learning ──────────────────────── */}
       <SystemDetailSection
-        label="13 / Continuous Learning"
+        label="12 / Continuous Learning"
         title="Inspection intelligence evolves with plant operations."
         body="Disagreements between AI decisions and supervisor corrections become training signal to improve subsequent model versions."
       >
@@ -378,9 +360,9 @@ export function RejectionAnalysisSystem() {
         />
       </SystemDetailSection>
 
-      {/* ── SLIDE 15 — Quality Analytics ────────────────────────── */}
+      {/* ── SLIDE 14 — Quality Analytics ────────────────────────── */}
       <SystemDetailSection
-        label="14 / Quality Analytics"
+        label="13 / Quality Analytics"
         title="Automated plant-level quality insights from inspection data."
         body="The analytics layer aggregates inspection records into operational metrics — enabling management to detect scrap trends, recurring defects, and process drift."
         bullets={[
@@ -392,11 +374,11 @@ export function RejectionAnalysisSystem() {
         ]}
       />
 
-      {/* ── SLIDE 16 — Business Impact ───────────────────────────── */}
+      {/* ── SLIDE 15 — Business Impact ───────────────────────────── */}
       <SystemDetailSection
-        label="15 / Business Impact"
+        label="14 / Business Impact"
         title="Measurable impact across operational and strategic dimensions."
-        body="Deploying structured AI inspection creates compounding value — in day-to-day operations and in long-term process intelligence."
+        body="Deploying structured industrial cognition creates compounding value — in day-to-day operations and in long-term process intelligence."
       >
         <SystemImpactGrid
           operational={[
@@ -414,7 +396,7 @@ export function RejectionAnalysisSystem() {
         />
       </SystemDetailSection>
 
-      {/* ── SLIDE 17 — Download / Contact (final slide) ──────────── */}
+      {/* ── SLIDE 16 — Download / Contact (final slide) ──────────── */}
       <DownloadPresentationButton productName="Rejection_Analysis_System" />
 
     </div>
