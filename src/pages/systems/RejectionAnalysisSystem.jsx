@@ -154,16 +154,16 @@ export function RejectionAnalysisSystem() {
         />
       </SystemDetailSection>
 
-      {/* ── SLIDE 7 — Batch Processing ───────────────────────────── */}
+      {/* ── SLIDE 7 — Single Inspection ───────────────────────────── */}
       <SystemDetailSection
-        label="06 / Application — Batch Runtime"
-        title="Batch Processing"
-        body="Multiple castings can be queued and processed through the batch runtime, enabling high-throughput inspection across production shifts with complete traceability."
+        label="06 / Application — Single Inspection"
+        title="Single Inspection"
+        body="Individual casting inspection with full cognition pipeline. Each casting is processed through defect detection, signal analysis, root cause reasoning, and decision generation — with complete traceability."
       >
         <SystemImageBlock
-          src="/batch_inspection_tab.png"
-          alt="Rejection Analysis System — Batch Processing"
-          caption="Batch runtime for high-throughput inspection with queue management and traceability."
+          src="/single_inspection_tab.png"
+          alt="Rejection Analysis System — Single Inspection"
+          caption="Single casting inspection with real-time defect intelligence and manufacturing context."
         />
       </SystemDetailSection>
 
