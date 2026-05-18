@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import { AuthProvider } from './context/AuthContext'
 import { LicenseProvider } from './context/LicenseContext'
 import { Navbar } from './components/navigation/Navbar'
@@ -106,6 +107,7 @@ export default function App() {
       <AuthProvider>
         <LicenseProvider>
           <Navbar />
+          <Analytics />
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<HomePageWrapper />} />
