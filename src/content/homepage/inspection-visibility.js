@@ -20,8 +20,20 @@ export const inspectionVisibilityContent = {
     {
       id: "process-intelligence",
       title: "Process Intelligence",
-      description: "Manufacturing analytics with SPC charts, defect trends, and process monitoring dashboards.",
+      description: "Manufacturing analytics with defect trends, pattern detection, and process monitoring dashboards.",
       imagePath: "/process_intelligence_tab.png"
+    },
+    {
+      id: "spc",
+      title: "Statistical Process Control",
+      description: "SPC charts with control limits, process capability metrics, and drift detection across production runs.",
+      imagePath: "/spc_tab.png"
+    },
+    {
+      id: "cost",
+      title: "Cost of Quality",
+      description: "Financial impact analytics with scrap cost by defect type, process stage cost breakdown, and production loss tracking.",
+      imagePath: "/cost_tab.png"
     },
     {
       id: "ai-query",
