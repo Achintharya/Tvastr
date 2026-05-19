@@ -122,7 +122,7 @@ export function InspectionVisibilitySection() {
                   src={current.imagePath}
                   alt={current.title}
                   loading="lazy"
-                  className="absolute inset-0 w-full h-full object-contain"
+                  className="absolute inset-0 w-full h-full object-cover"
                   initial={{ opacity: 0, scale: 1.01 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.995 }}
