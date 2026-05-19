@@ -75,9 +75,6 @@ export function PortalManual() {
 
   return (
     <div className="min-h-screen relative" style={{ background: colors.background.primary }}>
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
-
       {/* Top nav */}
       <header
         className="sticky top-0 z-50"

@@ -27,8 +27,7 @@ export function SystemImageBlock({ src, alt, caption, label }) {
         src={src}
         alt={alt}
         loading="lazy"
-        className="w-full"
-        style={{ border: '1px solid #e5e7eb' }}
+        className="w-full block"
       />
       </div>
       {caption && (

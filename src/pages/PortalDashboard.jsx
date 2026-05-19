@@ -254,9 +254,6 @@ export function PortalDashboard() {
 
   return (
     <div className="min-h-screen relative" style={STYLES.background}>
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
-
       {/* Top nav */}
       <header className="sticky top-0 z-40" style={STYLES.header}>
         <div className="max-w-7xl mx-auto px-4 md:px-12 h-16 flex items-center justify-between">

@@ -86,7 +86,6 @@ export function ResearchPage() {
     <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-grid pointer-events-none opacity-30" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-5xl mx-auto text-center space-y-6">
             <p
@@ -108,7 +107,6 @@ export function ResearchPage() {
 
       {/* Research Areas */}
       <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-grid pointer-events-none opacity-30" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-4xl mb-16">
             <p
@@ -164,7 +162,6 @@ export function ResearchPage() {
 
       {/* Publications */}
       <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-grid pointer-events-none opacity-30" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="max-w-4xl mb-16">
             <p
@@ -226,7 +223,6 @@ export function ResearchPage() {
 
       {/* Collaboration CTA */}
       <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-grid pointer-events-none opacity-30" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div
             className="max-w-4xl mx-auto p-10 md:p-14 rounded-2xl text-center"

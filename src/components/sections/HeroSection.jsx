@@ -63,6 +63,7 @@ export function HeroSection() {
 
   useLayoutEffect(() => {
     const ctx = gsapContext(() => {
+      // Entry animation timeline
       const tl = gsap.timeline({
         defaults: { ease: easings.gsap.standard },
         paused: reducedMotion,
@@ -89,6 +90,25 @@ export function HeroSection() {
       // first frame paints; do not play the entry animation.
       if (reducedMotion) {
         tl.progress(1).pause();
+      }
+
+      // Palantir-style "slide up" scroll animation:
+      // The entire hero section slides upward as the user scrolls,
+      // revealing the next section beneath like a curtain lifting.
+      // Skipped entirely under reduced motion for accessibility.
+      if (!reducedMotion) {
+        gsap.to(heroRef.current, {
+          yPercent: -100,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            pin: true,
+            pinSpacing: true,
+          },
+        });
       }
     }, heroRef);
 
@@ -167,9 +187,6 @@ export function HeroSection() {
             "radial-gradient(ellipse 60% 45% at 50% 38%, rgba(0,60,51,0.05) 0%, transparent 70%)",
         }}
       />
-
-      {/* Hairline grid pattern — quiet warm amber trace, low intensity. */}
-      <div className="absolute inset-0 bg-grid pointer-events-none opacity-25" />
 
       {/* Content layer — centered */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-12 lg:px-16 text-center">

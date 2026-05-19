@@ -27,8 +27,6 @@ export class ErrorBoundary extends Component {
           className="min-h-screen flex flex-col items-center justify-center px-4"
           style={{ background: '#0a0a0b' }}
         >
-          <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
-          
           <div className="relative z-10 max-w-xl text-center">
             <div className="mb-8 flex justify-center">
               <Logo size="md" />

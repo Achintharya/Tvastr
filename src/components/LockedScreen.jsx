@@ -15,9 +15,6 @@ export function LockedScreen({ title = 'Feature Locked', message = 'This feature
       className="min-h-screen flex items-center justify-center relative"
       style={{ background: '#0a0a0b' }}
     >
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
-
       {/* Content */}
       <div className="relative z-10 max-w-md mx-auto px-6 text-center">
         {/* Lock icon */}

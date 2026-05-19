@@ -62,9 +62,6 @@ export function PortalLogin() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 bg-bg-primary">
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
-
       {/* Back to main site */}
       <Link
         to="/"
