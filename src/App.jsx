@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react";
+import { SafeAnalytics } from "./components/SafeAnalytics";
 import { AuthProvider } from "./context/AuthContext";
 import { LicenseProvider } from "./context/LicenseContext";
 import { Navbar } from "./components/navigation/Navbar";
@@ -125,7 +125,7 @@ export default function App() {
             <CornerGuides />
             <CursorFollower />
             <Navbar />
-            <Analytics />
+            <SafeAnalytics />
             <Suspense fallback={<PageLoader />}>
               <PageTransition>
                 <Routes>
