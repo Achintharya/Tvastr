@@ -1,4 +1,4 @@
-export { colors, semantic } from './colors'
+export { colors, semantic, legacyColors } from './colors'
 export { typography } from './typography'
 export { spacing } from './spacing'
 export { shadows } from './shadows'

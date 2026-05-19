@@ -3,32 +3,55 @@
 @tailwind utilities;
 
 @layer base {
-  /* ── CSS Design Tokens (manually synced from src/design/colors.js) ── */
-  /* Property 12: every value below MUST be byte-equal to the corresponding
-     JS literal in src/design/colors.js. Do not reformat (no removed spaces,
-     no case changes) — the theme integrity check compares strings. */
+  /* ── CSS Design Tokens (synced from src/design/colors.js) ── */
   :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f1f5ff;
-    --bg-elevated: #ffffff;
-    --bg-panel: #eeece7;
+    /* Surface colors */
+    --surface-base: #ffffff;
+    --surface-subtle: #f1f5ff;
+    --surface-elevated: #ffffff;
+    --surface-panel: #eeece7;
+
+    /* Text colors */
     --text-primary: #212121;
     --text-secondary: #616161;
     --text-muted: #93939f;
-    --telemetry-primary: #1863dc;
-    --telemetry-secondary: #4c6ee6;
-    --telemetry-muted: #071829;
-    --process-primary: #003c33;
-    --process-secondary: #75758a;
-    --signal-warning: #b45309;
-    --signal-glow: #ff7759;
-    --signal-danger: #b30000;
+
+    /* Brand colors */
+    --brand-primary: #003c33;
+
+    /* Accent colors */
+    --accent-primary: #f59e0b;
+    --accent-danger: #b30000;
+
+    /* Data colors */
+    --data-primary: #1863dc;
+
+    /* Border colors */
     --border-subtle: rgba(0, 0, 0, 0.05);
     --border-default: rgba(0, 0, 0, 0.1);
     --border-strong: rgba(0, 0, 0, 0.15);
+
+    /* Semantic colors */
     --semantic-brand: #1863dc;
     --semantic-alert: #b45309;
     --semantic-danger: #b30000;
+
+    /* ══════════════════════════════════════════════════════════════════════
+       LEGACY ALIASES - For backward compatibility during migration
+       Maps old CSS variable names to new values
+       ══════════════════════════════════════════════════════════════════════ */
+    --bg-primary: var(--surface-base);
+    --bg-secondary: var(--surface-subtle);
+    --bg-elevated: var(--surface-elevated);
+    --bg-panel: var(--surface-panel);
+    --telemetry-primary: var(--data-primary);
+    --telemetry-secondary: var(--data-primary);
+    --telemetry-muted: var(--data-primary);
+    --process-primary: var(--brand-primary);
+    --process-secondary: var(--brand-primary);
+    --signal-warning: var(--accent-primary);
+    --signal-glow: var(--accent-primary);
+    --signal-danger: var(--accent-danger);
   }
 
   * {
@@ -43,7 +66,7 @@
   }
 
   body {
-    background-color: var(--bg-primary);
+    background-color: var(--surface-base);
     color: var(--text-primary);
     font-family: "Elms Sans", "Inter", system-ui, sans-serif;
     overflow-x: hidden;
@@ -51,15 +74,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Custom scrollbar — telemetry blue */
+  /* Custom scrollbar — data blue */
   ::-webkit-scrollbar {
     width: 4px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
+    background: var(--surface-subtle);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--telemetry-primary);
+    background: var(--data-primary);
     border-radius: 2px;
   }
 
@@ -96,17 +119,17 @@
   }
 
   /* ── Defect pulse — ProductCard DefectGrid cells. Color rebased onto
-     colors.signal.warning (#b45309 → rgb(180, 83, 9)) so the pulse reads
+     accent.primary (#f59e0b → rgb(245, 158, 11)) so the pulse reads
      against the new Light_Theme background. ── */
   @keyframes defectPulse {
     0%,
     100% {
       opacity: 0.4;
-      background: rgba(180, 83, 9, 0.15);
+      background: rgba(245, 158, 11, 0.15);
     }
     50% {
       opacity: 1;
-      background: rgba(180, 83, 9, 0.35);
+      background: rgba(245, 158, 11, 0.35);
     }
   }
 
@@ -156,7 +179,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--telemetry-primary);
+    background: var(--data-primary);
     opacity: 0.3;
     animation: runtimePulse 1.4s ease-in-out infinite;
   }
@@ -192,7 +215,7 @@
   /* ── Surface Panel — Light_Theme industrial card with subtle elevation ── */
   .surface-panel {
     position: relative;
-    background: var(--bg-elevated);
+    background: var(--surface-elevated);
     border: 1px solid var(--border-default);
     border-radius: 8px;
     box-shadow: 0 1px 2px var(--border-subtle);
@@ -201,26 +224,26 @@
   /* Elevated surface for modals/overlays */
   .surface-elevated {
     position: relative;
-    background: var(--bg-elevated);
+    background: var(--surface-elevated);
     border: 1px solid var(--border-strong);
     border-radius: 12px;
     box-shadow: 0 4px 12px var(--border-default);
   }
 
-  /* Signal/alert surface (warning amber on light background) */
+  /* Signal/alert surface (amber accent on light background) */
   .surface-signal {
     position: relative;
-    background: var(--bg-panel);
-    border: 1px solid var(--signal-warning);
+    background: var(--surface-panel);
+    border: 1px solid var(--accent-primary);
     border-radius: 8px;
     box-shadow: 0 1px 2px var(--border-subtle);
   }
 
-  /* Telemetry accent surface */
+  /* Data accent surface */
   .surface-accent {
     position: relative;
-    background: var(--bg-secondary);
-    border: 1px solid var(--telemetry-primary);
+    background: var(--surface-subtle);
+    border: 1px solid var(--data-primary);
     border-radius: 8px;
     box-shadow: 0 1px 2px var(--border-subtle);
   }
@@ -300,7 +323,7 @@
     background-size: 80px 80px;
   }
 
-  /* Telemetry gradient text — replaces amber gradient text */
+  /* Data gradient text — blue telemetry gradient */
   .text-telemetry-gradient {
     background: linear-gradient(135deg, #4f8cff 0%, #3b7aed 50%, #2563c4 100%);
     -webkit-background-clip: text;
@@ -308,7 +331,7 @@
     background-clip: text;
   }
 
-  /* Legacy amber gradient text — kept for signal/alert contexts */
+  /* Amber gradient text — for accent contexts */
   .text-amber-gradient {
     background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
     -webkit-background-clip: text;

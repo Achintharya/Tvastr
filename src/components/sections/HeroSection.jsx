@@ -197,7 +197,7 @@ export function HeroSection() {
               style={{ background: "var(--process-primary)" }}
             />
           </span>
-          <span>Tvastr · Manufacturing Intelligence</span>
+          <span>Tvastr · Industrial Intelligence</span>
         </span>
         <div className="mb-6">
           <h1

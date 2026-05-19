@@ -1,4 +1,4 @@
-import { colors } from './src/design/colors.js'
+import { colors, legacyColors } from './src/design/colors.js'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -9,12 +9,24 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: colors.background,
+        // ══════════════════════════════════════════════════════════════════════
+        // NEW COLOR SYSTEM - Use these for new code
+        // ══════════════════════════════════════════════════════════════════════
+        surface: colors.surface,
         txt: colors.text,
-        telemetry: colors.telemetry,
-        process: colors.process,
-        signal: colors.signal,
+        brand: colors.brand,
+        accent: colors.accent,
+        data: colors.data,
         border: colors.border,
+
+        // ══════════════════════════════════════════════════════════════════════
+        // LEGACY ALIASES - For backward compatibility during migration
+        // These map old Tailwind class names to new values
+        // ══════════════════════════════════════════════════════════════════════
+        bg: legacyColors.background,
+        telemetry: legacyColors.telemetry,
+        process: legacyColors.process,
+        signal: legacyColors.signal,
       },
       fontFamily: {
         sans: ['"Elms Sans"', 'Inter', 'system-ui', 'sans-serif'],
