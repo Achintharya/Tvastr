@@ -20,8 +20,8 @@ export const colors = {
     secondary: "#75758a",
   },
   signal: {
-    warning: "#b45309",
-    glow: "#ff7759",
+    warning: "# #f59e0b ",
+    glow: "#ff6b2c",
     danger: "#b30000",
   },
   border: {
