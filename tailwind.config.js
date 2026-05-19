@@ -17,8 +17,8 @@ export default {
         border: colors.border,
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['"Elms Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"Elms Sans"', 'Inter', 'system-ui', 'sans-serif'],
         mono: [
           'JetBrains Mono',
           'IBM Plex Mono',

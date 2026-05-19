@@ -21,7 +21,7 @@ export const colors = {
   },
   signal: {
     warning: "# #f59e0b ",
-    glow: "#ff6b2c",
+    glow: "#f59e0b",
     danger: "#b30000",
   },
   border: {
