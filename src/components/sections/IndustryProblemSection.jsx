@@ -1,14 +1,49 @@
-import { useRef } from "react";
+import { useRef, useLayoutEffect } from "react";
 
 import { SectionShell } from "@/components/primitives/SectionShell";
 import { SectionHeader } from "@/components/primitives/SectionHeader";
 import { industryProblemContent } from "@/content/homepage/industry-problem";
 import { useSectionReveal } from "../../hooks/useSectionReveal";
+import { gsap, gsapContext, ScrollTrigger } from "../../animation/gsap";
+import { useReducedMotionContext } from "../../animation/MotionConfig";
 
 export function IndustryProblemSection() {
   const { id, title, subtitle, body, problems } = industryProblemContent;
   const sectionRef = useRef(null);
+  const { reducedMotion } = useReducedMotionContext();
   useSectionReveal(sectionRef);
+
+  // Parallax reveal: section rises up from below as user scrolls past hero
+  useLayoutEffect(() => {
+    if (reducedMotion) return;
+
+    const ctx = gsapContext(() => {
+      gsap.fromTo(
+        sectionRef.current,
+        { yPercent: 30 },
+        {
+          yPercent: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "top 60%",
+            scrub: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => {
+      ctx.revert();
+      const el = sectionRef.current;
+      if (el) {
+        ScrollTrigger.getAll()
+          .filter((t) => t.trigger === el || (t.trigger && el.contains(t.trigger)))
+          .forEach((t) => t.kill());
+      }
+    };
+  }, [reducedMotion]);
 
   return (
     <SectionShell ref={sectionRef} id={id}>

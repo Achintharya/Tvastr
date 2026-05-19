@@ -112,7 +112,7 @@ export function InspectionVisibilitySection() {
           {/* Large image frame */}
           <div
             className="relative w-full rounded-xl overflow-hidden border border-border-default"
-            style={{ background: "var(--bg-panel)" }}
+            style={{ background: "var(--bg-primary)" }}
             aria-live="polite"
           >
             <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
