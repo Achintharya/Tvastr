@@ -16,64 +16,64 @@ import { TierBadge } from "../components/portal/TierBadge";
 
 const UPDATE_SERVER_URL = import.meta.env.VITE_UPDATE_SERVER_URL;
 
-// Styles extracted to constants for performance
+// Styles extracted to constants for performance - Light Theme
 const STYLES = {
   background: { background: colors.background.primary },
   header: {
-    background: "rgba(10,10,11,0.92)",
+    background: "rgba(255,255,255,0.92)",
     backdropFilter: "blur(12px)",
-    borderBottom: "1px solid rgba(168,168,180,0.06)",
+    borderBottom: "1px solid rgba(0,0,0,0.08)",
   },
   statusIndicator: {
     background: colors.process.primary,
-    boxShadow: "0 0 6px rgba(16,185,129,0.5)",
+    boxShadow: "0 0 6px rgba(0,60,51,0.4)",
   },
   titleGradient: {
-    background: `linear-gradient(135deg, ${colors.background.primary} 0%, ${colors.text.muted} 100%)`,
+    background: `linear-gradient(135deg, ${colors.text.primary} 0%, ${colors.text.secondary} 100%)`,
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
   },
   loadingBox: {
-    background: "rgba(245,158,11,0.1)",
-    border: "1px solid rgba(245,158,11,0.3)",
+    background: "rgba(255,136,0,0.08)",
+    border: "1px solid rgba(255,136,0,0.2)",
     borderRadius: "0.375rem",
     transform: "rotate(45deg)",
     animation: "pulse 1.5s ease-in-out infinite",
-    boxShadow: "0 0 15px rgba(245,158,11,0.08), 0 0 30px rgba(245,158,11,0.04)",
+    boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
   },
   card: {
-    background: "rgba(17,17,19,0.95)",
-    border: "1px solid rgba(168,168,180,0.08)",
+    background: "#ffffff",
+    border: "1px solid rgba(0,0,0,0.08)",
     borderRadius: "0.75rem",
-    boxShadow: "0 0 15px rgba(245,158,11,0.08), 0 0 30px rgba(245,158,11,0.04)",
+    boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04)",
   },
   cardHoverAccent: {
     background:
-      "linear-gradient(to right, transparent, rgba(245,158,11,0.4), transparent)",
+      "linear-gradient(to right, transparent, rgba(255,136,0,0.3), transparent)",
   },
   tagVision: {
     color: colors.signal.warning,
-    background: "rgba(245,158,11,0.08)",
-    border: "1px solid rgba(245,158,11,0.15)",
+    background: "rgba(255,136,0,0.08)",
+    border: "1px solid rgba(255,136,0,0.2)",
     borderRadius: "0.375rem",
   },
   downloadButton: {
-    background: "rgba(245,158,11,0.08)",
-    border: "1px solid rgba(245,158,11,0.25)",
-    color: colors.signal.warning,
+    background: colors.process.primary,
+    border: "1px solid " + colors.process.primary,
+    color: "#ffffff",
     borderRadius: "0.5rem",
   },
   supportCard: {
-    background: "rgba(17,17,19,0.8)",
-    border: "1px solid rgba(168,168,180,0.06)",
+    background: colors.background.secondary,
+    border: "1px solid rgba(0,0,0,0.06)",
     borderRadius: "0.75rem",
-    boxShadow: "0 0 15px rgba(245,158,11,0.08), 0 0 30px rgba(245,158,11,0.04)",
+    boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
   },
   supportButton: {
-    color: colors.signal.warning,
-    border: "1px solid rgba(245,158,11,0.2)",
-    background: "rgba(245,158,11,0.05)",
+    color: colors.process.primary,
+    border: "1px solid " + colors.process.primary,
+    background: "transparent",
     borderRadius: "0.5rem",
   },
 };
@@ -278,13 +278,6 @@ export function PortalDashboard() {
               </Link>
             )}
             <Link
-              to="/system"
-              className="text-xs font-semibold tracking-wider md:tracking-widest uppercase transition-colors duration-200 text-txt-muted hover:text-txt-primary"
-            >
-              <span className="hidden sm:inline">System</span>
-              <span className="sm:hidden">Sys</span>
-            </Link>
-            <Link
               to="/portal/manual"
               className="text-xs font-semibold tracking-wider md:tracking-widest uppercase transition-colors duration-200 text-txt-muted hover:text-txt-primary"
             >
@@ -421,11 +414,10 @@ export function PortalDashboard() {
                             <div
                               className="p-6 space-y-4"
                               style={{
-                                background: "rgba(10,10,11,0.6)",
-                                border: "1px solid rgba(168,168,180,0.06)",
+                                background: colors.background.secondary,
+                                border: "1px solid rgba(0,0,0,0.06)",
                                 borderRadius: "0.75rem",
-                                boxShadow:
-                                  "0 0 15px rgba(245,158,11,0.08), 0 0 30px rgba(245,158,11,0.04)",
+                                boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
                               }}
                             >
                               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

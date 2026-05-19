@@ -79,9 +79,9 @@ export function PortalManual() {
       <header
         className="sticky top-0 z-50"
         style={{
-          background: "rgba(10,10,11,0.92)",
+          background: "rgba(255,255,255,0.92)",
           backdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(168,168,180,0.06)",
+          borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
@@ -137,10 +137,11 @@ export function PortalManual() {
           <aside className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24">
               <div
-                className="p-4"
+                className="p-4 rounded-lg"
                 style={{
-                  background: "rgba(17,17,19,0.95)",
-                  border: "1px solid rgba(168,168,180,0.08)",
+                  background: "#ffffff",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
                 }}
               >
                 <h3 className="text-xs font-bold tracking-widest uppercase text-txt-secondary mb-4">
@@ -183,7 +184,7 @@ export function PortalManual() {
                 className="text-4xl md:text-5xl font-black tracking-tight mb-3"
                 style={{
                   background:
-                    `linear-gradient(135deg, ${colors.background.primary} 0%, ${colors.text.muted} 100%)`,
+                    `linear-gradient(135deg, ${colors.text.primary} 0%, ${colors.text.secondary} 100%)`,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -211,10 +212,11 @@ export function PortalManual() {
                   1. What This System Does
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div>
@@ -298,10 +300,11 @@ export function PortalManual() {
                   2. Starting the System
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <p className="text-sm text-txt-secondary leading-relaxed">
@@ -365,10 +368,11 @@ export function PortalManual() {
                   3. Main Screen Layout
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div>
@@ -498,10 +502,11 @@ export function PortalManual() {
                   4. Tab 1 — Run Inspection (Single Casting)
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div className="space-y-3 text-sm text-txt-secondary leading-relaxed">
@@ -675,10 +680,11 @@ export function PortalManual() {
                   5. Tab 1 (Batch Mode) — Batch Processing
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <p className="text-sm text-txt-secondary leading-relaxed">
@@ -741,10 +747,11 @@ export function PortalManual() {
                   6. Tab 2 — Results & Report
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <p className="text-sm text-txt-secondary leading-relaxed">
@@ -799,10 +806,11 @@ export function PortalManual() {
                   7. Tab 3 — Human Validation
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <p className="text-sm text-txt-secondary leading-relaxed">
@@ -856,10 +864,11 @@ export function PortalManual() {
                   8. Tab 4 — Analytics
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <p className="text-sm text-txt-secondary leading-relaxed">
@@ -938,10 +947,11 @@ export function PortalManual() {
                   9. Understanding Alerts
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <p className="text-sm text-txt-secondary leading-relaxed">
@@ -1054,10 +1064,11 @@ export function PortalManual() {
                   10. Tab 5 — Learning Module
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div
@@ -1196,10 +1207,11 @@ export function PortalManual() {
                   11. Tab 6 — Plant Intelligence
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div
@@ -1322,10 +1334,11 @@ export function PortalManual() {
                   12. AI Query — Ask Questions in Plain Language
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <p className="text-sm text-txt-secondary leading-relaxed">
@@ -1401,10 +1414,11 @@ export function PortalManual() {
                   13. Daily Usage Flow
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div>
@@ -1521,10 +1535,11 @@ export function PortalManual() {
                   14. Best Practices
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div>
@@ -1624,10 +1639,11 @@ export function PortalManual() {
                   15. Troubleshooting
                 </h2>
                 <div
-                  className="p-6 space-y-3"
+                  className="p-6 space-y-3 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   {[
@@ -1694,10 +1710,11 @@ export function PortalManual() {
                   16. Understanding the Numbers
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div className="space-y-4">
@@ -1764,10 +1781,11 @@ export function PortalManual() {
                   17. License Levels
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div className="space-y-4">
@@ -1891,10 +1909,11 @@ export function PortalManual() {
                   18. Quick Reference
                 </h2>
                 <div
-                  className="p-6 space-y-4"
+                  className="p-6 space-y-4 rounded-xl"
                   style={{
-                    background: "rgba(17,17,19,0.95)",
-                    border: "1px solid rgba(168,168,180,0.08)",
+                    background: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                   }}
                 >
                   <div>
@@ -1958,7 +1977,7 @@ export function PortalManual() {
                       >
                         <div
                           className="flex-shrink-0 w-20 px-2 py-1 text-center text-xs font-bold"
-                          style={{ background: colors.process.primary, color: colors.text.primary }}
+                          style={{ background: colors.process.primary, color: colors.background.primary }}
                         >
                           ACCEPT
                         </div>
@@ -2073,10 +2092,11 @@ export function PortalManual() {
 
               {/* Footer */}
               <div
-                className="mt-12 p-6 text-center"
+                className="mt-12 p-6 text-center rounded-xl"
                 style={{
-                  background: "rgba(17,17,19,0.8)",
-                  border: "1px solid rgba(168,168,180,0.06)",
+                  background: "#ffffff",
+                  border: "1px solid rgba(0,0,0,0.06)",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
                 }}
               >
                 <p className="text-sm text-txt-secondary mb-2">

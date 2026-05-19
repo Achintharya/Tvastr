@@ -1,10 +1,12 @@
 import { useLicense } from '../context/LicenseContext'
 import { CONFIG, openContact } from '../lib/config'
+import { legacyColors as colors } from '../design/colors'
 
 /**
  * UpgradeBanner — Top-of-dashboard upgrade prompt.
  * Renders ONLY for ras_core and ras_enterprise tiers.
  * Hidden for full_stack.
+ * Updated to match light theme design system.
  *
  * Shows tier-specific messaging to guide users toward higher tiers.
  */
@@ -48,9 +50,12 @@ export function UpgradeBanner() {
 
   return (
     <div
-      className="liquid-glass-amber mb-8 p-6 md:p-8"
+      className="mb-8 p-6 md:p-8"
       style={{
-        borderRadius: '4px',
+        background: colors.background.secondary,
+        border: '1px solid rgba(255,136,0,0.15)',
+        borderRadius: '0.75rem',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
       }}
     >
       <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -60,14 +65,14 @@ export function UpgradeBanner() {
             {config.title}
           </h3>
           <p className="text-sm text-txt-secondary mb-3">
-            Upgrade to <span className="font-semibold text-signal-warning">{config.targetTier}</span> to enable:
+            Upgrade to <span className="font-semibold text-accent-primary">{config.targetTier}</span> to enable:
           </p>
           <ul className="space-y-2">
             {config.features.map((feature, i) => (
               <li key={i} className="flex items-center gap-3 text-sm text-txt-secondary">
                 <span
                   className="flex-shrink-0 w-1 h-1 rounded-full"
-                  style={{ background: '#f59e0b' }}
+                  style={{ background: colors.signal.warning }}
                 />
                 {feature}
               </li>
@@ -81,16 +86,16 @@ export function UpgradeBanner() {
             onClick={handleUpgrade}
             className="px-6 py-3 text-sm font-semibold tracking-[0.15em] uppercase transition-all duration-200"
             style={{
-              background: 'rgba(245,158,11,0.12)',
-              border: '1px solid rgba(245,158,11,0.35)',
-              color: '#fbbf24',
-              borderRadius: '4px',
+              background: colors.process.primary,
+              border: '1px solid ' + colors.process.primary,
+              color: '#ffffff',
+              borderRadius: '0.5rem',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(245,158,11,0.2)'
+              e.currentTarget.style.opacity = '0.9'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(245,158,11,0.12)'
+              e.currentTarget.style.opacity = '1'
             }}
           >
             {config.cta}

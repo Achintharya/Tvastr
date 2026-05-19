@@ -43,8 +43,9 @@ function MobileDocSelector({ docs, selectedDoc, setSelectedDoc }) {
         <div
           className="mt-2 rounded overflow-hidden"
           style={{
-            background: "rgba(17,17,19,0.95)",
-            border: "1px solid rgba(168,168,180,0.08)",
+            background: "#ffffff",
+            border: "1px solid rgba(0,0,0,0.08)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
           }}
         >
           <div className="p-2">
@@ -80,21 +81,21 @@ function MobileDocSelector({ docs, selectedDoc, setSelectedDoc }) {
 const STYLES = {
   background: { background: colors.background.primary },
   header: {
-    background: "rgba(10,10,11,0.92)",
+    background: "rgba(255,255,255,0.92)",
     backdropFilter: "blur(12px)",
-    borderBottom: "1px solid rgba(168,168,180,0.06)",
+    borderBottom: "1px solid rgba(0,0,0,0.08)",
   },
   titleGradient: {
-    background: `linear-gradient(135deg, ${colors.background.primary} 0%, ${colors.text.muted} 100%)`,
+    background: `linear-gradient(135deg, ${colors.text.primary} 0%, ${colors.text.secondary} 100%)`,
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
   },
   card: {
-    background: "rgba(17,17,19,0.95)",
-    border: "1px solid rgba(168,168,180,0.08)",
+    background: "#ffffff",
+    border: "1px solid rgba(0,0,0,0.06)",
     borderRadius: "0.75rem",
-    boxShadow: "0 0 15px rgba(245,158,11,0.08), 0 0 30px rgba(245,158,11,0.04)",
+    boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
   },
 };
 
@@ -214,7 +215,7 @@ export function SystemDocs() {
             <div
               className="hidden md:block w-1/5 min-w-[180px] max-w-[240px] shrink-0 border-r overflow-y-auto"
               style={{
-                borderColor: "rgba(168,168,180,0.08)",
+                borderColor: "rgba(0,0,0,0.08)",
                 maxHeight: "70vh",
               }}
             >
@@ -288,7 +289,7 @@ export function SystemDocs() {
                     <p className="text-sm text-red-400">{error}</p>
                   </div>
                 ) : docContent ? (
-                  <div className="p-4 md:p-8 prose prose-invert prose-amber max-w-none">
+                  <div className="p-4 md:p-8 prose prose-amber max-w-none">
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm]}
                       components={{
@@ -360,8 +361,8 @@ export function SystemDocs() {
                             <code
                               className="block p-3 md:p-4 rounded font-mono text-xs text-txt-secondary overflow-x-auto"
                               style={{
-                                background: "rgba(10,10,11,0.6)",
-                                border: "1px solid rgba(168,168,180,0.08)",
+                                background: "rgba(0,0,0,0.03)",
+                                border: "1px solid rgba(0,0,0,0.08)",
                               }}
                               {...props}
                             />

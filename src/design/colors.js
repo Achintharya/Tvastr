@@ -15,7 +15,7 @@ export const colors = {
   // Background colors for different UI layers
   surface: {
     base: "#ffffff",      // Main page background
-    subtle: "#f1f5ff",    // Alternating/secondary sections
+    subtle: "#f6fffe",    // Alternating/secondary sections
     elevated: "#ffffff",  // Cards, modals, overlays
     panel: "#bbc5c46e",     // Data panels, sidebars
   },

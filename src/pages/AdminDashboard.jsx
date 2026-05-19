@@ -49,8 +49,9 @@ function MobileDocSelector({ manifest, selectedDoc, setSelectedDoc }) {
         <div
           className="mt-2 rounded overflow-hidden"
           style={{
-            background: "rgba(17,17,19,0.95)",
-            border: "1px solid rgba(168,168,180,0.08)",
+            background: "#ffffff",
+            border: "1px solid rgba(0,0,0,0.08)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
           }}
         >
           {manifest.sections.map((section) => (
@@ -58,7 +59,7 @@ function MobileDocSelector({ manifest, selectedDoc, setSelectedDoc }) {
               key={section.id}
               className="border-b border-border-subtle last:border-b-0"
             >
-              <h3 className="text-xs font-semibold tracking-widest uppercase text-signal-warning px-4 py-3 bg-[rgba(10,10,11,0.6)]">
+              <h3 className="text-xs font-semibold tracking-widest uppercase text-signal-warning px-4 py-3" style={{ background: colors.background.secondary }}>
                 {section.title}
               </h3>
               <div className="p-2">
@@ -93,28 +94,29 @@ function MobileDocSelector({ manifest, selectedDoc, setSelectedDoc }) {
   );
 }
 
+// Light theme styles for Admin Dashboard
 const STYLES = {
   background: { background: colors.background.primary },
   header: {
-    background: "rgba(10,10,11,0.92)",
+    background: "rgba(255,255,255,0.92)",
     backdropFilter: "blur(12px)",
-    borderBottom: "1px solid rgba(168,168,180,0.06)",
+    borderBottom: "1px solid rgba(0,0,0,0.08)",
   },
   statusIndicator: {
     background: colors.process.primary,
-    boxShadow: "0 0 6px rgba(16,185,129,0.5)",
+    boxShadow: "0 0 6px rgba(0,60,51,0.4)",
   },
   titleGradient: {
-    background: `linear-gradient(135deg, ${colors.background.primary} 0%, ${colors.text.muted} 100%)`,
+    background: `linear-gradient(135deg, ${colors.text.primary} 0%, ${colors.text.secondary} 100%)`,
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
   },
   card: {
-    background: "rgba(17,17,19,0.95)",
-    border: "1px solid rgba(168,168,180,0.08)",
+    background: "#ffffff",
+    border: "1px solid rgba(0,0,0,0.08)",
     borderRadius: "0.75rem",
-    boxShadow: "0 0 15px rgba(245,158,11,0.08), 0 0 30px rgba(245,158,11,0.04)",
+    boxShadow: "0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04)",
   },
   tab: {
     base: {
@@ -132,25 +134,25 @@ const STYLES = {
       background: "transparent",
     },
     active: {
-      color: colors.signal.warning,
-      background: "rgba(245,158,11,0.1)",
-      border: "1px solid rgba(245,158,11,0.2)",
+      color: "#ffffff",
+      background: colors.process.primary,
+      border: "1px solid " + colors.process.primary,
     },
   },
   table: {
     header: {
-      background: "rgba(10,10,11,0.6)",
+      background: colors.background.secondary,
       color: colors.text.muted,
       fontSize: "0.625rem",
       fontWeight: "600",
       letterSpacing: "0.15em",
       textTransform: "uppercase",
       padding: "1rem",
-      borderBottom: "1px solid rgba(168,168,180,0.08)",
+      borderBottom: "1px solid rgba(0,0,0,0.06)",
     },
     cell: {
       padding: "1rem",
-      borderBottom: "1px solid rgba(168,168,180,0.05)",
+      borderBottom: "1px solid rgba(0,0,0,0.04)",
       color: colors.text.primary,
       fontSize: "0.875rem",
     },
@@ -480,8 +482,8 @@ export function AdminDashboard() {
                       key={customer.user_id}
                       className="p-4 rounded-lg"
                       style={{
-                        background: "rgba(10,10,11,0.6)",
-                        border: "1px solid rgba(168,168,180,0.08)",
+                        background: colors.background.secondary,
+                        border: "1px solid rgba(0,0,0,0.06)",
                       }}
                     >
                       <div className="flex items-start justify-between mb-3">
@@ -629,7 +631,7 @@ export function AdminDashboard() {
                       <p className="text-sm text-red-400">{docError}</p>
                     </div>
                   ) : docContent ? (
-                    <div className="p-4 md:p-8 prose prose-invert prose-amber max-w-none">
+                    <div className="p-4 md:p-8 prose prose-amber max-w-none">
                       <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         components={{
@@ -701,8 +703,8 @@ export function AdminDashboard() {
                               <code
                                 className="block p-3 md:p-4 rounded font-mono text-xs text-txt-secondary overflow-x-auto"
                                 style={{
-                                  background: "rgba(10,10,11,0.6)",
-                                  border: "1px solid rgba(168,168,180,0.08)",
+                                  background: "rgba(0,0,0,0.03)",
+                                  border: "1px solid rgba(0,0,0,0.08)",
                                 }}
                                 {...props}
                               />
