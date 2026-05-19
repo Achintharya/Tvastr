@@ -6,19 +6,9 @@ export const technologyCTAContent = {
   body: "This is not another inspection tool with AI features added. It is a manufacturing intelligence architecture built from first principles — where perception, reasoning, memory, and process intelligence operate as a unified system that improves with every casting inspected.",
   buttons: [
     {
-      label: "Request Technical Consultation",
-      href: "#contact",
-      variant: "primary"
-    },
-    {
-      label: "View System Documentation",
-      href: "/system",
-      variant: "secondary"
-    },
-    {
       label: "Schedule Demo",
-      href: "#contact",
-      variant: "secondary"
+      href: "/#contact",
+      variant: "primary"
     }
   ]
 }

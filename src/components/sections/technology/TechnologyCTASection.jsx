@@ -1,55 +1,64 @@
-import { SectionShell } from '../../primitives/SectionShell'
-import { technologyCTAContent } from '@/content/technology/index'
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+
+import { SectionShell } from "../../primitives/SectionShell";
+import { technologyCTAContent } from "@/content/technology/index";
+import { useSectionReveal } from "../../../hooks/useSectionReveal";
 
 export function TechnologyCTASection() {
-  const { title, subtitle, buttons } = technologyCTAContent
-
-  const handleClick = (href) => {
-    if (href.startsWith('#')) {
-      // Navigate to home then scroll
-      window.location.href = `/${href}`
-    }
-  }
+  const { title, subtitle, buttons } = technologyCTAContent;
+  const sectionRef = useRef(null);
+  useSectionReveal(sectionRef);
 
   return (
-    <SectionShell
-      id="technology-cta"
-      className="text-center"
-      style={{
-        background: 'linear-gradient(to bottom, #0a0a0b 0%, #12121a 100%)'
-      }}
-    >
+    <SectionShell ref={sectionRef} id="technology-cta" className="text-center">
       <div className="max-w-4xl mx-auto space-y-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-metallic-50">
+        <p
+          className="font-mono text-[11px] md:text-[12px] tracking-[0.28em] uppercase"
+          style={{ color: "var(--signal-glow)" }}
+        >
+          Next Steps
+        </p>
+
+        <h2 className="text-3xl md:text-5xl lg:text-[56px] font-medium text-txt-primary leading-[1.05] tracking-[-0.02em]">
           {title}
         </h2>
-        
-        <p className="text-lg text-txt-secondary">
+
+        <p
+          data-subheading
+          className="text-base md:text-lg text-txt-secondary leading-relaxed max-w-3xl mx-auto"
+        >
           {subtitle}
         </p>
-        
-        <div className="flex flex-wrap items-center justify-center gap-4">
+
+        <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           {buttons.map((button, idx) => (
-            <a
+            <Link
               key={idx}
-              href={button.href}
-              onClick={(e) => {
-                if (button.href.startsWith('#')) {
-                  e.preventDefault()
-                  handleClick(button.href)
-                }
-              }}
+              data-reveal-item
+              to={button.href}
               className={
-                button.variant === 'primary'
-                  ? 'px-8 py-3 bg-amber-forge text-metallic-950 font-semibold rounded hover:bg-amber-600 transition-colors'
-                  : 'px-8 py-3 border border-metallic-700 text-txt-primary font-semibold rounded hover:border-amber-forge hover:text-telemetry-primary transition-colors'
+                button.variant === "primary"
+                  ? "inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-process-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+                  : "inline-flex items-center gap-2 px-7 py-3 rounded-full text-sm font-medium tracking-wide border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-process-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+              }
+              style={
+                button.variant === "primary"
+                  ? {
+                      background: "var(--process-primary)",
+                      color: "var(--bg-primary)",
+                    }
+                  : {
+                      borderColor: "var(--border-default)",
+                      color: "var(--text-primary)",
+                    }
               }
             >
               {button.label}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
     </SectionShell>
-  )
+  );
 }
