@@ -49,12 +49,12 @@ export function ContactSection() {
               </dt>
               <dd>
                 <a
-                  href="https://www.linkedin.com/in/achintharya"
+                  href="https://www.linkedin.com/company/tvastrindustrialai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-base text-txt-primary border-b border-txt-primary/30 hover:border-txt-primary pb-0.5 transition-colors focus:outline-none focus-visible:border-process-primary focus-visible:text-process-primary"
                 >
-                  linkedin.com/in/achintharya
+                  linkedin.com/company/tvastrindustrialai
                 </a>
               </dd>
             </div>
