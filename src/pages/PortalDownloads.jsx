@@ -9,7 +9,7 @@ import { RollbackVersionCard } from "../components/RollbackVersionCard";
 import { Logo } from "../components/Logo";
 import { LockedFeatureBlock } from "../components/LockedFeatureBlock";
 import { CONFIG, generateMailtoLink } from "../lib/config";
-import { colors } from "../design/colors";
+import { legacyColors as colors } from "../design/colors";
 import { TierBadge } from "../components/portal/TierBadge";
 
 /**

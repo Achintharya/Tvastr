@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Logo } from "../components/Logo";
-import { colors } from "../design/colors";
+import { legacyColors as colors } from "../design/colors";
 
 // Mobile-friendly doc selector
 function MobileDocSelector({ docs, selectedDoc, setSelectedDoc }) {

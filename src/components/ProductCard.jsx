@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { cardClipPath } from "../design/clipPaths";
-import { colors } from "../design/colors";
+import { legacyColors as colors } from "../design/colors";
 import { useReducedMotionContext } from "../animation/MotionConfig";
 
 /**

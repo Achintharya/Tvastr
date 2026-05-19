@@ -8,7 +8,7 @@
  * (Property 13).
  */
 
-import { colors } from "../../design/colors";
+import { legacyColors as colors } from "../../design/colors";
 
 export default function RulerTickDivider({ className = "", style = {} }) {
   return (

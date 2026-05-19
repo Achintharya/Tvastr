@@ -7,7 +7,7 @@ import { useLicense } from "../context/LicenseContext";
 import { supabase } from "../lib/supabaseClient";
 import { Logo } from "../components/Logo";
 import { TIER_LABELS } from "../lib/capabilities";
-import { colors } from "../design/colors";
+import { legacyColors as colors } from "../design/colors";
 
 // Mobile-friendly section selector for docs
 function MobileDocSelector({ manifest, selectedDoc, setSelectedDoc }) {

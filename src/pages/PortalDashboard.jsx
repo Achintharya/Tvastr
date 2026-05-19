@@ -11,7 +11,7 @@ import { ProductDownloadCard } from "../components/ProductDownloadCard";
 import { ForgeLoader } from "../components/ForgeLoader";
 import { TIER_LABELS, isAllowed, tierToBadgeState } from "../lib/capabilities";
 import { CONFIG, openContact } from "../lib/config";
-import { colors } from "../design/colors";
+import { legacyColors as colors } from "../design/colors";
 import { TierBadge } from "../components/portal/TierBadge";
 
 const UPDATE_SERVER_URL = import.meta.env.VITE_UPDATE_SERVER_URL;

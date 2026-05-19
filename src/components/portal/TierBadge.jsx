@@ -19,7 +19,7 @@
  */
 
 import { CONFIG, openContact } from "../../lib/config";
-import { colors } from "../../design/colors";
+import { legacyColors as colors } from "../../design/colors";
 
 /**
  * Convert a 6-digit hex into an rgba() string at the requested alpha so

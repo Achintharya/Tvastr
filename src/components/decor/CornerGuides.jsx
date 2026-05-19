@@ -12,7 +12,7 @@
 
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { colors } from "../../design/colors";
+import { legacyColors as colors } from "../../design/colors";
 
 const ALLOWED_PATHS = ["/", "/technology", "/about", "/research"];
 

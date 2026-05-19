@@ -17,7 +17,7 @@
  * Industrial decor layer; § Property 13.
  */
 
-import { colors } from "../../design/colors";
+import { legacyColors as colors } from "../../design/colors";
 
 /**
  * Renders the fixed full-viewport industrial grid.

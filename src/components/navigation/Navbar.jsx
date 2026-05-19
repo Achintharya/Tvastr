@@ -8,7 +8,7 @@ import { mainNavItems } from "@/config/navigation";
 import { durations } from "../../animation/motion";
 import { useReducedMotionContext } from "../../animation/MotionConfig";
 import { useMagnetic } from "../../hooks/useMagnetic";
-import { colors } from "../../design/colors";
+import { legacyColors as colors } from "../../design/colors";
 
 /**
  * Navbar — Three-zone fixed top navigation, Cohere-style.

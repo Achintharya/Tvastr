@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useLicense } from "../context/LicenseContext";
 import { Logo } from "../components/Logo";
-import { colors } from "../design/colors";
+import { legacyColors as colors } from "../design/colors";
 
 /**
  * PortalManual — Protected page displaying the complete PIRAS User Manual.
