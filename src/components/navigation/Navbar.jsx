@@ -129,13 +129,23 @@ export function Navbar() {
       </a>
 
       <motion.nav
-        className="fixed top-0 left-0 right-0 z-50"
+        className="fixed z-50"
         initial={false}
         animate={{
+          top: surfaced ? 16 : 0,
+          left: surfaced ? 36 : 0,
+          right: surfaced ? 36 : 0,
           backgroundColor: surfaced
-            ? "rgba(255, 255, 255, 0.92)"
+            ? "rgba(255, 255, 255, 0.43)"
             : "rgba(255, 255, 255, 0)",
-          borderBottomColor: surfaced ? colors.border.subtle : "rgba(0,0,0,0)",
+          borderRadius: surfaced ? 24 : 0,
+          boxShadow: surfaced
+            ? "0 4px 24px rgba(0, 0, 0, 0.10), 0 1px 3px rgba(0, 0, 0, 0.04)"
+            : "none",
+          backdropFilter: surfaced ? "blur(5px)" : "blur(0px)",
+          WebkitBackdropFilter: surfaced ? "blur(5px)" : "blur(0px)",
+          borderWidth: surfaced ? 1 : 0,
+          borderColor: surfaced ? "rgba(0, 0, 0, 0.06)" : "rgba(0, 0, 0, 0)",
         }}
         transition={
           reducedMotion
@@ -146,13 +156,10 @@ export function Navbar() {
               }
         }
         style={{
-          borderBottomWidth: "1px",
-          borderBottomStyle: "solid",
-          backdropFilter: surfaced ? "blur(14px)" : "none",
-          WebkitBackdropFilter: surfaced ? "blur(14px)" : "none",
+          borderStyle: "solid",
         }}
       >
-        <div className="px-6 md:px-10 lg:px-14">
+        <div className={surfaced ? "px-4 md:px-6" : "px-6 md:px-10 lg:px-14"}>
           {/* Three-zone grid: logo left, centered nav, CTA right. The
               center column is `justify-self-center` so the link cluster
               stays optically centered regardless of left/right widths. */}

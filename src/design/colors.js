@@ -37,7 +37,7 @@ export const colors = {
   // ──────────── ACCENT ────────────
   // Highlight and status colors
   accent: {
-    primary: "#f59e0b",   // Section labels, active states, highlights (amber)
+    primary: "#ff8800",   // Section labels, active states, highlights (amber)
     danger: "#b30000",    // Error states, destructive actions
   },
 
