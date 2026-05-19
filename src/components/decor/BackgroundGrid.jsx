@@ -9,11 +9,10 @@
  * so the grid sits behind page content and never intercepts pointer events
  * (Property 13).
  *
- * Mounted once near the application root in `App.jsx` so the grid persists
- * across route transitions; the legacy `body` `background-image` declaration
- * in `src/index.css` is removed in the same change.
+ * This component is INTERCHANGEABLE with BackgroundLogo.jsx.
+ * Use ONE or the OTHER in App.jsx, not both.
  *
- * See Requirements 6.1, 6.7 and design.md § Components and Interfaces >
+ * @see Requirements 6.1, 6.7 and design.md § Components and Interfaces >
  * Industrial decor layer; § Property 13.
  */
 
@@ -22,9 +21,11 @@ import { legacyColors as colors } from "../../design/colors";
 /**
  * Renders the fixed full-viewport industrial grid.
  *
+ * @param {Object} props
+ * @param {number} [props.opacity=0.4] — Grid opacity (0.3–0.6 recommended)
  * @returns {JSX.Element}
  */
-export default function BackgroundGrid() {
+export default function BackgroundGrid({ opacity = 0.4 }) {
   const lineColor = colors.border.subtle;
 
   return (
@@ -38,6 +39,7 @@ export default function BackgroundGrid() {
         zIndex: 0,
         backgroundImage: `linear-gradient(to right, ${lineColor} 1px, transparent 1px), linear-gradient(to bottom, ${lineColor} 1px, transparent 1px)`,
         backgroundSize: "32px 32px",
+        opacity: opacity,
       }}
     />
   );

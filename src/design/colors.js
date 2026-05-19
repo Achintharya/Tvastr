@@ -17,7 +17,7 @@ export const colors = {
     base: "#ffffff",      // Main page background
     subtle: "#f1f5ff",    // Alternating/secondary sections
     elevated: "#ffffff",  // Cards, modals, overlays
-    panel: "#eeece7",     // Data panels, sidebars
+    panel: "#bbc5c46e",     // Data panels, sidebars
   },
 
   // ──────────── TEXT ────────────
