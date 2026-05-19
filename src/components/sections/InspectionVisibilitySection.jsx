@@ -109,30 +109,28 @@ export function InspectionVisibilitySection() {
           onFocus={() => setPaused(true)}
           onBlur={() => setPaused(false)}
         >
-          {/* Large image frame */}
+          {/* Large image frame — uniform dimensions across all images */}
           <div
-            className="relative w-full rounded-xl overflow-hidden border border-border-default"
-            style={{ background: "var(--bg-primary)" }}
+            className="relative w-full rounded-xl overflow-hidden border border-border-default bg-white"
+            style={{ aspectRatio: "18 / 9" }}
             aria-live="polite"
           >
-            <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.img
-                  key={current.id}
-                  src={current.imagePath}
-                  alt={current.title}
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  initial={{ opacity: 0, scale: 1.01 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.995 }}
-                  transition={{
-                    duration: transitionMs / 1000,
-                    ease: [0.4, 0, 0.2, 1],
-                  }}
-                />
-              </AnimatePresence>
-            </div>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.img
+                key={current.id}
+                src={current.imagePath}
+                alt={current.title}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-contain"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  duration: transitionMs / 1000,
+                  ease: [0.4, 0, 0.2, 1],
+                }}
+              />
+            </AnimatePresence>
           </div>
 
           {/* Caption row directly under the image */}
