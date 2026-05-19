@@ -312,17 +312,6 @@
     }
   }
 
-  /* Grid background pattern — used via .bg-grid class. Recolored to a
-     low-alpha amber (#f59e0b) so the grid reads as a warm industrial
-     blueprint trace rather than cool gray. Alpha kept very low so the
-     grid is felt, not seen. */
-  .bg-grid {
-    background-image:
-      linear-gradient(rgba(245, 158, 11, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(245, 158, 11, 0.05) 1px, transparent 1px);
-    background-size: 80px 80px;
-  }
-
   /* Data gradient text — blue telemetry gradient */
   .text-telemetry-gradient {
     background: linear-gradient(135deg, #4f8cff 0%, #3b7aed 50%, #2563c4 100%);
