@@ -106,7 +106,7 @@ export function HeroSection() {
             end: "bottom top",
             scrub: true,
             pin: true,
-            pinSpacing: true,
+            pinSpacing: false,
           },
         });
       }
