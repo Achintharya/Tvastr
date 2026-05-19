@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { heroContent } from "@/content/homepage/hero";
@@ -53,6 +53,7 @@ export function HeroSection() {
   const taglineRef = useRef(null);
   const ctaRef = useRef(null);
   const stripRef = useRef(null);
+  const videoRef = useRef(null);
 
   const { reducedMotion } = useReducedMotionContext();
 
@@ -60,6 +61,21 @@ export function HeroSection() {
   // gracefully no-ops on coarse-pointer devices, narrow viewports, and
   // under reduced-motion (Reqs 11.7, 11.8, 11.9, 18.2).
   useMagnetic(ctaRef);
+
+  // Mobile video autoplay fallback — some browsers (iOS Safari, some Android)
+  // need a programmatic .play() call even with autoPlay + muted + playsInline.
+  useEffect(() => {
+    if (!reducedMotion && videoRef.current) {
+      // Attempt to play after component mount
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay blocked — that's okay, video just won't play
+          // This is expected on some browsers without user interaction
+        });
+      }
+    }
+  }, [reducedMotion]);
 
   useLayoutEffect(() => {
     const ctx = gsapContext(() => {
@@ -155,13 +171,15 @@ export function HeroSection() {
           from intercepting clicks. */}
       {!reducedMotion && (
         <video
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           src="/intro.mp4"
           autoPlay
           loop
           muted
           playsInline
-          preload="metadata"
+          webkit-playsinline=""
+          preload="auto"
           aria-hidden="true"
           style={{ opacity: 0.45 }}
         />

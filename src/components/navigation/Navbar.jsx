@@ -128,38 +128,40 @@ export function Navbar() {
         Skip to main content
       </a>
 
-      <motion.nav
-        className="fixed z-50"
-        initial={false}
-        animate={{
-          top: surfaced ? 16 : 0,
-          left: surfaced ? 36 : 0,
-          right: surfaced ? 36 : 0,
-          backgroundColor: surfaced
-            ? "rgba(255, 255, 255, 0.43)"
-            : "rgba(255, 255, 255, 0)",
-          borderRadius: surfaced ? 24 : 0,
-          boxShadow: surfaced
-            ? "0 4px 24px rgba(0, 0, 0, 0.10), 0 1px 3px rgba(0, 0, 0, 0.04)"
-            : "none",
-          backdropFilter: surfaced ? "blur(5px)" : "blur(0px)",
-          WebkitBackdropFilter: surfaced ? "blur(5px)" : "blur(0px)",
-          borderWidth: surfaced ? 1 : 0,
-          borderColor: surfaced ? "rgba(0, 0, 0, 0.06)" : "rgba(0, 0, 0, 0)",
-        }}
-        transition={
-          reducedMotion
-            ? { duration: 0 }
-            : {
-                duration: durations.navbarSurfaceMs / 1000,
-                ease: [0.4, 0, 0.2, 1],
-              }
-        }
-        style={{
-          borderStyle: "solid",
-        }}
-      >
-        <div className={surfaced ? "px-4 md:px-6" : "px-6 md:px-10 lg:px-14"}>
+      <nav className="fixed z-50 top-0 left-0 right-0 pointer-events-none">
+        <motion.div
+          className="pointer-events-auto"
+          initial={false}
+          animate={{
+            y: surfaced ? 16 : 0,
+            marginLeft: surfaced ? 36 : 0,
+            marginRight: surfaced ? 36 : 0,
+            backgroundColor: surfaced
+              ? "rgba(255, 255, 255, 0.43)"
+              : "rgba(255, 255, 255, 0)",
+            borderRadius: surfaced ? 24 : 0,
+            boxShadow: surfaced
+              ? "0 4px 24px rgba(0, 0, 0, 0.10), 0 1px 3px rgba(0, 0, 0, 0.04)"
+              : "none",
+            borderWidth: surfaced ? 1 : 0,
+            borderColor: surfaced ? "rgba(0, 0, 0, 0.06)" : "rgba(0, 0, 0, 0)",
+          }}
+          transition={
+            reducedMotion
+              ? { duration: 0 }
+              : {
+                  duration: durations.navbarSurfaceMs / 1000,
+                  ease: [0.4, 0, 0.2, 1],
+                }
+          }
+          style={{
+            borderStyle: "solid",
+            backdropFilter: surfaced ? "blur(5px)" : "none",
+            WebkitBackdropFilter: surfaced ? "blur(5px)" : "none",
+            willChange: "transform",
+          }}
+        >
+          <div className={surfaced ? "px-4 md:px-6" : "px-6 md:px-10 lg:px-14"}>
           {/* Three-zone grid: logo left, centered nav, CTA right. The
               center column is `justify-self-center` so the link cluster
               stays optically centered regardless of left/right widths. */}
@@ -494,7 +496,8 @@ export function Navbar() {
             </div>
           </div>
         )}
-      </motion.nav>
+        </motion.div>
+      </nav>
     </>
   );
 }
