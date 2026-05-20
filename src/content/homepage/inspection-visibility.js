@@ -2,8 +2,7 @@ export const inspectionVisibilityContent = {
   id: "inspection-visibility",
   type: "inspection-visibility",
   title: "Operational Visibility",
-  subtitle: "Inspection interfaces, process dashboards, and manufacturing intelligence views.",
-  body: "Tvastr provides operators with clear inspection workflows and quality managers with plant-wide process visibility. From individual defect analysis to batch-level trend intelligence, every level of the operation has appropriate visibility.",
+  subtitle: "Tvastr delivers unified inspection interfaces, process dashboards, and manufacturing intelligence",
   screenshots: [
     {
       id: "overview",
