@@ -6,8 +6,8 @@ export const industryProblemContent = {
   body: "Foundries generate massive amounts of inspection and production data every day, but most of it remains disconnected across stations, reports, and systems. Defects repeat, process issues stay hidden, and quality problems are often discovered only after rejection rates increase.",
   problems: [
     {
-      title: "Disconnected Systems",
-      description: "Inspection stations, traceability data, and production records exist in isolation. No intelligence flows between quality gates."
+      title: "Disconnected Quality Gates",
+      description: "Inspection stations operate in isolation. No intelligence flows between gates."
     },
     {
       title: "Operator-Dependent Outcomes",
@@ -15,11 +15,19 @@ export const industryProblemContent = {
     },
     {
       title: "No Manufacturing Memory",
-      description: "Recurring defects are not tracked across heats, molds, or production cycles. Traditional inspection captures defects but does not reason about patterns or causality."
+      description: "Recurring defects are not tracked across heats, molds, or production cycles. The plant forgets."
     },
     {
       title: "Reactive Quality Workflows",
       description: "Corrections happen after scrap is produced. No early-stage process reasoning."
+    },
+    {
+      title: "Fragmented Traceability",
+      description: "Heat numbers, mold IDs, and shift data exist in isolated systems. No unified linkage."
+    },
+    {
+      title: "Static Inspection Systems",
+      description: "Traditional inspection captures defects. It does not reason about process, pattern, or causality."
     }
   ]
 }
