@@ -2,12 +2,12 @@ export const multiGateIntelligenceContent = {
   id: "multi-gate-intelligence",
   type: "multi-gate-intelligence",
   title: "Continuous Intelligence Across Production Stages",
-  subtitle: "Manufacturing intelligence that flows between quality gates — not isolated inspection at disconnected stations.",
-  body: "Defects originate at different stages of production. Tvastr provides consistent detection and traceability across the entire sequence, linking inspection outcomes between gates and tracking defect propagation from early process stages through final inspection.",
+  subtitle: "Intelligence that flows between quality gates — not isolated inspection at disconnected stations.",
+  body: "Defects originate at different production stages. Tvastr provides consistent detection and traceability across the sequence, linking outcomes between gates and tracking defect propagation.",
   stages: [
     {
       name: "Pattern & Core",
-      description: "Dimensional verification and core integrity assessment before casting begins.",
+      description: "Dimensional verification and core integrity before casting begins.",
       intelligence: [
         "Dimensional deviation analysis",
         "Upstream risk flagging for downstream gates"
@@ -15,7 +15,7 @@ export const multiGateIntelligenceContent = {
     },
     {
       name: "Mold Condition",
-      description: "Mold wear tracking and coating condition monitoring during production cycles.",
+      description: "Tracks mold wear and coating condition during production.",
       intelligence: [
         "Mold degradation risk scoring",
         "Cycle-based wear pattern analysis"
@@ -39,12 +39,12 @@ export const multiGateIntelligenceContent = {
     },
     {
       name: "Final Inspection",
-      description: "Comprehensive defect analysis with full traceability to upstream gates and process context.",
+      description: "Comprehensive defect analysis with full traceability to upstream gates.",
       intelligence: [
         "Multi-signal defect classification",
         "Root cause attribution to process stage"
       ]
     }
   ],
-  keyMessage: "Intelligence accumulates across gates. Each inspection enriches the manufacturing record. Defect patterns are tracked from origin to outcome."
+  keyMessage: "Intelligence accumulates across gates. Each inspection enriches the record. Defects are tracked from origin to outcome."
 }

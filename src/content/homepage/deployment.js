@@ -3,11 +3,11 @@ export const deploymentContent = {
   type: "deployment",
   title: "Edge-Native. On-Premise. Offline-Capable.",
   subtitle: "Deployed inside your plant network. No cloud dependency. Deterministic performance.",
-  body: "All processing runs on dedicated hardware inside the plant. No data leaves the facility. The system operates fully offline with deterministic sub-200ms latency.",
+  body: "All processing runs on hardware inside the plant. No data leaves the facility. The system operates fully offline with deterministic low latency.",
   principles: [
     {
       name: "On-Premise Operation",
-      description: "All hardware and processing within the plant firewall. Complete data sovereignty."
+      description: "All hardware and processing within the plant. Complete data sovereignty."
     },
     {
       name: "Offline-Capable",
@@ -15,11 +15,11 @@ export const deploymentContent = {
     },
     {
       name: "Deterministic Latency",
-      description: "Inspection decisions in under 200ms. Critical for production-speed operation."
+      description: "Fast inspection decisions critical for production-speed operation."
     },
     {
       name: "SQL & ERP Integration",
-      description: "Direct integration with existing databases and ERP systems. Standard protocols."
+      description: "Direct integration with databases and ERP systems using standard protocols."
     }
   ],
   keyMessage: "Industrial deployment. Not cloud software adapted for factories."

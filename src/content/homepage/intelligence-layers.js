@@ -2,12 +2,12 @@ export const intelligenceLayersContent = {
   id: "intelligence-layers",
   type: "intelligence-layers",
   title: "Three Intelligence Layers. One Manufacturing System.",
-  subtitle: "Tvastr operates across perception, process reasoning, and industrial memory to deliver connected manufacturing intelligence.",
+  subtitle: "Tvastr operates across perception, process reasoning, and memory to deliver connected intelligence.",
   columns: [
     {
       id: "perception",
       name: "Perception Intelligence",
-      description: "Signal-first defect detection across quality gates with explainable classification and topology-aware reasoning.",
+      description: "Signal-based defect detection across quality gates with explainable classification.",
       capabilities: [
         "Multi-signal defect detection",
         "Explainable defect classification"
@@ -16,7 +16,7 @@ export const intelligenceLayersContent = {
     {
       id: "process",
       name: "Process Intelligence",
-      description: "Manufacturing analytics that connect defect outcomes to process behavior, enabling early intervention and continuous improvement.",
+      description: "Analytics connecting defect outcomes to process behavior for early intervention.",
       capabilities: [
         "Statistical Process Control (SPC)",
         "Root cause analysis and drift detection"
@@ -25,12 +25,12 @@ export const intelligenceLayersContent = {
     {
       id: "memory",
       name: "Industrial Memory",
-      description: "Persistent manufacturing intelligence that accumulates knowledge across inspections, heats, and production cycles.",
+      description: "Persistent intelligence accumulating knowledge across inspections, heats, and cycles.",
       capabilities: [
         "Defect fingerprinting and spatial clustering",
         "Complete production traceability"
       ]
     }
   ],
-  keyMessage: "Each layer operates independently. Together, they form a connected intelligence architecture that improves with every casting inspected."
+  keyMessage: "Each layer operates independently. Together, they form connected intelligence that improves with every inspection."
 }
