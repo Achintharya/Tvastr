@@ -10,7 +10,6 @@ export const multiGateIntelligenceContent = {
       description: "Dimensional verification and core integrity assessment before casting begins.",
       intelligence: [
         "Dimensional deviation analysis",
-        "Core alignment and shift detection",
         "Upstream risk flagging for downstream gates"
       ]
     },
@@ -19,7 +18,6 @@ export const multiGateIntelligenceContent = {
       description: "Mold wear tracking and coating condition monitoring during production cycles.",
       intelligence: [
         "Mold degradation risk scoring",
-        "Surface condition monitoring",
         "Cycle-based wear pattern analysis"
       ]
     },
@@ -28,8 +26,7 @@ export const multiGateIntelligenceContent = {
       description: "Early-stage defect identification at casting ejection.",
       intelligence: [
         "Ejection stress crack detection",
-        "Incomplete fill identification",
-        "Surface contamination analysis"
+        "Incomplete fill identification"
       ]
     },
     {
@@ -37,8 +34,7 @@ export const multiGateIntelligenceContent = {
       description: "Post-gating surface quality and exposed internal defect detection.",
       intelligence: [
         "Porosity exposure analysis",
-        "Surface roughness quantification",
-        "Grind consistency assessment"
+        "Surface roughness quantification"
       ]
     },
     {
@@ -46,9 +42,7 @@ export const multiGateIntelligenceContent = {
       description: "Comprehensive defect analysis with full traceability to upstream gates and process context.",
       intelligence: [
         "Multi-signal defect classification",
-        "Root cause attribution to process stage",
-        "Complete heat-to-inspection traceability",
-        "Defect pattern matching against historical data"
+        "Root cause attribution to process stage"
       ]
     }
   ],

@@ -7,12 +7,12 @@ export const cognitionRuntimeContent = {
   runtimeComponents: [
     {
       name: "Pipeline Orchestration",
-      description: "Sequential execution of 10 pipeline stages with dependency management, error handling, and graceful degradation. Each stage produces independently loggable outputs.",
+      description: "Sequential execution of multiple pipeline stages with dependency management, error handling, and graceful degradation. Each stage produces independently loggable outputs.",
       characteristics: [
         "Deterministic stage execution order",
         "Stage-level health monitoring",
         "Graceful degradation on component failure",
-        "Sub-200ms total pipeline latency"
+        "Deterministic low-latency performance"
       ]
     },
     {
@@ -35,12 +35,12 @@ export const cognitionRuntimeContent = {
     },
     {
       name: "API & Integration Layer",
-      description: "FastAPI-based REST API with 25 endpoints for analytics, quality frameworks, process intelligence, and system management.",
+      description: "REST API layer for analytics, quality frameworks, process intelligence, and system management.",
       interfaces: [
         "REST API: Analytics, quality, process, SPC, and decision endpoints",
         "WebSocket: Real-time manufacturing updates and alerts",
         "SQL Integration: Direct database read/write with connection pooling",
-        "ERP Export: Configurable CSV export for manufacturing systems"
+        "ERP Export: Configurable export for manufacturing systems"
       ]
     },
     {
@@ -66,5 +66,5 @@ export const cognitionRuntimeContent = {
     "Report generation and telemetry logging",
     "Response returned with full signal evidence"
   ],
-  keyMessage: "The runtime is deterministic, health-monitored, and fully self-contained. Every inspection produces the same result given the same inputs — regardless of network, cloud, or external system availability."
+  keyMessage: "The runtime is deterministic, health-monitored, and fully self-contained. Every inspection produces consistent results given the same inputs — regardless of network, cloud, or external system availability."
 }

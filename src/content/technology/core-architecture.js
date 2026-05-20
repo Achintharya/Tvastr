@@ -11,9 +11,9 @@ export const coreArchitectureContent = {
       description: "Captures and processes raw manufacturing signals — visual inspection, surface texture, thermal data, and sensor inputs. Produces structured feature vectors for downstream reasoning.",
       responsibilities: [
         "Image capture and quality validation",
-        "YOLO-assisted object localization",
+        "Neural object localization",
         "Patch-level dense analysis",
-        "Signal feature extraction (texture, edge, geometry, blob, intensity)",
+        "Multi-signal feature extraction",
         "Anomaly detection and topology scoring"
       ]
     },
@@ -35,7 +35,7 @@ export const coreArchitectureContent = {
       description: "Persists every inspection, defect, and process observation into a structured manufacturing record. Enables pattern matching, historical reasoning, and traceability.",
       responsibilities: [
         "Defect fingerprinting and spatial vectorization",
-        "DBSCAN clustering for recurring patterns",
+        "Pattern clustering for recurring defects",
         "Heat-level and mold-level intelligence accumulation",
         "Complete inspection-to-production traceability",
         "Historical defect matching"

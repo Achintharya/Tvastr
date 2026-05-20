@@ -7,46 +7,36 @@ export const signalReasoningContent = {
   signalChannels: [
     {
       name: "Texture Signals",
-      weight: "25%",
-      description: "Surface pattern analysis using Local Binary Patterns and GLCM co-occurrence matrices. Detects irregular textures associated with porosity, roughness, and inclusions.",
+      description: "Surface pattern analysis detecting irregular textures associated with porosity, roughness, and inclusions.",
       interpretation: "High texture variance combined with low homogeneity indicates surface irregularity consistent with defects."
     },
     {
       name: "Geometry Signals",
-      weight: "25%",
-      description: "Contour-based shape analysis measuring circularity, solidity, aspect ratio, and extent. Identifies crack morphology and structural deformation.",
-      interpretation: "Low circularity with elongated aspect ratio indicates linear defects such as cracks."
+      description: "Shape analysis identifying crack morphology and structural deformation through contour-based metrics.",
+      interpretation: "Geometric irregularities indicate linear defects such as cracks."
     },
     {
       name: "Edge Signals",
-      weight: "20%",
-      description: "Canny edge detection for boundary identification. Measures edge density and intensity to identify defect boundaries and crack paths.",
+      description: "Boundary identification measuring edge characteristics to identify defect boundaries and crack paths.",
       interpretation: "High edge density indicates defect boundaries, crack propagation, or inclusion interfaces."
     },
     {
       name: "Blob Signals",
-      weight: "15%",
-      description: "Blob detection for porosity and inclusion analysis. Counts, measures, and scores isolated dark regions within patches.",
-      interpretation: "Multiple small blobs indicate porosity. Single large blobs suggest blow holes or cavities."
+      description: "Defect density analysis for porosity and inclusion detection across casting regions.",
+      interpretation: "Multiple small regions indicate porosity. Larger isolated regions suggest blow holes or cavities."
     },
     {
       name: "Intensity Signals",
-      weight: "15%",
-      description: "Grayscale intensity statistics for cavity and void detection. Analyzes mean intensity, deviation, and range.",
+      description: "Grayscale intensity analysis for cavity and void detection through statistical assessment.",
       interpretation: "Low mean intensity with high deviation indicates dark cavities or subsurface voids."
     }
   ],
   fusionArchitecture: {
     title: "Multi-Signal Fusion",
     description: "Final classification uses weighted fusion across all signal sources plus agreement validation.",
-    weights: [
-      { source: "Signal Classification", weight: "45%", role: "Primary classifier — physics-grounded threshold rules" },
-      { source: "Neural Classification", weight: "35%", role: "Deep learning confidence from patch analysis" },
-      { source: "Agreement Score", weight: "20%", role: "Bonus/penalty based on signal-neural alignment" }
-    ],
-    principle: "Signal is the primary classifier. Neural provides supporting evidence. Agreement validates consistency."
+    principle: "Signal-based reasoning is the primary classifier. Neural networks provide supporting evidence. Agreement between channels validates consistency."
   },
-  classificationRequirement: "Every defect classification requires minimum 2 strong signals plus 1 supporting signal. Insufficient evidence triggers manual review — never forced classification.",
+  classificationRequirement: "Every defect classification requires agreement across multiple independent signal channels. Insufficient evidence triggers manual review — never forced classification.",
   explainability: [
     "Every classification produces a signal evidence summary",
     "Engineers can trace which signals triggered the decision",

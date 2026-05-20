@@ -12,18 +12,18 @@ export const perceptionEngineContent = {
     },
     {
       name: "Object Localization",
-      description: "YOLO-assisted detection for casting localization and defect region proposals. Serves as proposal generator — not final classifier.",
+      description: "Neural detection for casting localization and defect region proposals. Serves as proposal generator — not final classifier.",
       output: "Bounding box proposals with confidence scores"
     },
     {
       name: "Dense Patch Analysis",
-      description: "Sliding window analysis at 256x256 resolution with 50% overlap. Produces patch-level confidence across the full casting surface.",
-      output: "36 patch confidence scores per casting image"
+      description: "Sliding window analysis across the full casting surface with overlapping regions for comprehensive coverage.",
+      output: "Patch-level confidence scores across casting image"
     },
     {
       name: "Signal Feature Extraction",
-      description: "OpenCV-based extraction of 15-dimensional feature vectors from each patch — texture (LBP, GLCM), geometry (contours), edge (Canny), blob density, and intensity statistics.",
-      output: "15-dimensional signal feature vector per patch"
+      description: "Multi-dimensional feature extraction capturing surface texture, geometric properties, edge characteristics, defect density, and intensity patterns.",
+      output: "Multi-dimensional signal feature vectors per patch"
     },
     {
       name: "Topology & Anomaly Scoring",
@@ -31,6 +31,7 @@ export const perceptionEngineContent = {
       output: "Topology scores, cluster maps, and anomaly flags"
     }
   ],
+
   designPrinciple: "The perception engine extracts — it does not decide. Decisions are made by the reasoning layer, which has access to all signal evidence and can explain every classification.",
   keyMessage: "Vision detection is a signal source. Not the final authority. Multiple independent signals must converge before classification occurs."
 }

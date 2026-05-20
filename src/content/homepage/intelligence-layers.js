@@ -10,7 +10,6 @@ export const intelligenceLayersContent = {
       description: "Signal-first defect detection across quality gates with explainable classification and topology-aware reasoning.",
       capabilities: [
         "Multi-signal defect detection",
-        "Anomaly detection and topology scoring",
         "Explainable defect classification"
       ]
     },
@@ -20,8 +19,7 @@ export const intelligenceLayersContent = {
       description: "Manufacturing analytics that connect defect outcomes to process behavior, enabling early intervention and continuous improvement.",
       capabilities: [
         "Statistical Process Control (SPC)",
-        "Pareto and root cause analysis",
-        "Process drift detection and alerting"
+        "Root cause analysis and drift detection"
       ]
     },
     {
@@ -30,8 +28,7 @@ export const intelligenceLayersContent = {
       description: "Persistent manufacturing intelligence that accumulates knowledge across inspections, heats, and production cycles.",
       capabilities: [
         "Defect fingerprinting and spatial clustering",
-        "Complete production traceability",
-        "Historical defect relationships"
+        "Complete production traceability"
       ]
     }
   ],

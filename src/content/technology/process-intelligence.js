@@ -58,10 +58,10 @@ export const processIntelligenceContent = {
     }
   ],
   architecture: {
-    modules: "50+ Python modules in core/plant_intelligence/",
-    endpoints: "25 REST API endpoints via FastAPI",
+    modules: "Modular Python-based analytics engine",
+    endpoints: "REST API endpoints for analytics access",
     realtime: "WebSocket endpoint for live manufacturing updates",
-    dashboard: "Multi-tab analytics interface with 8 views"
+    dashboard: "Multi-tab analytics interface"
   },
   keyMessage: "Process intelligence transforms individual inspection decisions into plant-level operational insights. From single-casting analysis to production-wide trend intelligence."
 }

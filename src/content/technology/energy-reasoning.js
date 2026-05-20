@@ -27,9 +27,9 @@ export const energyReasoningContent = {
     }
   ],
   decisionTiers: [
-    { tier: "Accept", threshold: "Score ≤ 0.30", description: "Strong convergence toward non-defective. Multiple signals aligned." },
-    { tier: "Review", threshold: "Score 0.30 – 0.70", description: "Insufficient convergence or signal disagreement. Requires human assessment." },
-    { tier: "Reject", threshold: "Score ≥ 0.70", description: "Strong convergence toward defective. Multiple signals aligned with high confidence." }
+    { tier: "Accept", description: "Strong convergence toward non-defective. Multiple signals aligned." },
+    { tier: "Review", description: "Insufficient convergence or signal disagreement. Requires human assessment." },
+    { tier: "Reject", description: "Strong convergence toward defective. Multiple signals aligned with high confidence." }
   ],
   designPrinciple: "The system prefers uncertainty over false confidence. When signals disagree, the honest answer is 'review needed' — not a forced classification.",
   keyMessage: "Reasoning is not static inference. It is iterative signal convergence with explicit stability validation. Instability produces review flags — not incorrect decisions."
