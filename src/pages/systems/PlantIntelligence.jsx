@@ -57,7 +57,7 @@ export function PlantIntelligence() {
             Plant Intelligence
           </h1>
           <p className="text-xl text-slate-500 font-light max-w-[680px] leading-relaxed mb-3">
-            The process intelligence layer of the Tvastr industrial cognition runtime — transforming inspection and production data into plant-level manufacturing analytics and operational insights.
+            The process intelligence layer of the Tvastr industrial cognition runtime. Transforms inspection and production data into plant-level manufacturing analytics and operational insights.
           </p>
         </div>
         <div className="slide-footer">
@@ -71,7 +71,7 @@ export function PlantIntelligence() {
       <SystemDetailSection
         label="01 / Runtime Architecture"
         title="Process Layer within Unified Industrial Runtime"
-        body="Plant Intelligence operates as the process analytics layer within the same unified cognition runtime. Inspection data flows directly into process analytics — no separate systems, no integration gaps."
+        body="Plant Intelligence operates as the process analytics layer within the same unified cognition runtime. Inspection data flows directly into process analytics with no separate systems or integration gaps."
       >
         <div className="mt-6 flex flex-col items-stretch gap-0" style={{ maxWidth: '600px' }}>
           {/* Card 1 — Inspection Layer */}
@@ -120,7 +120,7 @@ export function PlantIntelligence() {
       <SystemDetailSection
         label="02 / Analytics"
         title="Plant-Level Quality Analytics"
-        body="The process intelligence layer converts inspection and production records into measurable plant-level indicators."
+        body="Converts inspection and production records into measurable plant-level indicators."
       >
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
@@ -136,8 +136,7 @@ export function PlantIntelligence() {
           <div className="p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
             <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-3">Engineering Value</p>
             <p className="text-sm text-gray-600 leading-relaxed">
-              These analytics allow engineers to detect quality drift and emerging defect patterns early —
-              before they compound into larger scrap losses or process failures.
+              These analytics allow engineers to detect quality drift and emerging defect patterns early, before they compound into larger scrap losses or process failures.
             </p>
           </div>
         </div>
@@ -160,7 +159,7 @@ export function PlantIntelligence() {
       <SystemDetailSection
         label="04 / Quality Engineering"
         title="Integrated Quality Engineering Methods"
-        body="The process intelligence layer automatically generates structured quality analysis frameworks used by manufacturing engineers."
+        body="Automatically generates structured quality analysis frameworks used by manufacturing engineers."
       >
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
@@ -232,7 +231,7 @@ export function PlantIntelligence() {
       <SystemDetailSection
         label="07 / Natural Language"
         title="Natural Language Process Queries"
-        body="Engineers can query plant performance using natural language. The runtime interprets queries, executes analytics pipelines, and returns structured answers based on inspection and production data."
+        body="Engineers can query plant performance using natural language. The runtime interprets queries, executes analytics, and returns structured answers from inspection and production data."
       >
         <div className="mt-6 space-y-3 mb-6">
           {[
@@ -262,7 +261,7 @@ export function PlantIntelligence() {
       <SystemDetailSection
         label="08 / Application — Alerts"
         title="Real-Time Alerts"
-        body="The runtime generates automated alerts when process conditions exceed configured thresholds. Alerts are surfaced in the dashboard and can trigger notifications to operators and managers."
+        body="The runtime generates automated alerts when process conditions exceed configured thresholds. Alerts appear in the dashboard and can trigger notifications to operators and managers."
       >
         <SystemImageBlock
           src="/alerts_tab.png"
@@ -310,7 +309,7 @@ export function PlantIntelligence() {
       <SystemDetailSection
         label="10 / Application — Decisions"
         title="Decision Intelligence"
-        body="The runtime generates and prioritizes corrective actions based on defect patterns, process risk, and cost impact. Actions can be tracked and evaluated over time to measure effectiveness."
+        body="Generates and prioritizes corrective actions based on defect patterns, process risk, and cost impact. Actions can be tracked over time to measure effectiveness."
       >
         <SystemImageBlock
           src="/decisions_tab.png"
@@ -323,7 +322,7 @@ export function PlantIntelligence() {
       <SystemDetailSection
         label="11 / Unified Intelligence"
         title="Inspection → Process → Decision"
-        body="Within the unified runtime, intelligence flows continuously from casting-level inspection through plant-level process analytics to operational decisions."
+        body="Intelligence flows continuously from casting-level inspection through plant-level process analytics to operational decisions."
       >
         <div className="mt-6 flex flex-col md:flex-row items-stretch gap-0">
           {/* LEFT — Inspection */}
@@ -371,7 +370,7 @@ export function PlantIntelligence() {
       <SystemDetailSection
         label="12 / Business Impact"
         title="Measurable impact across operational and strategic dimensions."
-        body="Process intelligence reduces the time from question to insight — enabling faster decisions grounded in actual production data."
+        body="Process intelligence reduces the time from question to insight, enabling faster decisions grounded in actual production data."
       >
         <SystemImpactGrid
           operational={[

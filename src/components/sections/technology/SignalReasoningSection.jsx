@@ -43,22 +43,13 @@ export function SignalReasoningSection() {
                 : ""
             }`}
           >
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center mb-3">
               <p
                 className="font-mono text-[11px] tracking-[0.24em] uppercase"
                 style={{ color: "var(--signal-glow)" }}
               >
                 Signal {String(i + 1).padStart(2, "0")}
               </p>
-              <span
-                className="font-mono text-[11px] tracking-[0.18em] px-2 py-0.5 rounded"
-                style={{
-                  background: "rgba(0,60,51,0.08)",
-                  color: "var(--process-primary)",
-                }}
-              >
-                {ch.weight}
-              </span>
             </div>
             <h4 className="text-lg font-medium text-txt-primary leading-tight mb-2">
               {ch.name}
@@ -85,38 +76,7 @@ export function SignalReasoningSection() {
           {fusionArchitecture.description}
         </p>
 
-        <div className="space-y-4">
-          {fusionArchitecture.weights.map((w, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <span
-                className="font-mono text-[13px] w-12 text-right tabular-nums flex-shrink-0"
-                style={{ color: "var(--process-primary)" }}
-              >
-                {w.weight}
-              </span>
-              {/* Proportional bar */}
-              <div className="flex-1 h-2 rounded-full bg-border-subtle overflow-hidden">
-                <div
-                  className="h-full rounded-full"
-                  style={{
-                    width: w.weight,
-                    background: "var(--process-primary)",
-                  }}
-                />
-              </div>
-              <div className="flex-shrink-0 min-w-0">
-                <span className="text-sm text-txt-primary font-medium">
-                  {w.source}
-                </span>
-                <span className="text-[12px] text-txt-muted hidden sm:inline ml-2">
-                  — {w.role}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-6 text-sm text-txt-secondary italic">
+        <p className="text-sm text-txt-secondary italic">
           {fusionArchitecture.principle}
         </p>
       </div>

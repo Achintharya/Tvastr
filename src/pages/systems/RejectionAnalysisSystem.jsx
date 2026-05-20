@@ -46,7 +46,7 @@ export function RejectionAnalysisSystem() {
             Rejection Analysis System
           </h1>
           <p className="text-xl text-slate-500 font-light max-w-[680px] leading-relaxed">
-            The inspection intelligence layer of the Tvastr industrial cognition runtime — transforming casting inspection into structured operational intelligence with real-time defect reasoning and manufacturing traceability.
+            The inspection intelligence layer of the Tvastr industrial cognition runtime. Transforms casting inspection into structured operational intelligence with real-time defect analysis and traceability.
           </p>
         </div>
         <div className="slide-footer">
@@ -60,7 +60,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="01 / Runtime Architecture"
         title="Inspection Layer within Unified Industrial Runtime"
-        body="RAS operates as the inspection intelligence layer within the Tvastr unified cognition runtime. All components — inspection, process intelligence, telemetry, and traceability — run together as a single edge-native industrial platform."
+        body="RAS operates as the inspection intelligence layer within the Tvastr unified cognition runtime. All components (inspection, process intelligence, telemetry, and traceability) run together as a single edge-native industrial platform."
       >
         <div className="mt-6 flex flex-col items-stretch gap-0" style={{ maxWidth: '680px' }}>
           {/* Runtime Shell */}
@@ -111,7 +111,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="03 / The Opportunity"
         title="Every casting is inspected. That makes inspection the largest scalable data stream in a foundry."
-        body="If structured properly, inspection becomes far more than a quality gate. It becomes a real-time process diagnostic layer — running automatically, on every part, at production speed."
+        body="If structured properly, inspection becomes far more than a quality gate. It becomes a real-time process diagnostic layer, running automatically on every part at production speed."
         bullets={[
           'A standardised decision engine operating at casting level',
           'A process diagnostic layer linked to manufacturing context',
@@ -184,7 +184,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="08 / Cognition Engine"
         title="Industrial cognition engine converts signals into operational decisions."
-        body="The inspection runtime applies multi-signal reasoning — combining visual analysis, signal features, and process context to generate traceable inspection decisions."
+        body="The inspection runtime applies multi-signal reasoning, combining visual analysis, signal features, and process context to generate traceable inspection decisions."
       >
         <div className="mt-6 p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
           <p className="text-sm font-semibold text-gray-700 mb-3">Reasoning Components</p>
@@ -202,7 +202,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="09 / Root Cause Intelligence"
         title="Root Cause Mapping"
-        body="Each inspection event carries structured manufacturing context. Aggregated across multiple inspections, these records reveal recurring process-level patterns and their likely root causes. The system generates plain-language root cause explanations alongside statistical patterns."
+        body="Each inspection event carries structured manufacturing context. Aggregated across multiple inspections, these records reveal recurring process-level patterns and their likely root causes. The system generates root cause explanations alongside statistical patterns."
       >
         {/* Two-column diagnostic layout */}
         <div className="mt-6 flex flex-col md:flex-row items-stretch gap-4 md:gap-0">
@@ -317,7 +317,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="10 / Deployment Architecture"
         title="Edge-native deployment within the plant network."
-        body="The unified runtime runs entirely on-premise on dedicated industrial hardware. No casting images or production data leave the plant network. Full offline operation capability."
+        body="The unified runtime runs entirely on-premise on dedicated industrial hardware. No casting images or production data leave the plant network with full offline operation capability."
         bullets={[
           'Local FastAPI runtime with Next.js dashboard',
           'GPU-accelerated inference on local hardware',
@@ -332,7 +332,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="11 / Traceability"
         title="Every inspection generates a fully traceable structured record."
-        body="The runtime stores a complete audit trail for every inspection event. Records link AI decisions to casting metadata, enabling post-hoc analysis and compliance reporting."
+        body="The runtime stores a complete audit trail for every inspection event. Records link decisions to casting metadata, enabling analysis and compliance reporting."
         bullets={[
           'Inspection ID and timestamp',
           'Casting metadata: heat number, shift, mold ID, operator',
@@ -347,7 +347,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="12 / Continuous Learning"
         title="Inspection intelligence evolves with plant operations."
-        body="Disagreements between AI decisions and supervisor corrections become training signal to improve subsequent model versions."
+        body="Disagreements between decisions and supervisor corrections become training signals to improve subsequent model versions."
       >
         <SystemWorkflow
           steps={[
@@ -364,7 +364,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="13 / Quality Analytics"
         title="Automated plant-level quality insights from inspection data."
-        body="The analytics layer aggregates inspection records into operational metrics — enabling management to detect scrap trends, recurring defects, and process drift."
+        body="The analytics layer aggregates inspection records into operational metrics, enabling management to detect scrap trends, recurring defects, and process drift."
         bullets={[
           'Total inspections and rejection rate by period',
           'Model-human agreement rate (accuracy proxy)',
@@ -378,7 +378,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="14 / Business Impact"
         title="Measurable impact across operational and strategic dimensions."
-        body="Deploying structured industrial cognition creates compounding value — in day-to-day operations and in long-term process intelligence."
+        body="Deploying structured industrial cognition creates compounding value in day-to-day operations and in long-term process intelligence."
       >
         <SystemImpactGrid
           operational={[
