@@ -54,26 +54,9 @@ export function MultiGateIntelligenceSection() {
               <h4 className="text-base font-medium text-txt-primary mb-2 leading-tight">
                 {stage.name}
               </h4>
-              <p className="text-sm text-txt-secondary leading-relaxed mb-4">
+              <p className="text-sm text-txt-secondary leading-relaxed">
                 {stage.description}
               </p>
-
-              {/* Intelligence capabilities */}
-              <ul className="space-y-1.5 text-left w-full">
-                {stage.intelligence.map((item, j) => (
-                  <li
-                    key={j}
-                    className="flex items-start gap-2 text-xs text-txt-secondary leading-snug"
-                  >
-                    <span
-                      className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0"
-                      style={{ background: "var(--signal-glow)" }}
-                      aria-hidden="true"
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
