@@ -1,9 +1,9 @@
 export const multiGateIntelligenceContent = {
   id: "multi-gate-intelligence",
   type: "multi-gate-intelligence",
-  title: "Continuous Intelligence Across Production Stages",
-  subtitle: "Intelligence that flows between quality gates — not isolated inspection at disconnected stations.",
-  body: "Defects originate at different production stages. Tvastr provides consistent detection and traceability across the sequence, linking outcomes between gates and tracking defect propagation.",
+  title: "Quality Coverage Across Your Entire Production Line",
+  subtitle: "Connected quality management from pattern-making to final inspection. Not isolated checkpoints.",
+  body: "Defects can originate at any production stage. Tvastr provides consistent quality control across every gate, tracks defect patterns, and connects upstream conditions to downstream outcomes.",
   stages: [
     {
       name: "Pattern & Core",
@@ -26,5 +26,5 @@ export const multiGateIntelligenceContent = {
       description: "Comprehensive defect analysis with full traceability to upstream gates."
     }
   ],
-  keyMessage: "Intelligence accumulates across gates. Each inspection enriches the record. Defects are tracked from origin to outcome."
+  keyMessage: "Comprehensive coverage across all gates. Early detection prevents costly late-stage rejections."
 }

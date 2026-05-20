@@ -2,8 +2,8 @@ export const industryProblemContent = {
   id: "industry-problem",
   type: "industry-problem",
   title: "Manufacturing Generates Data. Very Little Becomes Intelligence.",
-  subtitle: "Quality systems capture outcomes. They rarely capture understanding.",
-  body: "Foundries generate massive inspection and production data daily, but it remains disconnected across stations and systems. Defects repeat, issues stay hidden, and problems surface only after rejection rates spike.",
+  subtitle: "Traditional quality systems capture outcomes but miss the intelligence needed for Industry 4.0.",
+  body: "Foundries generate massive data daily, but it remains disconnected. Defects repeat, root causes stay hidden, and issues surface only after rejection rates spike, costing time, material, and revenue.",
   problems: [
     {
       title: "Disconnected Quality Gates",
