@@ -10,36 +10,36 @@ export function ResearchPage() {
 
   const researchAreas = [
     {
-      title: "Signal-Based Defect Classification",
+      title: "Feature-Based Image Analysis for Defect Detection",
       description:
-        "Combining multi-sensor fusion with physics-driven feature extraction for reliable defect detection",
+        "Using OpenCV feature extraction and classical computer vision instead of deep learning networks",
       topics: [
-        "Multi-modal sensor fusion (vision, thermal, eddy current, ultrasonic)",
-        "Interpretable feature engineering for manufacturing signals",
-        "Hard threshold classification vs black-box ML",
-        "Signal correlation analysis for root cause attribution",
+        "Edge detection, contour analysis, and texture features with OpenCV",
+        "Geometry-based defect characterization",
+        "Feature-based classification vs. CNN segmentation",
+        "Interpretable visual features for quality decisions",
       ],
     },
     {
-      title: "Explainable AI for Manufacturing",
+      title: "Explainable AI & Process Analytics",
       description:
-        "Making AI decisions transparent and auditable for quality engineers",
+        "Making AI decisions transparent and actionable for quality engineers and plant managers",
       topics: [
-        "Feature importance visualization for defect classification",
-        "Decision tree explanations for rejection reasoning",
-        'Counterfactual analysis ("what-if" scenarios)',
+        "Feature importance visualization and decision transparency",
+        "Statistical Process Control (SPC) for real-time monitoring",
+        "Root cause analysis with Pareto and Fishbone diagrams",
         "Compliance with ISO 9001 and IATF 16949 traceability",
       ],
     },
     {
-      title: "Process Intelligence & Analytics",
+      title: "Multi-Cortex Cognition Architecture",
       description:
-        "Transforming inspection data into actionable process improvement insights",
+        "Bio-inspired modular intelligence system with specialized cortexes that communicate and coordinate",
       topics: [
-        "Statistical Process Control (SPC) for real-time monitoring",
-        "Pareto analysis for defect prioritization",
-        "Fishbone (Ishikawa) diagrams for root cause investigation",
-        "Predictive quality modeling using historical trends",
+        "RAS Cortex for real-time inspection and defect analysis",
+        "Vajra Cortex: LLM-based interaction with RAG across customer and system data",
+        "Inter-cortex communication and coordination protocols",
+        "Extensible architecture for business intelligence and workforce analytics",
       ],
     },
     {
@@ -57,13 +57,13 @@ export function ResearchPage() {
 
   const publications = [
     {
-      title: "Signal-First Defect Detection in Foundry Casting",
-      authors: "Achintharya, et al.",
+      title: "Feature-Based Defect Detection in Foundry Casting",
+      authors: "Achintharya",
       venue: "Internal Technical Report",
       year: "2026",
       abstract:
-        "We present a signal-based approach to casting defect detection that combines vision, thermal, and electromagnetic sensors with physics-driven classification rules. Unlike pure ML approaches, our system achieves 95%+ accuracy while maintaining full explainability.",
-      topics: ["Casting", "Multi-Sensor Fusion", "Explainable AI"],
+        "We present a feature-based approach to casting defect detection using OpenCV that analyzes multiple image signals (edges, contours, texture, geometry) instead of traditional CNN-based classification or segmentation. Unlike deep learning approaches, our system achieves high accuracy while maintaining full interpretability through classical computer vision techniques.",
+      topics: ["Casting", "OpenCV", "Feature Engineering", "Interpretable AI"],
     },
     {
       title:
@@ -72,7 +72,7 @@ export function ResearchPage() {
       venue: "Internal Technical Report",
       year: "2026",
       abstract:
-        "We present a physics-inspired classification system that models defect detection as an energy minimization problem using Lyapunov stability functions. The system combines topology reasoning with energy-based force application to achieve guaranteed convergence and 35% higher accuracy than threshold-based approaches.",
+        "We present a physics-inspired classification system that models defect detection as an energy minimization problem using Lyapunov stability functions. The system combines topology reasoning with energy-based force application to achieve guaranteed convergence and high accuracy compared to threshold-based approaches.",
       topics: [
         "Energy Optimization",
         "Lyapunov Stability",
