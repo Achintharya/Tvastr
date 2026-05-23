@@ -208,32 +208,6 @@ export function HeroSection() {
 
       {/* Content layer — centered */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-12 lg:px-16 text-center">
-        {/* Brand pill — small outlined green capsule with a live dot.
-            Sits on its own surface so it stays legible on any backdrop. */}
-        <span
-          className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full font-mono text-[10px] md:text-[11px] tracking-[0.28em] uppercase mb-8"
-          style={{
-            background: "rgba(255,255,255,0.85)",
-            border: "1px solid var(--process-primary)",
-            color: "var(--process-primary)",
-            backdropFilter: "blur(6px)",
-            WebkitBackdropFilter: "blur(6px)",
-          }}
-        >
-          <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
-            {!reducedMotion && (
-              <span
-                className="absolute inline-flex h-full w-full rounded-full animate-ping"
-                style={{ background: "var(--process-primary)", opacity: 0.6 }}
-              />
-            )}
-            <span
-              className="relative inline-flex h-1.5 w-1.5 rounded-full"
-              style={{ background: "var(--process-primary)" }}
-            />
-          </span>
-          <span>Tvastr · Industrial Intelligence</span>
-        </span>
         <div className="mb-6">
           <h1
             ref={wordmarkRef}
