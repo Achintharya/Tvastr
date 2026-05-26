@@ -16,7 +16,7 @@ import { useDocumentHead } from '../../hooks/useDocumentHead'
  * 
  * Screenshot slides use images from /public/:
  *   overview_tab.png       — Overview dashboard
- *   aiquery_tab.png        — AI Query interface
+ *   quality_tab.png        — Quality Engineering Analysis
  *   decisions_tab.png      — Decision Intelligence
  *   alerts_tab.png         — Alerts interface
  */
@@ -227,33 +227,29 @@ export function PlantIntelligence() {
         </p>
       </SystemDetailSection>
 
-      {/* ── SLIDE 8 — Natural Language Queries + Screenshot ─────── */}
+      {/* ── SLIDE 8 — Quality Engineering Analysis + Screenshot ─────── */}
       <SystemDetailSection
-        label="07 / Natural Language"
-        title="Natural Language Process Queries"
-        body="Engineers can query plant performance using natural language. The runtime interprets queries, executes analytics, and returns structured answers from inspection and production data."
+        label="07 / Quality Engineering"
+        title="Quality Engineering Analysis"
+        body="Integrated quality engineering frameworks provide structured analysis of defects and process risks. The system tracks defect occurrences, calculates FMEA risk priority numbers, generates fishbone root-cause analysis, and monitors quality gate performance across production stages."
       >
-        <div className="mt-6 space-y-3 mb-6">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {[
-            'Which molds produced the highest defect rate this week?',
-            'Show rejection trends by heat number.',
-            'Which defect types increased during the night shift?',
-            'What is the rejection rate trend for sand inclusions over the last 3 months?',
-            'Which process stage has the highest scrap contribution this quarter?',
-          ].map((q, i) => (
-            <div key={i} className="flex items-start gap-3 p-4"
-              style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px' }}>
-              <span className="mt-0.5 text-xs font-mono font-semibold text-slate-300 flex-shrink-0">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <p className="text-sm text-gray-600 italic">&ldquo;{q}&rdquo;</p>
+            { method: 'Tracked Defects', detail: 'Complete defect tracking with occurrence frequency, severity classification, and temporal trend analysis across production periods.' },
+            { method: 'FMEA Risk Priority', detail: 'Automated RPN calculation combining defect severity, occurrence rate, and detection probability for systematic risk assessment.' },
+            { method: 'Fishbone Analysis', detail: 'Root-cause analysis across 5M categories (Man, Machine, Material, Method, Milieu) with data-driven factor correlation.' },
+            { method: 'Quality Gates', detail: 'Multi-stage quality tracking with defect yield, escape rates, and process capability metrics at each production checkpoint.' },
+          ].map((item, i) => (
+            <div key={i} className="p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
+              <p className="text-sm font-semibold text-gray-800 mb-2">{item.method}</p>
+              <p className="text-sm text-gray-500 leading-relaxed">{item.detail}</p>
             </div>
           ))}
         </div>
         <SystemImageBlock
-          src="/aiquery_tab.png"
-          alt="Plant Intelligence — AI Query Interface"
-          caption="Natural language interface for querying plant data."
+          src="/quality_tab.png"
+          alt="Plant Intelligence — Quality Engineering Analysis"
+          caption="Quality engineering frameworks with FMEA risk priority numbers, fishbone root-cause analysis, defect tracking, and quality gate performance metrics."
         />
       </SystemDetailSection>
 

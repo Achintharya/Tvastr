@@ -35,10 +35,10 @@ export const inspectionVisibilityContent = {
       imagePath: "/cost_tab.png"
     },
     {
-      id: "ai-query",
-      title: "AI Query",
-      description: "Natural language queries against plant data to surface quality and operational insights.",
-      imagePath: "/aiquery_tab.png"
+      id: "quality",
+      title: "Quality Engineering",
+      description: "Structured quality analysis with tracked defects, FMEA risk priority numbers, fishbone root-cause analysis, and quality gate metrics.",
+      imagePath: "/quality_tab.png"
     },
     {
       id: "decisions",
