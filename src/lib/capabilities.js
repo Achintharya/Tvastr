@@ -1,10 +1,10 @@
 /**
  * Tier-based capability system for Tvastr customer portal.
  *
- * Tiers:
- *   - TIER_1 (RAS Core)       — Basic RAS standalone
- *   - TIER_2 (RAS Enterprise) — RAS integrated build
- *   - TIER_3 (PIRAS)          — RAS + Plant Intelligence
+ * PIRASCortex + Vajra Architecture (Phase 21A):
+ *   - TIER_1 (PIRASCortex)       — Full industrial runtime (NOT a crippled tier)
+ *   - TIER_2 (PIRASCortex+Vajra) — Adds Vajra cognitive layer
+ *   - TIER_3                     — Reserved for future industrial cognition expansion
  *
  * All UI and routing logic should derive from getCapabilities(tier).
  */
@@ -13,9 +13,9 @@
  * Tier constants
  */
 export const TIERS = {
-  TIER_1: "TIER_1", // RAS Core
-  TIER_2: "TIER_2", // RAS Enterprise
-  TIER_3: "TIER_3", // PIRAS (Plant Intelligence + RAS)
+  TIER_1: "TIER_1", // PIRASCortex - Full industrial runtime
+  TIER_2: "TIER_2", // PIRASCortex + Vajra cognitive layer
+  TIER_3: "TIER_3", // Reserved for future expansion
 };
 
 /**
@@ -35,9 +35,9 @@ export const TIER_ORDER = {
  * Display labels for tiers (used in UI)
  */
 export const TIER_LABELS = {
-  TIER_1: "RAS Core",
-  TIER_2: "RAS Enterprise",
-  TIER_3: "PIRAS",
+  TIER_1: "PIRASCortex",
+  TIER_2: "PIRASCortex + Vajra",
+  TIER_3: "Reserved",
 };
 
 /**
@@ -59,16 +59,22 @@ function normalizeTierName(tier) {
  * Convert a tier string into a capabilities object.
  * This is the single source of truth for what each tier can access.
  *
+ * Phase 21A: TIER_1 (PIRASCortex) = full industrial runtime
+ *   - All products available to all tiers
+ *   - TIER_2 adds Vajra cognitive layer (not represented here)
+ *
  * @param {string} tier - User's license tier
  * @returns {Object} Capability flags
  */
 export function getCapabilities(tier) {
   const normalized = normalizeTierName(tier);
 
+  // Phase 21A: All PIRASCortex capabilities available to all tiers
   return {
-    ras_core: true, // All tiers have RAS Core
-    ras_enterprise: normalized !== TIERS.TIER_1,
-    plant_intelligence: normalized === TIERS.TIER_3,
+    ras_core: true,           // All tiers
+    ras_enterprise: true,     // All tiers (Phase 21A)
+    plant_intelligence: true, // All tiers (Phase 21A: PI is part of PIRASCortex)
+    vajra_enabled: normalized === TIERS.TIER_2 || normalized === TIERS.TIER_3,
   };
 }
 
@@ -101,16 +107,16 @@ export function getVersionLabel(version) {
 /**
  * tierToBadgeState — Pure mapper from (tier, productId) to a Tier_Badge state.
  *
- * Encodes the canonical mapping table from
- * `light-theme-industrial-redesign/design.md` § "Tier-gating UX in the portal"
- * (Reqs 15.5, 15.6, 15.7, 15.10) and is exhaustively validated by Property 11.
+ * Phase 21A (PIRASCortex + Vajra Architecture):
+ *   All PIRASCortex products are ACTIVE for all recognized tiers.
+ *   TIER_2+ adds Vajra cognitive layer (vajra_enabled).
  *
- * | Tier                       | ras_core | ras_enterprise | plant_intelligence |
- * | -------------------------- | -------- | -------------- | ------------------ |
- * | ras_core / TIER_1          | ACTIVE   | LOCKED         | LOCKED             |
- * | ras_enterprise / TIER_2    | ACTIVE   | ACTIVE         | LOCKED             |
- * | full_stack / TIER_3        | ACTIVE   | INCLUDED       | ACTIVE             |
- * | unrecognized / undefined   | LOCKED   | LOCKED         | LOCKED             |
+ * | Tier                       | ras_core | ras_enterprise | plant_intelligence | vajra    |
+ * | -------------------------- | -------- | -------------- | ------------------ | -------- |
+ * | TIER_1 (PIRASCortex)       | ACTIVE   | ACTIVE         | ACTIVE             | LOCKED   |
+ * | TIER_2 (PIRASCortex+Vajra) | ACTIVE   | ACTIVE         | ACTIVE             | ACTIVE   |
+ * | TIER_3 (Reserved)          | ACTIVE   | ACTIVE         | ACTIVE             | ACTIVE   |
+ * | unrecognized / undefined   | LOCKED   | LOCKED         | LOCKED             | LOCKED   |
  *
  * Implementation invariants:
  *   - Normalizes legacy tier aliases (ras_core, ras_enterprise, full_stack)
@@ -119,13 +125,13 @@ export function getVersionLabel(version) {
  *   - Unknown productIds always return 'LOCKED'.
  *
  * @param {string} tier — License tier (TIER_1/2/3 or legacy alias).
- * @param {string} productId — One of 'ras_core', 'ras_enterprise', 'plant_intelligence'.
+ * @param {string} productId — One of 'ras_core', 'ras_enterprise', 'plant_intelligence', 'vajra'.
  * @returns {'ACTIVE'|'INCLUDED'|'LOCKED'} Badge state for the given pair.
  */
 export function tierToBadgeState(tier, productId) {
   const normalizedTier = normalizeTierName(tier);
 
-  // Unrecognized / undefined tier => LOCKED for every product (Req 15.10).
+  // Unrecognized / undefined tier => LOCKED for every product
   if (
     normalizedTier !== TIERS.TIER_1 &&
     normalizedTier !== TIERS.TIER_2 &&
@@ -136,18 +142,16 @@ export function tierToBadgeState(tier, productId) {
 
   switch (productId) {
     case "ras_core":
-      // RAS Core is granted by every recognized tier (Reqs 15.5, 15.6, 15.7).
+    case "ras_enterprise":
+    case "plant_intelligence":
+      // Phase 21A: All PIRASCortex products are ACTIVE for all recognized tiers
       return "ACTIVE";
 
-    case "ras_enterprise":
-      if (normalizedTier === TIERS.TIER_1) return "LOCKED"; // Req 15.5
-      if (normalizedTier === TIERS.TIER_2) return "ACTIVE"; // Req 15.6
-      // TIER_3 / full_stack: RAS Enterprise is bundled into PIRAS.       (Req 15.7)
-      return "INCLUDED";
-
-    case "plant_intelligence":
-      if (normalizedTier === TIERS.TIER_3) return "ACTIVE"; // Req 15.7
-      // TIER_1 / TIER_2: Plant Intelligence is gated.                    (Reqs 15.5, 15.6)
+    case "vajra":
+      // Vajra cognitive layer is TIER_2+ only
+      if (normalizedTier === TIERS.TIER_2 || normalizedTier === TIERS.TIER_3) {
+        return "ACTIVE";
+      }
       return "LOCKED";
 
     default:

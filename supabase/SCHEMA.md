@@ -220,13 +220,18 @@ updates/
 
 ## Tier System
 
-The Tvastr portal uses a three-tier license system:
+The Tvastr portal uses a three-tier license system aligned with the **PIRASCortex + Vajra Architecture (Phase 21A)**:
 
-| Tier | Legacy Name | Access Level | Products |
-|------|-------------|--------------|----------|
-| **TIER_1** | `ras_core` | Basic | RAS Core |
-| **TIER_2** | `ras_enterprise` | Enterprise | RAS Core + RAS Enterprise |
-| **TIER_3** | `full_stack` | Full Stack | RAS Core + RAS Enterprise + PIRAS (Plant Intelligence) |
+| Tier | Legacy Name | Description | Products |
+|------|-------------|-------------|----------|
+| **TIER_1** | `ras_core` | **PIRASCortex** — Full industrial runtime (NOT a crippled tier) | All PIRASCortex products |
+| **TIER_2** | `ras_enterprise` | **PIRASCortex + Vajra** — Adds Vajra cognitive layer | All PIRASCortex + Vajra |
+| **TIER_3** | `full_stack` | **Reserved** — Future industrial cognition expansion | All capabilities |
+
+**Phase 21A Changes:**
+- TIER_1 is now a **complete product** — includes inspection, batch processing, analytics, ERP integration, process intelligence, plant intelligence
+- TIER_2 adds only the **Vajra cognitive layer** (semantic memory, executive querying)
+- TIER_3 is **reserved for future expansion**
 
 **Tier Hierarchy:**
 - TIER_3 includes everything from TIER_2 and TIER_1
