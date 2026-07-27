@@ -371,6 +371,18 @@ export function AdminDashboard() {
             <span className="hidden sm:inline">System Documentation</span>
             <span className="sm:hidden">Docs</span>
           </button>
+          <button
+            onClick={() => setActiveTab("visualizer")}
+            style={{
+              ...STYLES.tab.base,
+              ...(activeTab === "visualizer"
+                ? STYLES.tab.active
+                : STYLES.tab.inactive),
+            }}
+          >
+            <span className="hidden sm:inline">Cognition Visualizer</span>
+            <span className="sm:hidden">Visualizer</span>
+          </button>
         </div>
 
         {/* Tab content */}
@@ -819,6 +831,79 @@ export function AdminDashboard() {
                   )}
                 </div>
               </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "visualizer" && (
+          <div style={STYLES.card}>
+            <div className="p-8 md:p-12 flex flex-col items-center justify-center text-center gap-6">
+              {/* Icon */}
+              <div
+                className="w-16 h-16 flex items-center justify-center rounded-2xl"
+                style={{
+                  background: "rgba(0,60,51,0.06)",
+                  border: "1px solid rgba(0,60,51,0.12)",
+                }}
+              >
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <circle cx="16" cy="16" r="6" stroke={colors.process.primary} strokeWidth="1.5"/>
+                  <circle cx="16" cy="16" r="12" stroke={colors.process.primary} strokeWidth="1" strokeDasharray="3 2" opacity="0.4"/>
+                  <circle cx="8" cy="8" r="2.5" fill={colors.process.primary} opacity="0.7"/>
+                  <circle cx="24" cy="8" r="2.5" fill={colors.signal.warning} opacity="0.7"/>
+                  <circle cx="8" cy="24" r="2.5" fill={colors.signal.warning} opacity="0.7"/>
+                  <circle cx="24" cy="24" r="2.5" fill={colors.process.primary} opacity="0.7"/>
+                  <path d="M10 10L14.5 14.5M21.5 14.5L17.5 14.5M16 17.5V21.5" stroke={colors.process.primary} strokeWidth="1" strokeLinecap="round" opacity="0.5"/>
+                </svg>
+              </div>
+
+              {/* Title */}
+              <div>
+                <h2
+                  className="text-xl md:text-2xl font-black tracking-tight mb-2"
+                  style={STYLES.titleGradient}
+                >
+                  Tvastr Cognition Visualizer
+                </h2>
+                <p className="text-xs md:text-sm text-txt-muted max-w-md">
+                  Interactive architecture explorer for the Tvastr Industrial Cognition platform — cortex map, PIRAS pipeline, energy reasoning, and system roadmap.
+                </p>
+              </div>
+
+              {/* URL badge */}
+              <div
+                className="flex items-center gap-2 px-4 py-2 rounded-lg"
+                style={{
+                  background: colors.background.secondary,
+                  border: "1px solid rgba(0,0,0,0.06)",
+                }}
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="opacity-40 shrink-0">
+                  <circle cx="6" cy="6" r="5" stroke="currentColor" strokeWidth="1.2"/>
+                  <path d="M1 6h10M6 1C4.5 3 3.5 4.5 3.5 6S4.5 9 6 11M6 1c1.5 2 2.5 3.5 2.5 5S7.5 9 6 11" stroke="currentColor" strokeWidth="1.2"/>
+                </svg>
+                <span className="font-mono text-xs text-txt-muted">visualizer.tvastr.co</span>
+              </div>
+
+              {/* Launch button */}
+              <a
+                href="https://visualizer.tvastr.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold tracking-wider uppercase transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+                style={{
+                  background: colors.process.primary,
+                  color: "#ffffff",
+                  boxShadow: "0 4px 12px rgba(0,60,51,0.25)",
+                }}
+              >
+                Launch Visualizer
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M5 3h6v6M11 3L3 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+
+              <p className="text-[10px] text-txt-muted opacity-60">Opens in a new tab</p>
             </div>
           </div>
         )}
