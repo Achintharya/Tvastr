@@ -1,26 +1,26 @@
 export const deploymentContent = {
   id: "deployment",
   type: "deployment",
-  title: "On-Premise Deployment. Complete Data Control.",
-  subtitle: "Deployed inside your plant network. No cloud dependency. Full data sovereignty.",
-  body: "All processing runs on hardware inside your facility. Your data stays within your control. The system operates fully offline with no internet required and no external dependencies.",
+  title: "Edge-Native Platform. Complete Data Sovereignty.",
+  subtitle: "Deployed inside your enterprise network. No cloud dependency. Full control of your operational data.",
+  body: "All AI cortexes run on local hardware within your facility. Your manufacturing and business intelligence data never leaves your infrastructure. The platform operates fully offline with no internet required.",
   principles: [
     {
-      name: "On-Premise Operation",
-      description: "All hardware and processing within the plant. Complete data sovereignty."
+      name: "Edge-Native Deployment",
+      description: "All AI cortexes deployed within your enterprise. Complete data sovereignty and control."
     },
     {
-      name: "Offline-Capable",
-      description: "Full functionality without internet. No SaaS dependency. Survives network outages."
+      name: "Offline-Capable Platform",
+      description: "Full functionality without internet. No cloud dependency. Resilient to network outages."
     },
     {
-      name: "Fast Response Times",
-      description: "Quick inspection decisions critical for production-speed operation."
+      name: "Real-Time Performance",
+      description: "Sub-second response times for operational decisions. Millisecond-latency AI inference."
     },
     {
-      name: "SQL & ERP Integration",
-      description: "Direct integration with databases and ERP systems using standard protocols."
+      name: "Enterprise Integration",
+      description: "Native integration with ERP, MES, and SQL databases using standard protocols."
     }
   ],
-  keyMessage: "Industrial deployment built for manufacturing. Not cloud software adapted for factories."
+  keyMessage: "Industrial AI platform built for manufacturing enterprises. Not cloud software adapted for factories."
 }

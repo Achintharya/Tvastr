@@ -1,14 +1,14 @@
 export const signalFirstAIContent = {
   id: "signal-first-ai",
   type: "signal-first-ai",
-  title: "Reliable Quality Decisions You Can Trust",
-  subtitle: "AI-assisted inspection that delivers consistent, accurate results across every shift and operator.",
-  body: "Traditional quality systems depend on operator judgment and vary by shift. Tvastr provides standardized, transparent quality decisions using advanced AI that analyzes multiple aspects of each part before making a classification.",
+  title: "AI-Powered Intelligence You Can Trust",
+  subtitle: "Explainable AI with transparent reasoning that delivers consistent, reliable decisions across your manufacturing operations.",
+  body: "Traditional systems rely on manual analysis and operator judgment. Tvastr's AI cortexes provide standardized, transparent intelligence using advanced reasoning pipelines that analyze multiple data sources before generating recommendations.",
   capabilities: [
-    "Consistent quality standards across all shifts",
-    "Transparent decisions with clear reasoning",
-    "Accurate defect detection and classification",
-    "Continuous improvement from accumulated data"
+    "Explainable AI with transparent decision paths",
+    "Consistent intelligence across all operations",
+    "Multi-stage reasoning with evidence validation",
+    "Continuous learning from operational data"
   ],
-  keyMessage: "Dependable quality decisions that reduce variation, improve accuracy, and give you full visibility into every inspection."
+  keyMessage: "Trustworthy AI intelligence that reduces variation, improves accuracy, and provides complete visibility into every decision."
 }

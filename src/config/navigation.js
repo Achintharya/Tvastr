@@ -1,10 +1,11 @@
 export const mainNavItems = [
   { label: "Home", href: "/" },
   {
-    label: "Platform",
+    label: "Products",
     children: [
-      { label: "Tvastr RAS", href: "/systems/rejection-analysis-system" },
-      { label: "Tvastr PI", href: "/systems/plant-intelligence" }
+      { label: "Vajra Cortex", href: "/products/vajra-cortex" },
+      { label: "Medhas Cortex", href: "/products/medhas-cortex" },
+      { label: "Executive MIS Cortex", href: "/products/executive-mis-cortex" }
     ]
   },
   { label: "Technology", href: "/technology" },

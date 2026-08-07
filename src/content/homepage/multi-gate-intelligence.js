@@ -1,30 +1,30 @@
 export const multiGateIntelligenceContent = {
   id: "multi-gate-intelligence",
   type: "multi-gate-intelligence",
-  title: "Quality Coverage Across Your Entire Production Line",
-  subtitle: "Connected quality management from pattern-making to final inspection. Not isolated checkpoints.",
-  body: "Defects can originate at any production stage. Tvastr provides consistent quality control across every gate, tracks defect patterns, and connects upstream conditions to downstream outcomes.",
+  title: "Intelligence Across Your Entire Manufacturing Enterprise",
+  subtitle: "Connected intelligence from production operations to executive insights. Not isolated point solutions.",
+  body: "Manufacturing transformation requires intelligence at every level. Tvastr's AI cortexes provide consistent intelligence across operations, analytics, and executive decision-making—connecting shop floor conditions to strategic outcomes.",
   stages: [
     {
-      name: "Pattern & Core",
-      description: "Dimensional verification and core integrity before casting begins."
+      name: "Operational Intelligence",
+      description: "AI-powered inspection and quality decisions at production checkpoints with real-time analysis."
     },
     {
-      name: "Mold Condition",
-      description: "Tracks mold wear and coating condition during production."
+      name: "Process Intelligence",
+      description: "Manufacturing analytics, SPC monitoring, and quality frameworks for continuous improvement."
     },
     {
-      name: "Knockout",
-      description: "Early-stage defect identification at casting ejection."
+      name: "Plant Intelligence",
+      description: "Aggregated insights across production lines with defect patterns and process optimization."
     },
     {
-      name: "Fettling",
-      description: "Post-gating surface quality and exposed internal defect detection."
+      name: "Executive Intelligence",
+      description: "Multi-plant dashboards and business intelligence for strategic decision-making."
     },
     {
-      name: "Final Inspection",
-      description: "Comprehensive defect analysis with full traceability to upstream gates."
+      name: "Enterprise Integration",
+      description: "Unified intelligence connecting operational data to business outcomes across your organization."
     }
   ],
-  keyMessage: "Comprehensive coverage across all gates. Early detection prevents costly late-stage rejections."
+  keyMessage: "Comprehensive intelligence from shop floor to boardroom. AI-powered insights at every level of your enterprise."
 }

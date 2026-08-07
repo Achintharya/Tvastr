@@ -1,7 +1,7 @@
 export const heroContent = {
   id: "hero",
   type: "hero",
-  title: "Persistent Industrial Intelligence",
-  subtitle: "Operational intelligence across inspection, traceability, and production.",
-  visualDirection: "Process intelligence dashboard with defect heatmaps, traceability flows, multi-gate intelligence pipeline, signal overlays, and industrial telemetry. Communicate: factory intelligence infrastructure, not simple inspection app."
+  title: "Industrial AI Platform for Digital Transformation",
+  subtitle: "Three intelligent AI cortexes that transform manufacturing enterprises through inspection intelligence, process analytics, and executive decision support.",
+  visualDirection: "Platform architecture showing three integrated AI cortexes (Vajra, Medhas, Executive MIS) with data flowing from shop floor to C-suite. Communicate: comprehensive AI platform enabling enterprise digital transformation, not point solutions."
 }

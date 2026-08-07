@@ -16,7 +16,24 @@ import CornerGuides from "./components/decor/CornerGuides";
 // Landing page sections — loaded eagerly (above the fold)
 import { HomePage } from "./components/layout/HomePage";
 
-// System detail pages — lazy loaded
+// Product pages — lazy loaded
+const VajraCortex = lazy(() =>
+  import("./pages/products/VajraCortex").then((m) => ({
+    default: m.VajraCortex,
+  })),
+);
+const MedhasCortex = lazy(() =>
+  import("./pages/products/MedhasCortex").then((m) => ({
+    default: m.MedhasCortex,
+  })),
+);
+const ExecutiveMISCortex = lazy(() =>
+  import("./pages/products/ExecutiveMISCortex").then((m) => ({
+    default: m.ExecutiveMISCortex,
+  })),
+);
+
+// Legacy system pages — lazy loaded (kept for backwards compatibility)
 const RejectionAnalysisSystem = lazy(() =>
   import("./pages/systems/RejectionAnalysisSystem").then((m) => ({
     default: m.RejectionAnalysisSystem,
@@ -136,6 +153,21 @@ export default function App() {
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/research" element={<ResearchPage />} />
 
+                  {/* Product pages — Three AI Cortexes */}
+                  <Route
+                    path="/products/vajra-cortex"
+                    element={<VajraCortex />}
+                  />
+                  <Route
+                    path="/products/medhas-cortex"
+                    element={<MedhasCortex />}
+                  />
+                  <Route
+                    path="/products/executive-mis-cortex"
+                    element={<ExecutiveMISCortex />}
+                  />
+
+                  {/* Legacy system pages — kept for backwards compatibility */}
                   <Route
                     path="/systems/rejection-analysis-system"
                     element={<RejectionAnalysisSystem />}

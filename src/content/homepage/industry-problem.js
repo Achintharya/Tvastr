@@ -1,33 +1,33 @@
 export const industryProblemContent = {
   id: "industry-problem",
   type: "industry-problem",
-  title: "Manufacturing Generates Data. Very Little Becomes Intelligence.",
-  subtitle: "Traditional quality systems capture outcomes but miss the intelligence needed for Industry 4.0.",
-  body: "Foundries generate massive data daily, but it remains disconnected. Defects repeat, root causes stay hidden, and issues surface only after rejection rates spike, costing time, material, and revenue.",
+  title: "Manufacturing Generates Data. Digital Transformation Requires Intelligence.",
+  subtitle: "Traditional systems capture data but lack the intelligence needed for digitalization and Industry 4.0.",
+  body: "Manufacturing enterprises generate massive operational data daily, but it remains disconnected across systems. Quality issues repeat, root causes stay hidden, and executives lack real-time visibility—preventing true digital transformation.",
   problems: [
     {
-      title: "Disconnected Quality Gates",
-      description: "Inspection stations operate in isolation. No intelligence flows between gates."
+      title: "Disconnected Data Systems",
+      description: "Production, quality, and business systems operate in silos with no unified intelligence."
     },
     {
-      title: "Operator-Dependent Outcomes",
-      description: "Quality checks vary by shift and operator. No consistency standard."
+      title: "Operator-Dependent Decisions",
+      description: "Critical decisions vary by shift and individual expertise. No AI-powered consistency."
     },
     {
-      title: "No Manufacturing Memory",
-      description: "Defects aren't tracked across heats, molds, or cycles. The plant forgets."
+      title: "No Operational Memory",
+      description: "Manufacturing insights aren't retained or analyzed across production cycles. Organizations forget."
     },
     {
-      title: "Reactive Quality Workflows",
-      description: "Corrections happen after scrap. No early-stage prevention."
+      title: "Reactive Problem-Solving",
+      description: "Issues are addressed after they impact production. No predictive intelligence."
     },
     {
-      title: "Fragmented Traceability",
-      description: "Heat numbers, mold IDs, and shift data sit in isolated systems with no linkage."
+      title: "Limited Executive Visibility",
+      description: "C-suite lacks real-time operational insights. Strategic decisions rely on delayed reports."
     },
     {
-      title: "Static Inspection Systems",
-      description: "Systems detect defects but don't analyze patterns or causes."
+      title: "Manual Analysis Requirements",
+      description: "Engineers spend time aggregating data instead of solving problems. No automated intelligence."
     }
   ]
 }

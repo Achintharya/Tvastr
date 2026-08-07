@@ -3,8 +3,8 @@ import { useDocumentHead } from "../hooks/useDocumentHead";
 
 export function AboutPage() {
   useDocumentHead(
-    "About Tvastr | Industrial Intelligence Platform",
-    "Learn about Tvastr - pioneering AI-powered quality inspection and process intelligence for manufacturing industries.",
+    "About Tvastr | Industrial AI Platform for Digital Transformation",
+    "Learn about Tvastr - pioneering industrial AI platform enabling digital transformation across manufacturing enterprises through intelligent AI cortexes.",
     "https://tvastr.co/about",
   );
 
@@ -17,19 +17,19 @@ export function AboutPage() {
 
   const techApproach = [
     {
-      title: "Signal-First Classification",
+      title: "AI Reasoning Engine",
       description:
-        "We extract interpretable features from vision, thermal, eddy current, and ultrasonic sensors to classify defects based on physical principles.",
+        "Vajra Cortex applies 14-stage cognitive pipelines to manufacturing data, delivering explainable root cause analysis and decision support at the point of production.",
     },
     {
-      title: "Process Intelligence",
+      title: "Manufacturing Intelligence",
       description:
-        "Our PI system transforms rejection data into actionable insights using SPC, Pareto, Fishbone, and correlation analytics.",
+        "Medhas Cortex integrates inspection intelligence, process analytics, SPC monitoring, and quality frameworks for comprehensive operational excellence.",
     },
     {
-      title: "Edge Deployment",
+      title: "Executive Intelligence",
       description:
-        "Hybrid edge-cloud architecture enables real-time inspection with <200ms latency while maintaining centralized analytics.",
+        "Executive MIS Cortex provides real-time C-suite visibility with multi-plant dashboards, strategic KPIs, and business intelligence for data-driven decision-making.",
     },
   ];
 
@@ -46,11 +46,10 @@ export function AboutPage() {
               About Tvastr
             </p>
             <h1 className="text-4xl md:text-6xl lg:text-[72px] font-medium tracking-[-0.02em] text-txt-primary leading-[1.05]">
-              Building the Future of Industrial Intelligence
+              Enabling Digital Transformation Through Industrial AI
             </h1>
             <p className="text-base md:text-lg text-txt-secondary leading-relaxed max-w-3xl mx-auto">
-              Empowering manufacturers with explainable AI-driven quality
-              inspection and process optimization.
+              Empowering manufacturing enterprises with AI-powered intelligence from shop floor to C-suite.
             </p>
           </div>
         </div>
@@ -71,15 +70,10 @@ export function AboutPage() {
                 Our Mission
               </h2>
               <p className="text-base md:text-lg text-txt-secondary leading-relaxed mb-4">
-                Tvastr is on a mission to transform traditional manufacturing
-                quality control through signal-based AI inspection systems that
-                are explainable, auditable, and deployment-ready.
+                Tvastr is on a mission to enable digital transformation across manufacturing enterprises through an integrated industrial AI platform that delivers intelligence at every level—from operational decisions to executive insights.
               </p>
               <p className="text-base md:text-lg text-txt-secondary leading-relaxed">
-                We believe that quality inspection should not be a black box.
-                Our technology combines physics-driven signal analysis with
-                machine learning to deliver reliable defect detection that
-                engineers can trust and understand.
+                We believe AI should be explainable, trustworthy, and deployed where it matters. Our three AI cortexes—Vajra, Medhas, and Executive MIS—work together to transform manufacturing data into actionable intelligence that drives continuous improvement.
               </p>
             </div>
 
@@ -96,9 +90,7 @@ export function AboutPage() {
                   Vision
                 </p>
                 <p className="text-base text-txt-primary leading-relaxed">
-                  To become the global standard for AI-powered quality
-                  inspection in precision manufacturing, enabling zero-defect
-                  production at scale.
+                  To become the global standard for industrial AI platforms, enabling manufacturing enterprises worldwide to achieve complete digital transformation through intelligent, explainable AI.
                 </p>
               </div>
 
@@ -164,9 +156,7 @@ export function AboutPage() {
               Our Technology Approach
             </h2>
             <p className="text-base md:text-lg leading-relaxed opacity-85 mb-10 max-w-3xl">
-              Unlike pure computer vision ML approaches, Tvastr uses
-              multi-sensor signal fusion combined with physics-based
-              classification rules.
+              Tvastr's industrial AI platform combines explainable AI reasoning, comprehensive manufacturing intelligence, and executive decision support into one unified ecosystem.
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">
@@ -206,12 +196,10 @@ export function AboutPage() {
               Team
             </p>
             <h2 className="text-3xl md:text-5xl font-medium text-txt-primary leading-[1.05] tracking-[-0.02em] mb-4">
-              Built by Engineers, for Engineers
+              Join Us in Enabling Manufacturing Digital Transformation
             </h2>
             <p className="text-base md:text-lg text-txt-secondary leading-relaxed max-w-3xl mx-auto">
-              Our team combines deep expertise in computer vision, signal
-              processing, manufacturing engineering, and industrial AI
-              deployment.
+              Whether you're looking to implement AI-powered quality systems, optimize manufacturing processes, or provide executives with real-time intelligence, we'd love to discuss how Tvastr's AI cortexes can help.
             </p>
           </div>
 

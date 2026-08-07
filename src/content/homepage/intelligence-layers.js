@@ -1,36 +1,36 @@
 export const intelligenceLayersContent = {
   id: "intelligence-layers",
   type: "intelligence-layers",
-  title: "Complete Intelligence Stack",
-  subtitle: "Real-time inspection, predictive analytics, and manufacturing memory integrated into one platform.",
+  title: "AI-Powered Intelligence at Every Level",
+  subtitle: "From operational data to executive insights, Tvastr's AI cortexes deliver intelligence where you need it.",
   columns: [
     {
-      id: "perception",
-      name: "Inspection Intelligence",
-      description: "Automated defect detection with consistent, accurate quality decisions across all gates.",
+      id: "operational",
+      name: "Operational Intelligence",
+      description: "AI-powered inspection and quality decisions at the point of production with real-time root cause analysis.",
       capabilities: [
-        "AI-powered defect detection",
-        "Consistent quality decisions"
+        "14-stage AI reasoning pipeline",
+        "Automated defect detection and classification"
       ]
     },
     {
       id: "process",
-      name: "Predictive Analytics",
-      description: "Early warning system that identifies quality issues before they become costly rejections.",
+      name: "Process Intelligence",
+      description: "Manufacturing analytics, SPC monitoring, and quality frameworks that transform data into actionable insights.",
       capabilities: [
-        "Statistical Process Control (SPC)",
-        "Root cause analysis and trend detection"
+        "Statistical Process Control and trend analysis",
+        "Quality engineering frameworks (FMEA, Fishbone)"
       ]
     },
     {
-      id: "memory",
-      name: "Manufacturing Memory",
-      description: "Complete production history connecting defects to process conditions across heats and cycles.",
+      id: "executive",
+      name: "Executive Intelligence",
+      description: "Real-time business intelligence and strategic KPIs providing C-suite visibility across your entire enterprise.",
       capabilities: [
-        "Defect pattern tracking",
-        "Full production traceability"
+        "Multi-plant executive dashboards",
+        "Strategic decision support and reporting"
       ]
     }
   ],
-  keyMessage: "Integrated intelligence that helps you catch problems early, reduce scrap, and improve quality continuously."
+  keyMessage: "Complete intelligence stack enabling digital transformation from shop floor to boardroom."
 }
