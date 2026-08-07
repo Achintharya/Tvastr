@@ -78,43 +78,43 @@ const STYLES = {
   },
 };
 
-// Product definitions - moved outside component to prevent recreation
+// Product definitions - Cortex architecture
 const PRODUCTS = [
   {
-    id: "ras_core",
-    name: "RAS Core",
+    id: "medhas",
+    name: "Medhas Cortex",
     description:
-      "An AI-driven casting inspection and defect diagnosis platform that transforms raw inspection images into actionable quality intelligence.",
-    tag: "Vision AI",
-    capability: "ras_core",
+      "Your operational intelligence workspace. Real-time quality monitoring, inspection management, process intelligence, and shop floor analytics unified in one system.",
+    tag: "Operational Intelligence",
+    capability: "ras_enterprise", // Maps to backend capability
     requiredTier: "TIER_1",
   },
   {
-    id: "ras_enterprise",
-    name: "RAS Enterprise",
+    id: "vajra",
+    name: "Vajra Cortex",
     description:
-      "Integrated build with advanced process integration, ERP connectivity, and extended quality engineering frameworks.",
-    tag: "Vision AI",
-    capability: "ras_enterprise",
+      "Executive intelligence layer for strategic decision-making. Natural language querying, semantic memory, and cross-plant analytics for leadership teams.",
+    tag: "Executive Intelligence",
+    capability: "vajra_enabled", // Maps to backend capability
     requiredTier: "TIER_2",
     upgradeFeatures: [
-      "ERP and SQL integration",
-      "batch processing and traceability",
-      "process intelligence",
+      "Natural language AI querying",
+      "Semantic memory and trend analysis",
+      "Executive dashboards and cross-plant intelligence",
     ],
   },
   {
-    id: "plant_intelligence",
-    name: "PIRAS",
+    id: "executive_mis",
+    name: "Executive MIS Cortex",
     description:
-      "The complete integrated system: AI-driven casting inspection (RAS) combined with plant-level intelligence (PI) for end-to-end manufacturing quality intelligence.",
-    tag: "Integrated System",
-    capability: "plant_intelligence",
+      "Enterprise-wide manufacturing intelligence. Complete ERP integration, multi-site analytics, and strategic planning capabilities for large organizations.",
+    tag: "Enterprise Intelligence",
+    capability: "executive_mis", // Future capability
     requiredTier: "TIER_3",
     upgradeFeatures: [
-      "RAS inspection + Plant Intelligence analytics",
-      "end-to-end quality intelligence pipeline",
-      "FMEA, Pareto, SPC, decision tracking",
+      "Multi-site enterprise analytics",
+      "Complete ERP and enterprise system integration",
+      "Strategic planning and forecasting",
     ],
   },
 ];
@@ -122,10 +122,10 @@ const PRODUCTS = [
 /**
  * PortalDashboard — Authenticated customer dashboard.
  *
- * Shows 3 product cards based on user's license tier:
- *   - RAS Core (active for all)
- *   - RAS Enterprise (active for ras_enterprise & full_stack, locked for ras_core)
- *   - Plant Intelligence (active for full_stack, locked for others)
+ * Shows Cortex products based on user's license tier:
+ *   - TIER_1: Medhas Cortex (active), Vajra (locked), Executive MIS (locked)
+ *   - TIER_2: Medhas Cortex (active), Vajra Cortex (active), Executive MIS (locked)
+ *   - TIER_3: All three Cortexes active (future)
  *
  * UI is fully tier-driven — no hardcoded logic.
  * Download functionality is inline — no redirect to separate downloads page.
@@ -320,7 +320,7 @@ export function PortalDashboard() {
             {customerName || "Dashboard"}
           </h1>
           <p className="text-sm text-txt-secondary">
-            Welcome back. Your licensed Tvastr systems are listed below.
+            Welcome back. Your Tvastr Cortexes are listed below.
           </p>
           {tier && (
             <p className="text-xs text-txt-muted mt-2">
@@ -344,13 +344,7 @@ export function PortalDashboard() {
 
             {/* Products - unified card showing product info + download */}
             <div className="mb-10">
-              {PRODUCTS.filter((product) => {
-                // For TIER_3, only show PIRAS (it includes RAS Core and Enterprise)
-                if (tier === "TIER_3") {
-                  return product.id === "plant_intelligence";
-                }
-                return true;
-              }).map((product, i) => {
+              {PRODUCTS.map((product, i) => {
                 const isActive = capabilities?.[product.capability];
                 const productVersions =
                   versions[product.id] || Object.values(versions)[0];
@@ -702,7 +696,11 @@ export function PortalDashboard() {
                 } else {
                   // Locked product card
                   const requiredTierLabel =
-                    product.requiredTier === "TIER_3" ? "PIRAS" : "Enterprise";
+                    product.requiredTier === "TIER_3" 
+                      ? "Complete Platform" 
+                      : product.requiredTier === "TIER_2"
+                      ? "Medhas + Vajra"
+                      : "Medhas Cortex";
                   return (
                     <div key={product.id} className="mb-6">
                       <LockedProductCard

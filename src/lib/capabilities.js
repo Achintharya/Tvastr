@@ -32,12 +32,12 @@ export const TIER_ORDER = {
 };
 
 /**
- * Display labels for tiers (used in UI)
+ * Display labels for tiers (used in UI) - Customer-facing names
  */
 export const TIER_LABELS = {
-  TIER_1: "PIRASCortex",
-  TIER_2: "PIRASCortex + Vajra",
-  TIER_3: "Reserved",
+  TIER_1: "Operational Intelligence",
+  TIER_2: "Complete Intelligence Platform",
+  TIER_3: "Enterprise Platform",
 };
 
 /**
@@ -144,12 +144,20 @@ export function tierToBadgeState(tier, productId) {
     case "ras_core":
     case "ras_enterprise":
     case "plant_intelligence":
-      // Phase 21A: All PIRASCortex products are ACTIVE for all recognized tiers
+    case "medhas":
+      // Medhas Cortex (operational intelligence) is ACTIVE for all recognized tiers
       return "ACTIVE";
 
     case "vajra":
-      // Vajra cognitive layer is TIER_2+ only
+      // Vajra Cortex (executive intelligence) is TIER_2+ only
       if (normalizedTier === TIERS.TIER_2 || normalizedTier === TIERS.TIER_3) {
+        return "ACTIVE";
+      }
+      return "LOCKED";
+
+    case "executive_mis":
+      // Executive MIS Cortex is TIER_3+ only
+      if (normalizedTier === TIERS.TIER_3) {
         return "ACTIVE";
       }
       return "LOCKED";

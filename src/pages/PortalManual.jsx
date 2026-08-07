@@ -6,9 +6,10 @@ import { Logo } from "../components/Logo";
 import { legacyColors as colors } from "../design/colors";
 
 /**
- * PortalManual — Protected page displaying the complete PIRAS User Manual.
+ * PortalManual — Protected page displaying the complete Tvastr Platform User Guide.
  *
- * Contains the full corrected user manual written for non-technical foundry workers.
+ * Contains the full user manual written for non-technical foundry workers.
+ * Covers Medhas Cortex (operational intelligence) and platform capabilities.
  * Features a floating table of contents sidebar for easy navigation.
  */
 export function PortalManual() {
@@ -190,14 +191,30 @@ export function PortalManual() {
                   backgroundClip: "text",
                 }}
               >
-                Tvastr PIRAS
+                Tvastr Platform User Guide
               </h1>
               <p className="text-lg text-txt-secondary mb-2">
-                AI-Powered Casting Inspection System — User Manual
+                AI-Powered Manufacturing Intelligence — Medhas Cortex
               </p>
               <p className="text-sm text-txt-muted">
-                Version 1.0 | Written for non-technical foundry workers
+                Version 2.0 | Written for non-technical foundry workers
               </p>
+              
+              {/* Terminology clarification */}
+              <div
+                className="mt-6 p-4 rounded-lg"
+                style={{
+                  background: "rgba(16,185,129,0.05)",
+                  border: "1px solid rgba(16,185,129,0.2)",
+                }}
+              >
+                <p className="text-xs font-semibold text-process-primary mb-2 uppercase tracking-wide">
+                  About This Guide
+                </p>
+                <p className="text-sm text-txt-secondary leading-relaxed">
+                  This guide covers the <strong>Medhas Cortex</strong> — your operational intelligence workspace for real-time quality monitoring, inspection management, and shop floor analytics. Throughout this manual, references to "PIRAS" or "RAS" refer to capabilities now unified within the Medhas Cortex system.
+                </p>
+              </div>
             </div>
 
             {/* Manual sections */}

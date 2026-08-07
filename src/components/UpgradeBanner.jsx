@@ -4,38 +4,28 @@ import { legacyColors as colors } from '../design/colors'
 
 /**
  * UpgradeBanner — Top-of-dashboard upgrade prompt.
- * Renders ONLY for ras_core and ras_enterprise tiers.
- * Hidden for full_stack.
- * Updated to match light theme design system.
+ * Renders ONLY for TIER_1 (Operational Intelligence).
+ * Hidden for TIER_2+ (Complete Platform - max tier).
+ * Updated to match Cortex-based architecture.
  *
  * Shows tier-specific messaging to guide users toward higher tiers.
  */
 export function UpgradeBanner() {
   const { tier } = useLicense()
 
-  // Don't show for TIER_3 or if tier is not loaded
-  if (!tier || tier === 'TIER_3') return null
+  // Only show for TIER_1 - TIER_2 is max tier (no upgrade path currently)
+  if (!tier || tier === 'TIER_2' || tier === 'TIER_3') return null
 
   const content = {
     TIER_1: {
-      title: 'You are using RAS Core',
+      title: 'Unlock Executive Intelligence',
       features: [
-        'SQL and ERP integration',
-        'manufacturing traceability',
-        'process intelligence and drift detection',
+        'Natural language AI querying across all manufacturing data',
+        'Semantic memory and intelligent trend analysis',
+        'Executive dashboards and cross-plant intelligence',
       ],
-      targetTier: 'RAS Enterprise',
-      cta: 'Upgrade to Enterprise',
-    },
-    TIER_2: {
-      title: 'You are using RAS Enterprise',
-      features: [
-        'Complete RAS + Plant Intelligence integration',
-        'end-to-end quality intelligence pipeline',
-        'decision tracking, FMEA, SPC, cost of quality',
-      ],
-      targetTier: 'PIRAS',
-      cta: 'Upgrade to PIRAS',
+      targetTier: 'Vajra Cortex',
+      cta: 'Unlock Vajra Cortex',
     },
   }
 

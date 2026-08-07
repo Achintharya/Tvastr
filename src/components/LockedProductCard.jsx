@@ -3,15 +3,15 @@ import { legacyColors as colors } from '../design/colors'
 
 /**
  * LockedProductCard — Greyed-out product card for dashboard.
- * Used to show products that are available in a higher tier.
- * Updated to match light theme design system.
+ * Used to show Cortex products that are available in a higher tier.
+ * Updated to match Cortex-based architecture and light theme design system.
  *
  * Props:
- *   title         — Product name
+ *   title         — Product name (e.g., "Vajra Cortex", "Executive MIS Cortex")
  *   description   — Product description
- *   tag           — Badge label (e.g., "Vision AI", "Plant AI")
+ *   tag           — Badge label (e.g., "Executive Intelligence", "Enterprise Intelligence")
  *   index         — Card position (for styling variation)
- *   requiredTier  — Which tier unlocks this (e.g., "Enterprise", "Full Stack")
+ *   requiredTier  — Which tier unlocks this (e.g., "Medhas + Vajra", "Complete Platform")
  *   features      — Array of feature bullets specific to this tier
  */
 export function LockedProductCard({ title, description, tag, index, requiredTier, features }) {
@@ -106,7 +106,7 @@ export function LockedProductCard({ title, description, tag, index, requiredTier
         {/* Upgrade CTA */}
         <button
           onClick={() => {
-            const template = CONFIG.emailTemplates.licenseUpgrade(requiredTier)
+            const template = CONFIG.emailTemplates.licenseUpgrade(title)
             openContact(CONFIG.emails.support, template.subject, template.body)
           }}
           className="flex items-center justify-center gap-2 py-3 text-xs font-semibold tracking-[0.15em] uppercase transition-all duration-200 mt-auto rounded-lg"
@@ -130,7 +130,7 @@ export function LockedProductCard({ title, description, tag, index, requiredTier
               strokeLinecap="round"
             />
           </svg>
-          Upgrade to {requiredTier}
+          Unlock {title}
         </button>
       </div>
     </div>
