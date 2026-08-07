@@ -1,13 +1,11 @@
 // Homepage sections
 import { HeroSection } from '../components/sections/HeroSection'
+import { BuiltForManufacturingSection } from '../components/sections/BuiltForManufacturingSection'
 import { IndustryProblemSection } from '../components/sections/IndustryProblemSection'
-import { IntelligenceLayersSection } from '../components/sections/home/IntelligenceLayersSection'
-import { MultiGateIntelligenceSection } from '../components/sections/home/MultiGateIntelligenceSection'
-import { SignalFirstAISection } from '../components/sections/home/SignalFirstAISection'
-import { IndustrialMemorySection } from '../components/sections/home/IndustrialMemorySection'
-import { InspectionVisibilitySection } from '../components/sections/InspectionVisibilitySection'
-import { DeploymentSection } from '../components/sections/DeploymentSection'
 import { PlatformOverviewSection } from '../components/sections/PlatformOverviewSection'
+import { InspectionVisibilitySection } from '../components/sections/InspectionVisibilitySection'
+import { PlatformCapabilitiesSection } from '../components/sections/PlatformCapabilitiesSection'
+import { DeploymentSection } from '../components/sections/DeploymentSection'
 import { ContactSection } from '../components/sections/ContactSection'
 
 // Technology page sections
@@ -24,13 +22,11 @@ import { TechnologyCTASection } from '../components/sections/technology/Technolo
 export const sectionRegistry = {
   // Homepage
   'hero': HeroSection,
+  'built-for-manufacturing': BuiltForManufacturingSection,
   'industry-problem': IndustryProblemSection,
-  'intelligence-layers': IntelligenceLayersSection,
-  'multi-gate-intelligence': MultiGateIntelligenceSection,
-  'signal-first-ai': SignalFirstAISection,
   'platform-overview': PlatformOverviewSection,
   'inspection-visibility': InspectionVisibilitySection,
-  'industrial-memory': IndustrialMemorySection,
+  'platform-capabilities': PlatformCapabilitiesSection,
   'deployment': DeploymentSection,
   'contact': ContactSection,
 

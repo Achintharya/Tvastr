@@ -7,10 +7,14 @@ import { platformOverviewContent } from "@/content/homepage/platform-overview";
 import { useSectionReveal } from "../../hooks/useSectionReveal";
 
 export function PlatformOverviewSection() {
-  const { id, title, subtitle, body, systems, keyMessage } =
+  const { id, title, subtitle, body, cortexes, keyMessage } =
     platformOverviewContent;
   const sectionRef = useRef(null);
   useSectionReveal(sectionRef);
+
+  // Separate primary (Medhas) from other cortexes
+  const primaryCortex = cortexes.find((c) => c.visualEmphasis === "primary");
+  const otherCortexes = cortexes.filter((c) => c.visualEmphasis !== "primary");
 
   return (
     <SectionShell ref={sectionRef} id={id}>
@@ -20,10 +24,11 @@ export function PlatformOverviewSection() {
         {body}
       </p>
 
-      <div className="grid lg:grid-cols-2 gap-8 mb-16">
-        {systems.map((system, idx) => (
+      {/* Option B Layout: Responsive grid with Medhas featured */}
+      <div className="space-y-8 mb-16">
+        {/* Primary Cortex (Medhas) - Featured larger card */}
+        {primaryCortex && (
           <div
-            key={system.id}
             data-reveal-item
             className="flex flex-col p-8 md:p-10 rounded-lg"
             style={{ background: "var(--bg-panel)" }}
@@ -35,29 +40,28 @@ export function PlatformOverviewSection() {
                 aria-hidden="true"
               />
               <span style={{ color: "var(--process-primary)" }}>
-                System {String(idx + 1).padStart(2, "0")}
+                {primaryCortex.role}
               </span>
-              <span className="text-txt-muted">— {system.tagline}</span>
             </p>
             <h3 className="text-3xl md:text-4xl font-medium text-txt-primary leading-[1.1] tracking-[-0.01em] mb-6">
-              {system.name}
+              {primaryCortex.name}
             </h3>
 
             <div className="border-t border-border-default mb-6" />
 
-            <p className="text-base text-txt-secondary leading-relaxed mb-8 flex-1">
-              {system.description}
+            <p className="text-base md:text-lg text-txt-secondary leading-relaxed mb-8">
+              {primaryCortex.description}
             </p>
 
             <Link
-              to={system.route}
+              to={primaryCortex.route}
               className="inline-flex items-center gap-2 self-start px-5 py-2.5 rounded-full text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-process-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-panel"
               style={{
                 background: "var(--process-primary)",
                 color: "var(--bg-primary)",
               }}
             >
-              <span>Explore {system.id.toUpperCase()}</span>
+              <span>Explore {primaryCortex.name}</span>
               <svg
                 width="14"
                 height="14"
@@ -73,7 +77,63 @@ export function PlatformOverviewSection() {
               </svg>
             </Link>
           </div>
-        ))}
+        )}
+
+        {/* Other Cortexes - Side by side on desktop, stacked on mobile */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {otherCortexes.map((cortex) => (
+            <div
+              key={cortex.id}
+              data-reveal-item
+              className="flex flex-col p-6 md:p-8 rounded-lg"
+              style={{ background: "var(--bg-panel)" }}
+            >
+              <p className="font-mono text-[11px] tracking-[0.24em] uppercase mb-4 inline-flex items-center gap-2">
+                <span
+                  className="inline-block w-1.5 h-1.5 rounded-full"
+                  style={{ background: "var(--process-primary)" }}
+                  aria-hidden="true"
+                />
+                <span style={{ color: "var(--process-primary)" }}>
+                  {cortex.role}
+                </span>
+              </p>
+              <h3 className="text-2xl md:text-3xl font-medium text-txt-primary leading-[1.1] tracking-[-0.01em] mb-6">
+                {cortex.name}
+              </h3>
+
+              <div className="border-t border-border-default mb-6" />
+
+              <p className="text-sm md:text-base text-txt-secondary leading-relaxed mb-8 flex-1">
+                {cortex.description}
+              </p>
+
+              <Link
+                to={cortex.route}
+                className="inline-flex items-center gap-2 self-start px-4 py-2 rounded-full text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-process-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-panel"
+                style={{
+                  background: "var(--process-primary)",
+                  color: "var(--bg-primary)",
+                }}
+              >
+                <span>Explore {cortex.name}</span>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="square"
+                  strokeLinejoin="miter"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
 
       <p className="text-center text-base text-txt-secondary leading-relaxed max-w-3xl mx-auto">

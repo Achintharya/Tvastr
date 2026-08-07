@@ -94,12 +94,14 @@ export function InspectionVisibilitySection() {
         <SectionHeader
           title={title}
           subtitle={subtitle}
-          eyebrow="Operational Surfaces"
+          eyebrow="Medhas Cortex"
         />
 
-        <p className="text-base md:text-lg text-txt-secondary leading-relaxed mb-12 md:mb-16 max-w-3xl mt-6">
-          {body}
-        </p>
+        {body && (
+          <p className="text-base md:text-lg text-txt-secondary leading-relaxed mb-12 md:mb-16 max-w-3xl mt-6">
+            {body}
+          </p>
+        )}
 
         {/* ─────────── Featured viewer ─────────── */}
         <div

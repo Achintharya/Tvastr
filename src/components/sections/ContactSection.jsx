@@ -19,15 +19,13 @@ export function ContactSection() {
             className="font-mono text-[11px] tracking-[0.28em] uppercase mb-4"
             style={{ color: "var(--signal-glow)" }}
           >
-            Contact
+            Get Started
           </p>
           <h2 className="text-3xl md:text-5xl font-medium text-txt-primary leading-[1.05] tracking-[-0.02em] mb-6">
-            Get in touch
+            Start Your Digital Transformation
           </h2>
           <p className="text-base md:text-lg text-txt-secondary leading-relaxed mb-10">
-            Ready to bring persistent industrial intelligence to your
-            manufacturing environment? Schedule a live demonstration to see how
-            Tvastr transforms data into actionable insight.
+            See the Tvastr Platform in action. Schedule a live demonstration to discover how integrated AI intelligence transforms manufacturing operations from shop floor to executive suite.
           </p>
           <dl className="space-y-5">
             <div>

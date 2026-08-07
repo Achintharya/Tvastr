@@ -2,6 +2,6 @@ export const heroContent = {
   id: "hero",
   type: "hero",
   title: "Industrial AI Platform for Digital Transformation",
-  subtitle: "Three intelligent AI cortexes that transform manufacturing enterprises through inspection intelligence, process analytics, and executive decision support.",
-  visualDirection: "Platform architecture showing three integrated AI cortexes (Vajra, Medhas, Executive MIS) with data flowing from shop floor to C-suite. Communicate: comprehensive AI platform enabling enterprise digital transformation, not point solutions."
+  subtitle: "Tvastr enables manufacturing enterprises to achieve operational excellence through an integrated AI platform—delivering intelligence from shop floor operations to executive decision-making.",
+  visualDirection: "Platform architecture emphasizing unified intelligence ecosystem. Communicate: one integrated platform enabling enterprise transformation, not fragmented software."
 }

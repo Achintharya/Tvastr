@@ -1,8 +1,9 @@
 export const inspectionVisibilityContent = {
   id: "inspection-visibility",
   type: "inspection-visibility",
-  title: "Operational Visibility",
-  subtitle: "Tvastr delivers unified inspection interfaces, process dashboards, and manufacturing intelligence",
+  title: "Operational Intelligence with Medhas Cortex",
+  subtitle: "The operational workspace of the Tvastr platform—delivering real-time visibility and manufacturing intelligence across your production operations.",
+  body: "Medhas unifies inspection intelligence, rejection analysis, process analytics, SPC monitoring, quality frameworks, and operational dashboards into one manufacturing workspace. From individual part inspection to plant-wide intelligence.",
   screenshots: [
     {
       id: "overview",
@@ -53,5 +54,5 @@ export const inspectionVisibilityContent = {
       imagePath: "/alerts_tab.png"
     }
   ],
-  keyMessage: "Visibility at every level, from individual casting inspection to plant-wide manufacturing intelligence."
+  keyMessage: "Complete operational intelligence from individual casting inspection to plant-wide manufacturing analytics—all within the Medhas workspace."
 }

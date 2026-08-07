@@ -1,31 +1,39 @@
 export const platformOverviewContent = {
   id: "platform-overview",
   type: "platform-overview",
-  title: "Three AI Cortexes. One Unified Platform.",
-  subtitle: "From shop floor to C-suite, intelligent AI systems at every level of your manufacturing enterprise.",
-  body: "Tvastr's three AI cortexes work together to enable complete digital transformation—from real-time inspection intelligence through manufacturing analytics to executive decision support.",
-  systems: [
-    {
-      id: "vajra",
-      name: "Vajra Cortex",
-      tagline: "AI Inspection & Decision Engine",
-      description: "Industrial AI reasoning engine with 14-stage cognitive pipeline for root cause analysis, investigations, and decision support.",
-      route: "/products/vajra-cortex"
-    },
+  
+  title: "The Tvastr Cortex Platform",
+  
+  subtitle: "Manufacturing requires different kinds of intelligence at different levels.",
+  
+  body: "Operational teams need real-time visibility. Engineers need AI-assisted investigation. Executives need strategic insight. Rather than forcing one application to do everything, Tvastr is built as specialized AI Cortexes that work together on one platform.",
+  
+  cortexes: [
     {
       id: "medhas",
       name: "Medhas Cortex",
-      tagline: "Manufacturing Intelligence Platform",
-      description: "Comprehensive platform combining inspection intelligence, process analytics, SPC monitoring, and quality frameworks for operational excellence.",
-      route: "/products/medhas-cortex"
+      role: "Primary Operational Workspace",
+      description: "Real-time operational interface for production teams. Unifies inspection intelligence, rejection analysis, process analytics, SPC monitoring, quality frameworks, and manufacturing dashboards into one workspace.",
+      route: "/products/medhas-cortex",
+      visualEmphasis: "primary"
+    },
+    {
+      id: "vajra",
+      name: "Vajra Cortex",
+      role: "AI Reasoning Layer",
+      description: "Conversational AI reasoning engine providing natural language investigations, evidence-backed root cause analysis, and voice-enabled manufacturing intelligence.",
+      route: "/products/vajra-cortex",
+      visualEmphasis: "standard"
     },
     {
       id: "executive-mis",
       name: "Executive MIS Cortex",
-      tagline: "Executive Decision Intelligence",
-      description: "Real-time executive dashboards providing C-suite visibility across multiple plants with business intelligence and strategic KPIs.",
-      route: "/products/executive-mis-cortex"
+      role: "Executive Intelligence Platform",
+      description: "Separate executive dashboard providing C-suite visibility across multiple plants with real-time KPIs, business intelligence, and strategic decision support.",
+      route: "/products/executive-mis-cortex",
+      visualEmphasis: "standard"
     }
   ],
-  keyMessage: "Edge-native deployment. Complete data sovereignty. Integrated AI ecosystem enabling enterprise digital transformation."
+  
+  keyMessage: "Three specialized Cortexes. One integrated platform. Complete manufacturing intelligence from shop floor to boardroom."
 }
