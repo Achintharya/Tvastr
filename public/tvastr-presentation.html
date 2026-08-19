@@ -1,0 +1,1434 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Tvastr Manufacturing Intelligence Suite - Product Presentation
+    </title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+        overflow: hidden;
+        height: 100vh;
+      }
+
+      .presentation-container {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .slide {
+        display: none;
+        width: 90%;
+        max-width: 1200px;
+        height: 85vh;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 60px 80px;
+        position: relative;
+        animation: slideIn 0.5s ease-out;
+        overflow-y: auto;
+      }
+
+      .slide.active {
+        display: block;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .slide-header {
+        margin-bottom: 40px;
+      }
+
+      .slide-number {
+        color: #1863dc;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 48px;
+        color: #1a202c;
+        margin-bottom: 15px;
+        line-height: 1.2;
+      }
+
+      h2 {
+        font-size: 36px;
+        color: #1a202c;
+        margin-bottom: 20px;
+      }
+
+      .subtitle {
+        font-size: 24px;
+        color: #003c33;
+        font-weight: 600;
+      }
+
+      .tag {
+        display: inline-block;
+        background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      .badge {
+        display: inline-block;
+        background: #f1f5ff;
+        border: 2px solid #1863dc;
+        color: #1863dc;
+        padding: 6px 16px;
+        border-radius: 15px;
+        font-size: 14px;
+        font-weight: 600;
+        margin-left: 15px;
+      }
+
+      .description {
+        font-size: 20px;
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .capabilities {
+        list-style: none;
+      }
+
+      .capabilities li {
+        font-size: 18px;
+        color: #2d3748;
+        padding: 12px 0;
+        padding-left: 30px;
+        position: relative;
+        line-height: 1.5;
+      }
+
+      .capabilities li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #ff8800;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .feature-box {
+        background: #f1f5ff;
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 4px solid #1863dc;
+      }
+
+      .feature-box h3 {
+        color: #003c33;
+        font-size: 20px;
+        margin-bottom: 12px;
+      }
+
+      .feature-box p {
+        color: #4a5568;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .products-overview {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .product-card {
+        background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        padding: 25px;
+        border-radius: 15px;
+        border: 2px solid #e2e8f0;
+        transition: all 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(24, 99, 220, 0.2);
+        border-color: #1863dc;
+      }
+
+      .product-card h3 {
+        color: #1a202c;
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .product-card .product-tag {
+        color: #003c33;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      .product-card p {
+        color: #4a5568;
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .benefits-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .benefit-item {
+        background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+      }
+
+      .benefit-item h3 {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+
+      .benefit-item p {
+        font-size: 16px;
+        opacity: 0.95;
+      }
+
+      .cta-section {
+        background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+        color: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .cta-section h3 {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      .cta-section p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        opacity: 0.95;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: white;
+        color: #003c33;
+        padding: 15px 40px;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(255, 255, 255, 0.3);
+      }
+
+      .navigation {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px 30px;
+        border-radius: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-button {
+        background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .nav-button:hover {
+        transform: scale(1.05);
+      }
+
+      .nav-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .slide-counter {
+        font-size: 16px;
+        color: #003c33;
+        font-weight: 600;
+        min-width: 100px;
+        text-align: center;
+      }
+
+      .highlight {
+        background: linear-gradient(120deg, #f1f5ff 0%, #e8f0ff 100%);
+        padding: 30px;
+        border-radius: 15px;
+        border-left: 5px solid #ff8800;
+        margin: 30px 0;
+      }
+
+      .highlight h3 {
+        color: #003c33;
+        font-size: 24px;
+        margin-bottom: 15px;
+      }
+
+      .highlight p {
+        color: #2d3748;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .tech-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 40px;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 48px;
+        font-weight: bold;
+        background: linear-gradient(135deg, #003c33 0%, #1863dc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        font-size: 16px;
+        color: #4a5568;
+        margin-top: 10px;
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+        .slide {
+          page-break-after: always;
+          display: block !important;
+          height: auto;
+          box-shadow: none;
+        }
+        .navigation {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="presentation-container">
+      <!-- Slide 1: Title -->
+      <div class="slide active">
+        <div style="text-align: center; padding-top: 80px">
+          <h1 style="font-size: 64px; margin-bottom: 20px">Tvastr</h1>
+          <div class="subtitle" style="font-size: 32px; margin-bottom: 40px">
+            Manufacturing Intelligence Suite
+          </div>
+          <p
+            class="description"
+            style="font-size: 24px; max-width: 800px; margin: 0 auto"
+          >
+            Signal-based AI inspection and process intelligence platform built
+            for manufacturing excellence
+          </p>
+          <div class="tech-stats">
+            <div class="stat">
+              <div class="stat-number">&lt;5s</div>
+              <div class="stat-label">Decision Speed</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Offline Capable</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">10-Stage</div>
+              <div class="stat-label">Inspection Pipeline</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">24/7</div>
+              <div class="stat-label">Operation Ready</div>
+            </div>
+          </div>
+          <div class="highlight" style="margin-top: 60px">
+            <h3>On-Premise | Edge-Native | Explainable AI</h3>
+            <p>
+              Complete data sovereignty with deterministic performance for
+              industrial manufacturing environments
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Product Suite Overview -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">OVERVIEW</div>
+          <h1>Complete Product Suite</h1>
+          <p class="description">
+            Five integrated solutions covering inspection, intelligence, and
+            executive decision support
+          </p>
+        </div>
+        <div class="products-overview">
+          <div class="product-card">
+            <h3>Tvastr RAS</h3>
+            <span class="product-tag">Inspection & Defect Analysis</span>
+            <p>
+              AI-assisted defect detection with multi-signal inspection,
+              automated reporting, and complete traceability for quality gates.
+            </p>
+          </div>
+          <div class="product-card">
+            <h3>Tvastr PI</h3>
+            <span class="product-tag">Process Intelligence & Analytics</span>
+            <p>
+              Process monitoring and quality analytics that tracks patterns,
+              analyzes trends, and provides continuous improvement insights.
+            </p>
+          </div>
+          <div class="product-card">
+            <h3>Vajra Cortex</h3>
+            <span class="product-tag">Industrial AI Reasoning Engine</span>
+            <p>
+              Advanced 14-stage cognitive pipeline for root cause analysis, AI
+              investigations, and intelligent decision support.
+            </p>
+          </div>
+          <div class="product-card">
+            <h3>Executive MIS Cortex</h3>
+            <span class="product-tag">Executive Decision Intelligence</span>
+            <p>
+              Real-time C-suite intelligence platform providing multi-plant
+              visibility with strategic KPIs and business intelligence.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Tvastr RAS -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">PRODUCT 1</div>
+          <h2>Tvastr RAS <span class="badge">Core / Enterprise</span></h2>
+          <span class="tag"
+            >Rejection Analysis System - Inspection & Defect Detection</span
+          >
+          <p class="description">
+            AI-assisted defect detection system with multi-signal inspection,
+            automated reporting, and complete traceability for manufacturing
+            quality gates.
+          </p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px">
+          <div>
+            <h3 style="color: #003c33; margin-bottom: 20px">
+              Key Capabilities
+            </h3>
+            <ul class="capabilities">
+              <li>AI-assisted defect detection for six defect types</li>
+              <li>
+                Multi-stage inspection pipeline with signal-based classification
+              </li>
+              <li>
+                Explainable defect analysis with traceable reasoning paths
+              </li>
+              <li>Automated PDF reports with annotated images and heatmaps</li>
+              <li>
+                SQL-based traceability linking to heats, molds, shifts, and
+                operators
+              </li>
+              <li>
+                Three-tier decision support (Accept, Manual Review, Reject)
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="color: #003c33; margin-bottom: 20px">
+              Additional Features
+            </h3>
+            <ul class="capabilities">
+              <li>Root-cause identification and process stage attribution</li>
+              <li>Defect fingerprinting and pattern tracking</li>
+              <li>Batch inspection support for high-volume scenarios</li>
+              <li>Offline-capable on-premise operation</li>
+              <li>Operator feedback integration for continuous improvement</li>
+            </ul>
+            <div class="highlight" style="margin-top: 30px">
+              <h3>Manufacturing Benefits</h3>
+              <p>
+                Consistent quality inspection with sub-200ms decisions, complete
+                traceability, and explainable AI reasoning for compliance and
+                audit requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Tvastr PI -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">PRODUCT 2</div>
+          <h2>Tvastr PI <span class="badge">Full Stack Only</span></h2>
+          <span class="tag">Process Intelligence and Analytics</span>
+          <p class="description">
+            Process monitoring and quality analytics system that tracks defect
+            patterns, analyzes trends, and provides insights for continuous
+            improvement.
+          </p>
+        </div>
+        <ul class="capabilities" style="columns: 2; column-gap: 40px">
+          <li>Defect pattern tracking and correlation analysis</li>
+          <li>Temporal trend analysis across production batches and heats</li>
+          <li>Heat-level quality intelligence and defect clustering</li>
+          <li>Process drift detection and early warning indicators</li>
+          <li>Defect frequency and distribution analysis</li>
+          <li>SPC (Statistical Process Control) analytics</li>
+          <li>
+            Manufacturing context linking (defects to molds, shifts, operators)
+          </li>
+          <li>Quality metrics dashboards and visualization</li>
+          <li>Decision intelligence with prioritized corrective actions</li>
+          <li>Recurring pattern identification across production cycles</li>
+        </ul>
+        <div class="features-grid" style="margin-top: 40px">
+          <div class="feature-box">
+            <h3>📊 Real-Time Analytics</h3>
+            <p>
+              25+ REST API endpoints with WebSocket support for live quality
+              monitoring and instant alerts on process deviations.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>🎯 Pattern Recognition</h3>
+            <p>
+              DBSCAN clustering identifies recurring defect patterns across
+              heats, molds, and shifts for targeted corrective action.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>📈 Trend Intelligence</h3>
+            <p>
+              Historical analysis with rolling averages detects subtle quality
+              drift before it becomes a production issue.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>⚡ Fast Decision Support</h3>
+            <p>
+              Prioritized recommendations based on Pareto analysis help focus
+              improvement efforts where they matter most.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Medhas Cortex -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">PRODUCT 3</div>
+          <h2>Medhas Cortex <span class="badge">AI Cortex</span></h2>
+          <span class="tag">Manufacturing Intelligence Platform</span>
+          <p class="description">
+            Comprehensive manufacturing intelligence platform combining
+            inspection intelligence, process analytics, SPC monitoring, and
+            quality frameworks for operational excellence.
+          </p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px">
+          <div>
+            <h3 style="color: #003c33; margin-bottom: 15px">
+              Integrated Capabilities
+            </h3>
+            <ul class="capabilities">
+              <li>
+                Rejection Analysis System (RAS) - Real-time inspection
+                intelligence
+              </li>
+              <li>
+                Plant Intelligence (PI) - Process analytics and quality insights
+              </li>
+              <li>
+                Statistical Process Control (SPC) with automated monitoring
+              </li>
+              <li>Defect pattern tracking and correlation analysis</li>
+              <li>Quality engineering frameworks (FMEA, Fishbone, Pareto)</li>
+              <li>Heat-level quality intelligence and defect clustering</li>
+              <li>Process drift detection and early warning indicators</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="color: #003c33; margin-bottom: 15px">
+              Advanced Features
+            </h3>
+            <ul class="capabilities">
+              <li>
+                Manufacturing context linking (defects to molds, shifts,
+                operators)
+              </li>
+              <li>Quality metrics dashboards and real-time visualization</li>
+              <li>Decision intelligence with prioritized corrective actions</li>
+              <li>Multi-gate intelligence across entire production line</li>
+              <li>Complete traceability with ERP and MES integration</li>
+              <li>
+                Continuous learning from operator feedback and corrections
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight" style="margin-top: 30px">
+          <h3>Complete Manufacturing Intelligence</h3>
+          <p>
+            Medhas Cortex unifies inspection, analytics, and quality frameworks
+            into a single platform. From real-time defect detection to strategic
+            process optimization, every tool you need for manufacturing
+            excellence.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 6: Vajra Cortex -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">PRODUCT 4</div>
+          <h2>Vajra Cortex <span class="badge">AI Cortex</span></h2>
+          <span class="tag">Industrial AI Reasoning Engine</span>
+          <p class="description">
+            Advanced industrial AI reasoning engine with 14-stage cognitive
+            pipeline for root cause analysis, AI-powered investigations, and
+            intelligent decision support at point of production.
+          </p>
+        </div>
+        <ul class="capabilities" style="columns: 2; column-gap: 40px">
+          <li>14-stage AI reasoning pipeline for root cause analysis</li>
+          <li>
+            Industrial cognition with multi-signal fusion and evidence
+            validation
+          </li>
+          <li>AI-powered investigations with natural language queries</li>
+          <li>Real-time decision support with explainable reasoning paths</li>
+          <li>Voice-enabled manufacturing intelligence interface</li>
+          <li>
+            Automated defect detection and classification across six defect
+            types
+          </li>
+          <li>Root cause identification with process stage attribution</li>
+          <li>Manufacturing memory with historical pattern recognition</li>
+          <li>Defectograph-based fingerprinting and pattern matching</li>
+          <li>Edge-native deployment with complete data sovereignty</li>
+          <li>Integration with inspection stations and quality gates</li>
+          <li>Operator feedback integration for continuous learning</li>
+        </ul>
+        <div class="features-grid" style="margin-top: 40px">
+          <div class="feature-box">
+            <h3>🧠 Cognitive AI Reasoning</h3>
+            <p>
+              14-stage pipeline processes evidence, validates hypotheses, and
+              provides explainable root cause analysis for every defect.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>🎤 Voice Intelligence</h3>
+            <p>
+              Ask questions naturally: "Why are we seeing more porosity on Heat
+              12345?" Get instant AI-powered insights.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>💾 Manufacturing Memory</h3>
+            <p>
+              Learns from every inspection, building a knowledge base of defect
+              patterns and process correlations over time.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>⚙️ Edge-Native</h3>
+            <p>
+              All AI processing happens on-premise with complete data
+              sovereignty and no cloud dependency.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Executive MIS Cortex -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">PRODUCT 5</div>
+          <h2>Executive MIS Cortex <span class="badge">AI Cortex</span></h2>
+          <span class="tag">Executive Decision Intelligence</span>
+          <p class="description">
+            Real-time executive intelligence platform providing C-suite
+            visibility across multiple manufacturing plants with business
+            intelligence, strategic KPIs, and data-driven decision support.
+          </p>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px">
+          <div>
+            <h3 style="color: #003c33; margin-bottom: 15px">
+              Executive Dashboard
+            </h3>
+            <ul class="capabilities">
+              <li>Real-time executive dashboards with plant-wide visibility</li>
+              <li>Multi-plant intelligence aggregation and comparison</li>
+              <li>Strategic KPI monitoring (OEE, yield, quality, costs)</li>
+              <li>Business intelligence with trend analysis and forecasting</li>
+              <li>Cross-plant performance benchmarking and insights</li>
+              <li>
+                Quality and cost analytics with financial impact visibility
+              </li>
+              <li>Production efficiency metrics and capacity utilization</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="color: #003c33; margin-bottom: 15px">
+              Strategic Intelligence
+            </h3>
+            <ul class="capabilities">
+              <li>Supply chain and inventory intelligence integration</li>
+              <li>Alert management for critical operational events</li>
+              <li>
+                Executive reporting with automated presentation generation
+              </li>
+              <li>
+                Strategic decision support with AI-powered recommendations
+              </li>
+              <li>Mobile-responsive interface for on-the-go access</li>
+              <li>Role-based access control for different management levels</li>
+              <li>
+                Data-driven insights for continuous improvement initiatives
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="highlight" style="margin-top: 30px">
+          <h3>C-Suite Visibility Across Operations</h3>
+          <p>
+            Executive MIS Cortex transforms manufacturing data into strategic
+            intelligence. Monitor multiple plants, compare performance, identify
+            trends, and make data-driven decisions from anywhere.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 8: Technology Highlights -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">TECHNOLOGY</div>
+          <h1>What Makes Tvastr Different</h1>
+          <p class="description">
+            Signal-first AI with explainable reasoning and industrial-grade
+            reliability
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-box">
+            <h3>🎯 Signal-First Classification</h3>
+            <p>
+              <strong>45% weight on signal processing.</strong> OpenCV features
+              (texture, geometry, edge, blob) provide physics-grounded decisions
+              that complement deep learning.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>⚡ Sub-5s Decisions</h3>
+            <p>
+              <strong>Deterministic performance.</strong> 10-stage inspection
+              pipeline delivers consistent, production-ready decisions in under
+              5 seconds.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>🔒 Complete Data Sovereignty</h3>
+            <p>
+              <strong>100% on-premise.</strong> Edge-native architecture with
+              offline capability ensures your data never leaves your facility.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>📋 Full Traceability</h3>
+            <p>
+              <strong>Every defect linked.</strong> SQL database connects
+              inspections to heats, molds, shifts, operators, and production
+              dates for compliance.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>🧩 Defect Fingerprinting</h3>
+            <p>
+              <strong>Pattern recognition.</strong> DBSCAN clustering identifies
+              recurring defect patterns across production cycles for root cause
+              analysis.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>📊 Quality Frameworks</h3>
+            <p>
+              <strong>Industry standards.</strong> Built-in FMEA, Fishbone
+              diagrams, Pareto analysis, SPC monitoring, and process capability
+              indices.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>🔍 Explainable AI</h3>
+            <p>
+              <strong>Transparent reasoning.</strong> Every decision includes
+              traceable evidence: which signals triggered, what patterns
+              matched, confidence scores explained.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>🏭 Multi-Gate Intelligence</h3>
+            <p>
+              <strong>Plant-wide visibility.</strong> Deploy across pattern,
+              core, mold condition, and final inspection gates with centralized
+              analytics.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 9: Inspection Pipeline Deep Dive -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">TECHNOLOGY DEEP DIVE</div>
+          <h1>10-Stage Inspection Pipeline</h1>
+          <p class="description">
+            From image capture to final decision in under 5 seconds
+          </p>
+        </div>
+        <div style="display: grid; gap: 15px">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 80px 1fr;
+              gap: 20px;
+              align-items: center;
+              background: #f7fafc;
+              padding: 20px;
+              border-radius: 10px;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+                color: white;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              0
+            </div>
+            <div>
+              <h3 style="color: #003c33; margin-bottom: 5px">Quality Gate</h3>
+              <p style="color: #4a5568; font-size: 16px">
+                Pre-pipeline validation for image quality (blur, brightness,
+                contrast, resolution)
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 80px 1fr;
+              gap: 20px;
+              align-items: center;
+              background: #f7fafc;
+              padding: 20px;
+              border-radius: 10px;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+                color: white;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              1
+            </div>
+            <div>
+              <h3 style="color: #003c33; margin-bottom: 5px">YOLO Detection</h3>
+              <p style="color: #4a5568; font-size: 16px">
+                Casting localization and defect region proposals for 6 defect
+                classes
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 80px 1fr;
+              gap: 20px;
+              align-items: center;
+              background: #f7fafc;
+              padding: 20px;
+              border-radius: 10px;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+                color: white;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              2
+            </div>
+            <div>
+              <h3 style="color: #003c33; margin-bottom: 5px">
+                Patch Classification
+              </h3>
+              <p style="color: #4a5568; font-size: 16px">
+                Dense sliding window analysis with DBSCAN cluster filtering
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 80px 1fr;
+              gap: 20px;
+              align-items: center;
+              background: linear-gradient(135deg, #003c33 0%, #1863dc 100%);
+              color: white;
+              padding: 20px;
+              border-radius: 10px;
+            "
+          >
+            <div
+              style="
+                background: white;
+                color: #003c33;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              2b
+            </div>
+            <div>
+              <h3 style="margin-bottom: 5px">
+                Signal Feature Extraction (PRIMARY - 45% weight)
+              </h3>
+              <p style="font-size: 16px; opacity: 0.95">
+                OpenCV-based features: LBP, GLCM, edge, blob, geometry.
+                Physics-grounded thresholds provide explainable classification.
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 80px 1fr;
+              gap: 20px;
+              align-items: center;
+              background: #f7fafc;
+              padding: 20px;
+              border-radius: 10px;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+                color: white;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              3
+            </div>
+            <div>
+              <h3 style="color: #003c33; margin-bottom: 5px">
+                Consolidation & Diagnosis
+              </h3>
+              <p style="color: #4a5568; font-size: 16px">
+                Merge detections, zone mapping, knowledge base matching,
+                root-cause attribution
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 80px 1fr;
+              gap: 20px;
+              align-items: center;
+              background: #f7fafc;
+              padding: 20px;
+              border-radius: 10px;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+                color: white;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              4
+            </div>
+            <div>
+              <h3 style="color: #003c33; margin-bottom: 5px">
+                Multi-Signal Fusion
+              </h3>
+              <p style="color: #4a5568; font-size: 16px">
+                Weighted fusion: Signal 45%, LLM 35%, Agreement 20%
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 80px 1fr;
+              gap: 20px;
+              align-items: center;
+              background: #f7fafc;
+              padding: 20px;
+              border-radius: 10px;
+            "
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #003c33 0%, #00544a 100%);
+                color: white;
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                font-weight: bold;
+              "
+            >
+              7
+            </div>
+            <div>
+              <h3 style="color: #003c33; margin-bottom: 5px">Final Decision</h3>
+              <p style="color: #4a5568; font-size: 16px">
+                3-tier decision: Accept (≤0.30), Review (0.30-0.70), Reject
+                (≥0.70)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 10: Manufacturing Benefits -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">BENEFITS</div>
+          <h1>Impact on Your Operations</h1>
+          <p class="description">
+            Real results for manufacturing quality and efficiency
+          </p>
+        </div>
+        <div class="benefits-list">
+          <div class="benefit-item">
+            <h3>↑ Quality Consistency</h3>
+            <p>
+              Eliminate human inspection variability with AI-consistent quality
+              decisions across all shifts
+            </p>
+          </div>
+          <div class="benefit-item">
+            <h3>↓ Rejection Costs</h3>
+            <p>
+              Early defect detection reduces scrap, rework, and customer returns
+              through proactive quality control
+            </p>
+          </div>
+          <div class="benefit-item">
+            <h3>⚡ Faster Decisions</h3>
+            <p>
+              Sub-200ms inspection speed enables real-time quality gates without
+              production bottlenecks
+            </p>
+          </div>
+          <div class="benefit-item">
+            <h3>📊 Data-Driven Improvement</h3>
+            <p>
+              Pattern recognition and analytics pinpoint root causes for
+              targeted process optimization
+            </p>
+          </div>
+          <div class="benefit-item">
+            <h3>🔒 Compliance Ready</h3>
+            <p>
+              Complete traceability and audit trails meet ISO, automotive, and
+              aerospace quality standards
+            </p>
+          </div>
+          <div class="benefit-item">
+            <h3>💡 Continuous Learning</h3>
+            <p>
+              System improves over time by learning from operator feedback and
+              historical patterns
+            </p>
+          </div>
+        </div>
+        <div class="highlight" style="margin-top: 40px">
+          <h3>Typical ROI Timeline</h3>
+          <p>
+            Most manufacturing facilities see measurable quality improvements
+            within 30 days of deployment, with full ROI typically achieved in
+            6-12 months through reduced scrap, faster throughput, and improved
+            process capability.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 11: Deployment Models -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">DEPLOYMENT</div>
+          <h1>Flexible Deployment Options</h1>
+          <p class="description">
+            Scale from single station to plant-wide intelligence
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-box" style="border-left-color: #48bb78">
+            <h3 style="color: #48bb78">🖥️ Single Station</h3>
+            <p>
+              <strong>Start Small:</strong> Self-contained inspection station
+              with local storage. Perfect for pilot programs, single quality
+              gates, or proof-of-concept deployments.
+            </p>
+            <p style="margin-top: 10px; font-size: 14px">
+              <strong>Components:</strong> Workstation PC (GPU), industrial
+              camera, local SQL database, Tvastr RAS runtime
+            </p>
+          </div>
+          <div class="feature-box" style="border-left-color: #4299e1">
+            <h3 style="color: #4299e1">🏢 Multi-Gate</h3>
+            <p>
+              <strong>Scale Up:</strong> Multiple inspection stations with
+              centralized data aggregation. Deploy across pattern, core, mold
+              condition, and final inspection gates.
+            </p>
+            <p style="margin-top: 10px; font-size: 14px">
+              <strong>Components:</strong> Edge nodes, central SQL server,
+              network storage, Tvastr RAS + PI stack
+            </p>
+          </div>
+          <div
+            class="feature-box"
+            style="border-left-color: #9f7aea; grid-column: 1 / -1"
+          >
+            <h3 style="color: #9f7aea">🏭 Plant-Wide</h3>
+            <p>
+              <strong>Full Intelligence:</strong> Foundry-wide deployment with
+              process intelligence, analytics, and executive dashboards.
+              Multi-plant support with ERP integration.
+            </p>
+            <p style="margin-top: 10px; font-size: 14px">
+              <strong>Components:</strong> Multiple inspection stations, central
+              database server, API server, PI dashboard, ERP integration layer,
+              backup systems
+            </p>
+          </div>
+        </div>
+        <div class="highlight" style="margin-top: 30px">
+          <h3>Hardware Requirements (Minimum)</h3>
+          <p>
+            <strong>CPU:</strong> Intel i5 (8th gen) or equivalent •
+            <strong>RAM:</strong> 16GB • <strong>GPU:</strong> NVIDIA GTX 1650
+            (4GB VRAM) • <strong>Storage:</strong> 256GB SSD •
+            <strong>OS:</strong> Windows 10/11, Ubuntu 20.04+
+          </p>
+        </div>
+        <div class="highlight" style="margin-top: 20px">
+          <h3>Network Requirements</h3>
+          <p>
+            <strong>Minimal networking needed:</strong> Gigabit Ethernet for
+            multi-gate deployments. Local network only - no internet required.
+            Optional VPN for remote support access.
+          </p>
+        </div>
+      </div>
+
+      <!-- Slide 12: Quality Frameworks -->
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-number">QUALITY TOOLS</div>
+          <h1>Industry-Standard Quality Frameworks</h1>
+          <p class="description">
+            Built-in support for proven manufacturing quality methodologies
+          </p>
+        </div>
+        <div style="display: grid; gap: 20px; margin-top: 30px">
+          <div class="feature-box">
+            <h3>🔬 Statistical Process Control (SPC)</h3>
+            <p>
+              <strong>Real-time monitoring:</strong> X̄ control charts, CUSUM
+              tracking, Western Electric rules for pattern detection. Cpk and
+              Ppk process capability indices with sigma level analysis.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>🐟 Fishbone Diagrams (Ishikawa)</h3>
+            <p>
+              <strong>Root cause analysis:</strong> Systematic investigation
+              using 6M categories (Materials, Methods, Machines, Manpower,
+              Measurements, Environment) with defect correlation.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>⚠️ FMEA (Failure Mode & Effects Analysis)</h3>
+            <p>
+              <strong>Risk prioritization:</strong> Systematic identification
+              and scoring of failure modes with RPN calculation (Severity ×
+              Occurrence × Detection). Focus on high-impact issues first.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>📊 Pareto Analysis</h3>
+            <p>
+              <strong>80/20 principle:</strong> Identify the vital few defect
+              types causing majority of quality issues. Data-driven
+              prioritization for improvement efforts and resource allocation.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>🔍 Defect Fingerprinting</h3>
+            <p>
+              <strong>Pattern tracking:</strong> DBSCAN clustering identifies
+              recurring defect patterns across heats, molds, and shifts. Links
+              to specific manufacturing conditions for targeted corrective
+              action.
+            </p>
+          </div>
+          <div class="feature-box">
+            <h3>💰 Cost of Quality</h3>
+            <p>
+              <strong>Financial impact:</strong> Track prevention, appraisal,
+              internal failure, and external failure costs. Quantify quality
+              improvement ROI and justify investment decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 13: Call to Action -->
+      <div class="slide">
+        <div style="text-align: center; padding-top: 60px">
+          <h1 style="font-size: 56px; margin-bottom: 30px">
+            Ready to Transform Your Quality Operations?
+          </h1>
+          <p
+            class="description"
+            style="font-size: 24px; max-width: 900px; margin: 0 auto 50px"
+          >
+            Join manufacturing leaders who are achieving consistent quality,
+            reducing costs, and gaining real-time visibility with Tvastr's
+            AI-powered manufacturing intelligence.
+          </p>
+
+          <div
+            class="benefits-list"
+            style="max-width: 1000px; margin: 0 auto 60px"
+          >
+            <div class="benefit-item">
+              <h3>🎯 Schedule Demo</h3>
+              <p>See Tvastr in action with your casting samples</p>
+            </div>
+            <div class="benefit-item">
+              <h3>🏭 Pilot Program</h3>
+              <p>Start with single-gate deployment and scale</p>
+            </div>
+            <div class="benefit-item">
+              <h3>📞 Technical Consultation</h3>
+              <p>Discuss your quality challenges with our experts</p>
+            </div>
+            <div class="benefit-item">
+              <h3>📄 Detailed Documentation</h3>
+              <p>Access complete technical specifications</p>
+            </div>
+          </div>
+
+          <div class="cta-section">
+            <h3>Contact Our Team Today</h3>
+            <p>
+              Let's discuss how Tvastr can address your specific manufacturing
+              quality needs
+            </p>
+            <a href="mailto:contact@tvastr.com" class="cta-button"
+              >Get Started →</a
+            >
+          </div>
+
+          <div style="margin-top: 50px; color: #4a5568; font-size: 18px">
+            <p><strong>Tvastr Manufacturing Intelligence Suite</strong></p>
+            <p>
+              On-Premise | Edge-Native | Explainable AI | 100% Data Sovereignty
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation">
+      <button class="nav-button" onclick="previousSlide()" id="prevBtn">
+        ← Previous
+      </button>
+      <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">13</span>
+      </div>
+      <button class="nav-button" onclick="nextSlide()" id="nextBtn">
+        Next →
+      </button>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const totalSlides = slides.length;
+
+      document.getElementById("totalSlides").textContent = totalSlides;
+
+      function showSlide(n) {
+        slides.forEach((slide) => slide.classList.remove("active"));
+        currentSlide = (n + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add("active");
+
+        document.getElementById("currentSlide").textContent = currentSlide + 1;
+        document.getElementById("prevBtn").disabled = currentSlide === 0;
+        document.getElementById("nextBtn").disabled =
+          currentSlide === totalSlides - 1;
+
+        // Scroll to top of slide
+        slides[currentSlide].scrollTop = 0;
+      }
+
+      function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+          showSlide(currentSlide + 1);
+        }
+      }
+
+      function previousSlide() {
+        if (currentSlide > 0) {
+          showSlide(currentSlide - 1);
+        }
+      }
+
+      // Keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight" || e.key === " ") {
+          e.preventDefault();
+          nextSlide();
+        } else if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          previousSlide();
+        } else if (e.key === "Home") {
+          e.preventDefault();
+          showSlide(0);
+        } else if (e.key === "End") {
+          e.preventDefault();
+          showSlide(totalSlides - 1);
+        }
+      });
+
+      // Initialize
+      showSlide(0);
+    </script>
+  </body>
+</html>

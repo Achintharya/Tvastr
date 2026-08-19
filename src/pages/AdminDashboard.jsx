@@ -383,6 +383,17 @@ export function AdminDashboard() {
             <span className="hidden sm:inline">Cognition Visualizer</span>
             <span className="sm:hidden">Visualizer</span>
           </button>
+          <button
+            onClick={() => setActiveTab("presentation")}
+            style={{
+              ...STYLES.tab.base,
+              ...(activeTab === "presentation"
+                ? STYLES.tab.active
+                : STYLES.tab.inactive),
+            }}
+          >
+            Presentation
+          </button>
         </div>
 
         {/* Tab content */}
@@ -904,6 +915,74 @@ export function AdminDashboard() {
               </a>
 
               <p className="text-[10px] text-txt-muted opacity-60">Opens in a new tab</p>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "presentation" && (
+          <div style={STYLES.card}>
+            <div className="p-4 md:p-6">
+              {/* Header */}
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <h2
+                    className="text-lg md:text-xl font-black tracking-tight mb-1"
+                    style={STYLES.titleGradient}
+                  >
+                    Product Presentation
+                  </h2>
+                  <p className="text-xs text-txt-muted">
+                    13-slide presentation covering Tvastr's complete product suite
+                  </p>
+                </div>
+                <a
+                  href="/tvastr-presentation.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-semibold tracking-wider uppercase transition-all duration-200 hover:opacity-90"
+                  style={{
+                    background: colors.process.primary,
+                    color: "#ffffff",
+                  }}
+                >
+                  <span className="hidden sm:inline">Open Fullscreen</span>
+                  <span className="sm:hidden">Fullscreen</span>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M4 2h6v6M10 2L2 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+
+              {/* Presentation iframe */}
+              <div
+                className="w-full rounded-lg overflow-hidden"
+                style={{
+                  background: colors.background.secondary,
+                  border: "1px solid rgba(0,0,0,0.06)",
+                  height: "calc(100vh - 280px)",
+                  minHeight: "500px",
+                }}
+              >
+                <iframe
+                  src="/tvastr-presentation.html"
+                  title="Tvastr Product Presentation"
+                  className="w-full h-full"
+                  style={{
+                    border: "none",
+                  }}
+                />
+              </div>
+
+              {/* Instructions */}
+              <div className="mt-4 flex items-start gap-3 p-3 rounded-lg" style={{ background: "rgba(245,158,11,0.05)", border: "1px solid rgba(245,158,11,0.15)" }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" style={{ color: colors.signal.warning }}>
+                  <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M8 4v4M8 10v1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                </svg>
+                <div className="text-xs text-txt-secondary">
+                  <strong className="text-signal-warning">Navigation:</strong> Use the Previous/Next buttons at the bottom of the presentation, or use keyboard arrows (← →). Press "Open Fullscreen" for the best viewing experience.
+                </div>
+              </div>
             </div>
           </div>
         )}

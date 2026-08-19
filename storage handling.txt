@@ -1,0 +1,353 @@
+## Software Storage & Admin Workflow
+
+Great question! Let me explain the complete storage architecture and what administrators need to do.
+
+---
+
+## **Where Software Files Are Physically Stored**
+
+### **Amazon S3 (Simple Storage Service)**
+
+All software installers and updates are stored in **Amazon S3 buckets** - cloud object storage similar to Dropbox/Google Drive but designed for programmatic access.
+
+**Current Setup:**
+
+**Bucket 1: `tvastr-updates`** (Region: ap-south-1 - Mumbai)
+```
+tvastr-updates/
+├── releases/
+│   ├── ras-lite-1.1.zip          (TIER_1 package)
+│   ├── ras-full-1.1.zip          (TIER_2 package)
+│   └── ras-pi-bundle-1.1.zip     (TIER_3 package)
+```
+
+**Bucket 2: `tvastr-installers`** (Region: us-east-1 - Virginia)
+```
+tvastr-installers/
+├── installers/
+│   ├── ras-setup-2.0.exe         (3.2 GB)
+│   ├── ras-setup-1.0.exe         (2.8 GB)
+│   ├── pi-setup-2.0.exe          (1.5 GB)
+│   └── pi-setup-1.0.exe          (1.2 GB)
+└── TvastrRAS_Installer.exe       (Root level - PIRAS 1.0.0)
+```
+
+**Why S3?**
+- ✅ Can handle massive files (5TB limit per file)
+- ✅ Global CDN distribution
+- ✅ 99.999999999% durability (11 nines)
+- ✅ Pay only for storage used (~$0.023 per GB/month)
+- ✅ Programmatic access via API
+- ✅ No server maintenance required
+
+---
+
+## **What Files Should Be Stored**
+
+### **1. Full Installers** (3-5 GB each)
+- **Format:** `.exe`, `.msi`, or `.zip` with installer
+- **Contains:** 
+  - Complete application binaries
+  - Database schemas
+  - Runtime dependencies
+  - Installation scripts
+- **Example:** `RAS-Setup-v2.0.exe`
+- **Storage:** Installers bucket
+
+### **2. Update Packages** (100-500 MB each)
+- **Format:** `.zip` with delta files
+- **Contains:**
+  - Changed binaries only
+  - Database migration scripts
+  - Changelog/release notes
+- **Example:** `ras-update-2.0-to-2.1.zip`
+- **Storage:** Updates bucket
+
+### **3. Metadata NOT Stored in S3**
+- Version numbers
+- Release dates
+- Changelogs
+- Tier requirements
+- **These go in Supabase database**
+
+---
+
+## **Admin Workflow: Adding a New Software Version**
+
+Let me walk you through the complete process:
+
+### **Step 1: Build the Software Package**
+```
+Development Team → Builds installer → RAS-Setup-v2.1.exe (3.5 GB)
+```
+
+### **Step 2: Upload to S3**
+
+**Option A: AWS Console (Manual - Current Method)**
+1. Log into AWS Console (https://console.aws.amazon.com)
+2. Navigate to S3 service
+3. Open `tvastr-installers` bucket
+4. Click "Upload"
+5. Select `RAS-Setup-v2.1.exe`
+6. Upload (takes 10-30 minutes for 3GB file)
+7. Note the file path: `installers/ras-setup-2.1.exe`
+
+**Option B: AWS CLI (Command Line - Faster)**
+```bash
+aws s3 cp RAS-Setup-v2.1.exe s3://tvastr-installers/installers/ras-setup-2.1.exe
+```
+
+**Option C: Programmatic Upload (Future Enhancement)**
+- Build an admin dashboard with file upload
+- Backend handles S3 upload via Boto3
+- Progress bar for large files
+
+### **Step 3: Add Version Record to Supabase**
+
+**Current Method: SQL Editor in Supabase Dashboard**
+
+```sql
+-- Get the product UUID first
+SELECT id, name FROM products;
+-- Copy the UUID for "Rejection Analysis System"
+
+-- Insert new version
+INSERT INTO versions (
+  product_id,
+  version_number,
+  release_date,
+  changelog,
+  file_path,
+  required_tier,
+  is_stable_rollback,
+  includes_pi
+) VALUES (
+  'a1b2c3d4-5678-90ab-cdef-1234567890ab',  -- Product UUID
+  '2.1',                                    -- Version number
+  '2026-04-15',                             -- Release date
+  'Added new defect detection models. Fixed bug in batch processing. Improved UI performance.',
+  'installers/ras-setup-2.1.exe',          -- S3 file path
+  'TIER_1',                                 -- Minimum tier required
+  false,                                    -- Not the stable rollback
+  false                                     -- Does not include Plant Intelligence
+);
+```
+
+**What happens immediately:**
+- ✅ Customer portal shows new version
+- ✅ TIER_1+ users see "Download v2.1" button
+- ✅ Update server validates and serves downloads
+- ✅ No code deployment needed!
+
+### **Step 4: (Optional) Update Static Config**
+
+If this is the new **stable rollback version**, update the update server config:
+
+Edit `app/config.py` in the update server repo:
+```python
+DOWNLOADS = {
+    "Rejection Analysis System": {
+        "allowed_tiers": ["TIER_1", "TIER_2", "TIER_3"],
+        "versions": {
+            "2.1": {  # Add new version
+                "s3_key": "installers/ras-setup-2.1.exe",
+                "release_date": "2026-04-15",
+                "changelog": ["New defect models", "Bug fixes"]
+            },
+            "2.0": {  # Keep old version
+                "s3_key": "installers/ras-setup-2.0.exe",
+                "release_date": "2026-03-20",
+                "changelog": ["Major update"]
+            }
+        }
+    }
+}
+```
+
+Then mark it as stable in database:
+```sql
+-- Mark v2.1 as the new stable rollback
+UPDATE versions 
+SET is_stable_rollback = true 
+WHERE version_number = '2.1' 
+  AND product_id = 'a1b2c3d4-5678-90ab-cdef-1234567890ab';
+
+-- Unmark the old stable
+UPDATE versions 
+SET is_stable_rollback = false 
+WHERE version_number = '2.0' 
+  AND product_id = 'a1b2c3d4-5678-90ab-cdef-1234567890ab';
+```
+
+Deploy update server (auto-deploys from Git on Render).
+
+---
+
+## **Database Structure for Software Versions**
+
+### **Supabase `versions` Table**
+
+| Column | Example Value | Purpose |
+|--------|---------------|---------|
+| `id` | `uuid-auto-generated` | Unique identifier |
+| `product_id` | `a1b2c3d4-...` | Links to products table |
+| `version_number` | `"2.1"` | Semantic version |
+| `release_date` | `2026-04-15` | When released |
+| `changelog` | `"New features..."` | Release notes (shown in portal) |
+| `file_path` | `installers/ras-setup-2.1.exe` | S3 object key |
+| `checksum` | `sha256:abc123...` | File integrity verification |
+| `required_tier` | `TIER_1` | Minimum access level |
+| `is_stable_rollback` | `false` | Is this the stable version? |
+| `includes_pi` | `false` | Does it include Plant Intelligence? |
+| `created_at` | `2026-04-15 10:30:00` | Metadata timestamp |
+
+**The `file_path` column is the critical link:**
+- Database stores: `installers/ras-setup-2.1.exe`
+- Update server constructs: `s3://tvastr-installers/installers/ras-setup-2.1.exe`
+- Generates pre-signed URL: `https://s3.amazonaws.com/tvastr-installers/installers/ras-setup-2.1.exe?signature=...`
+
+---
+
+## **What the Database Does NOT Store**
+
+❌ **The actual .exe/.zip files** - Too large (multi-GB)
+❌ **File contents** - Not designed for binary data
+❌ **Temporary download URLs** - Generated on-demand
+
+**The database only stores:**
+✅ Metadata (version info, changelog)
+✅ S3 file path reference
+✅ Access control rules (tier requirements)
+
+---
+
+## **Current Admin Limitations & Solutions**
+
+### **Current Pain Points:**
+
+1. **No Admin UI for Uploads**
+   - Admins must use AWS Console directly
+   - No validation or error checking
+   - Requires AWS account access
+
+2. **Manual Database Entry**
+   - Must write SQL manually
+   - Risk of typos in file paths
+   - No file existence validation
+
+3. **Two-Step Process**
+   - Upload to S3 (Step 1)
+   - Add to database (Step 2)
+   - Easy to forget one step
+
+### **Recommended Enhancement: Admin Upload Dashboard**
+
+**What to Build:**
+
+```
+/portal/admin (existing) → Add new "Upload Software" tab
+
+Features:
+├── File Upload Widget
+│   ├── Drag & drop .exe/.zip files
+│   ├── Progress bar for large files
+│   └── Automatic S3 upload via backend
+│
+├── Version Metadata Form
+│   ├── Product dropdown (from database)
+│   ├── Version number input
+│   ├── Release date picker
+│   ├── Changelog textarea
+│   ├── Tier requirement dropdown
+│   └── "Upload & Publish" button
+│
+└── Database Auto-Update
+    ├── Creates version record
+    ├── Links to S3 file path
+    └── Validates everything in one go
+```
+
+**Implementation Sketch:**
+
+```python
+# Backend API (FastAPI)
+@app.post("/admin/upload-version")
+async def upload_version(
+    file: UploadFile,
+    product_id: str,
+    version_number: str,
+    release_date: str,
+    changelog: str,
+    required_tier: str
+):
+    # 1. Upload file to S3
+    s3_key = f"installers/{file.filename}"
+    s3_client.upload_fileobj(file.file, S3_INSTALLER_BUCKET_NAME, s3_key)
+    
+    # 2. Create database record
+    supabase.table("versions").insert({
+        "product_id": product_id,
+        "version_number": version_number,
+        "release_date": release_date,
+        "changelog": changelog,
+        "file_path": s3_key,
+        "required_tier": required_tier
+    }).execute()
+    
+    return {"status": "success", "file_path": s3_key}
+```
+
+---
+
+## **Summary: Storage Architecture**
+
+```
+┌──────────────────────────────────────┐
+│         ADMIN WORKFLOW               │
+└────────────┬─────────────────────────┘
+             │
+             │ 1. Build software
+             ▼
+        RAS-Setup-v2.1.exe (3.5 GB)
+             │
+             ├─────────────────┐
+             │                 │
+             ▼                 ▼
+    ┌─────────────┐   ┌──────────────┐
+    │   AWS S3    │   │   Supabase   │
+    │  (Storage)  │   │  (Metadata)  │
+    │             │   │              │
+    │ • Installers│   │ • Version #  │
+    │ • Updates   │   │ • Changelog  │
+    │ • 3GB+ files│   │ • File path  │
+    └─────────────┘   │ • Tier rules │
+                      └──────────────┘
+             │                 │
+             └────────┬────────┘
+                      │
+                      ▼
+            ┌───────────────────┐
+            │  Update Server    │
+            │  (Middleware)     │
+            │                   │
+            │  • Validates      │
+            │  • Generates URLs │
+            └─────────┬─────────┘
+                      │
+                      ▼
+            ┌───────────────────┐
+            │  Customer Portal  │
+            │  (Download UI)    │
+            └───────────────────┘
+```
+
+**Key Takeaway:**
+- **S3 stores the files** (binary data)
+- **Supabase stores the metadata** (JSON/text data)
+- **Update server bridges them** (validates + generates URLs)
+- **Admin manually handles both** (current state)
+- **Should be automated** (future enhancement)
+
+---
+
+Would you like me to create a detailed specification for the admin upload dashboard, or explain any other aspect of the storage system?
