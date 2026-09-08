@@ -370,9 +370,61 @@
           display: none;
         }
       }
+
+      /* Iframe-friendly layout - detect when embedded */
+      body.in-iframe {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      body.in-iframe .presentation-container {
+        height: auto;
+        min-height: 100vh;
+        padding: 40px 0;
+      }
+
+      body.in-iframe .slide {
+        height: auto;
+        min-height: 500px;
+        max-height: none;
+        margin: 20px auto;
+      }
+
+      body.in-iframe .navigation {
+        position: fixed;
+        bottom: 20px;
+      }
+
+      /* Responsive adjustments for smaller iframe heights */
+      @media (max-height: 800px) {
+        .slide {
+          padding: 40px 60px;
+          height: auto;
+          min-height: 500px;
+        }
+
+        .presentation-container {
+          height: auto;
+          min-height: 100vh;
+        }
+
+        body {
+          overflow-y: auto;
+          height: auto;
+        }
+      }
     </style>
   </head>
   <body>
+    <script>
+      // Detect if page is loaded in an iframe and adjust layout
+      (function() {
+        if (window.self !== window.top) {
+          document.body.classList.add('in-iframe');
+        }
+      })();
+    </script>
     <div class="presentation-container">
       <!-- Slide 1: Title -->
       <div class="slide active">

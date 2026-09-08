@@ -14,6 +14,7 @@ import { CoreArchitectureSection } from '../components/sections/technology/CoreA
 import { PerceptionEngineSection } from '../components/sections/technology/PerceptionEngineSection'
 import { SignalReasoningSection } from '../components/sections/technology/SignalReasoningSection'
 import { EnergyReasoningSection } from '../components/sections/technology/EnergyReasoningSection'
+import { IndustrialMemorySection } from '../components/sections/technology/IndustrialMemorySection'
 import { CognitionRuntimeSection } from '../components/sections/technology/CognitionRuntimeSection'
 import { ProcessIntelligenceSection } from '../components/sections/technology/ProcessIntelligenceSection'
 import { DeploymentArchitectureSection } from '../components/sections/technology/DeploymentArchitectureSection'
@@ -36,6 +37,7 @@ export const sectionRegistry = {
   'perception-engine': PerceptionEngineSection,
   'signal-reasoning': SignalReasoningSection,
   'energy-reasoning': EnergyReasoningSection,
+  'industrial-memory': IndustrialMemorySection,
   'cognition-runtime': CognitionRuntimeSection,
   'process-intelligence': ProcessIntelligenceSection,
   'deployment-architecture': DeploymentArchitectureSection,
