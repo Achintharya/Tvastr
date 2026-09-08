@@ -11,7 +11,7 @@ import { legacyColors as colors } from '../design/colors'
  *   description   — Product description
  *   tag           — Badge label (e.g., "Executive Intelligence", "Enterprise Intelligence")
  *   index         — Card position (for styling variation)
- *   requiredTier  — Which tier unlocks this (e.g., "Medhas + Vajra", "Complete Platform")
+ *   requiredTier  — Which tier unlocks this (e.g., "PIRAS + Vajra", "Complete Platform")
  *   features      — Array of feature bullets specific to this tier
  */
 export function LockedProductCard({ title, description, tag, index, requiredTier, features }) {

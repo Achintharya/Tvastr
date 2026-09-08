@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SafeAnalytics } from "./components/SafeAnalytics";
 import { AuthProvider } from "./context/AuthContext";
 import { LicenseProvider } from "./context/LicenseContext";
@@ -22,14 +22,9 @@ const VajraCortex = lazy(() =>
     default: m.VajraCortex,
   })),
 );
-const MedhasCortex = lazy(() =>
-  import("./pages/products/MedhasCortex").then((m) => ({
-    default: m.MedhasCortex,
-  })),
-);
-const ExecutiveMISCortex = lazy(() =>
-  import("./pages/products/ExecutiveMISCortex").then((m) => ({
-    default: m.ExecutiveMISCortex,
+const PIRASCortex = lazy(() =>
+  import("./pages/products/PIRASCortex").then((m) => ({
+    default: m.PIRASCortex,
   })),
 );
 
@@ -159,8 +154,13 @@ export default function App() {
                     element={<VajraCortex />}
                   />
                   <Route
+                    path="/products/piras"
+                    element={<PIRASCortex />}
+                  />
+                  {/* Legacy redirect — preserves bookmarks/shared links to old URL */}
+                  <Route
                     path="/products/medhas-cortex"
-                    element={<MedhasCortex />}
+                    element={<Navigate to="/products/piras" replace />}
                   />
                   <Route
                     path="/products/executive-mis-cortex"
@@ -227,3 +227,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+

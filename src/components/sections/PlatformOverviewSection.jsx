@@ -12,7 +12,7 @@ export function PlatformOverviewSection() {
   const sectionRef = useRef(null);
   useSectionReveal(sectionRef);
 
-  // Separate primary (Medhas) from other cortexes
+  // Separate primary (PIRAS) from other cortexes
   const primaryCortex = cortexes.find((c) => c.visualEmphasis === "primary");
   const otherCortexes = cortexes.filter((c) => c.visualEmphasis !== "primary");
 
@@ -24,9 +24,9 @@ export function PlatformOverviewSection() {
         {body}
       </p>
 
-      {/* Option B Layout: Responsive grid with Medhas featured */}
+      {/* Option B Layout: Responsive grid with PIRAS featured */}
       <div className="space-y-8 mb-16">
-        {/* Primary Cortex (Medhas) - Featured larger card */}
+        {/* Primary Cortex (PIRAS) - Featured larger card */}
         {primaryCortex && (
           <div
             data-reveal-item

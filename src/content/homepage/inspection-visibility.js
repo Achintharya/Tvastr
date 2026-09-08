@@ -1,9 +1,9 @@
 export const inspectionVisibilityContent = {
   id: "inspection-visibility",
   type: "inspection-visibility",
-  title: "Operational Intelligence with Medhas Cortex",
+  title: "Operational Intelligence with PIRAS",
   subtitle: "The operational workspace of the Tvastr platform—delivering real-time visibility and manufacturing intelligence across your production operations.",
-  body: "Medhas unifies inspection intelligence, rejection analysis, process analytics, SPC monitoring, quality frameworks, and operational dashboards into one manufacturing workspace. From individual part inspection to plant-wide intelligence.",
+  body: "PIRAS unifies inspection intelligence, rejection analysis, process analytics, SPC monitoring, quality frameworks, and operational dashboards into one manufacturing workspace. From individual part inspection to plant-wide intelligence.",
   screenshots: [
     {
       id: "overview",
@@ -54,5 +54,5 @@ export const inspectionVisibilityContent = {
       imagePath: "/alerts_tab.png"
     }
   ],
-  keyMessage: "Complete operational intelligence from individual casting inspection to plant-wide manufacturing analytics—all within the Medhas workspace."
+  keyMessage: "Complete operational intelligence from individual casting inspection to plant-wide manufacturing analytics—all within the PIRAS workspace."
 }

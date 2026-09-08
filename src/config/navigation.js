@@ -4,7 +4,7 @@ export const mainNavItems = [
     label: "Products",
     children: [
       { label: "Vajra Cortex", href: "/products/vajra-cortex" },
-      { label: "Medhas Cortex", href: "/products/medhas-cortex" },
+      { label: "PIRAS", href: "/products/piras" },
       { label: "Executive MIS Cortex", href: "/products/executive-mis-cortex" }
     ]
   },

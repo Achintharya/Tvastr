@@ -9,7 +9,7 @@ import { legacyColors as colors } from "../design/colors";
  * PortalManual — Protected page displaying the complete Tvastr Platform User Guide.
  *
  * Contains the full user manual written for non-technical foundry workers.
- * Covers Medhas Cortex (operational intelligence) and platform capabilities.
+ * Covers PIRAS (Plant Intelligence & Rejection Analysis System) and platform capabilities.
  * Features a floating table of contents sidebar for easy navigation.
  */
 export function PortalManual() {
@@ -194,7 +194,7 @@ export function PortalManual() {
                 Tvastr Platform User Guide
               </h1>
               <p className="text-lg text-txt-secondary mb-2">
-                AI-Powered Manufacturing Intelligence — Medhas Cortex
+                AI-Powered Manufacturing Intelligence — PIRAS
               </p>
               <p className="text-sm text-txt-muted">
                 Version 2.0 | Written for non-technical foundry workers
@@ -212,7 +212,7 @@ export function PortalManual() {
                   About This Guide
                 </p>
                 <p className="text-sm text-txt-secondary leading-relaxed">
-                  This guide covers the <strong>Medhas Cortex</strong> — your operational intelligence workspace for real-time quality monitoring, inspection management, and shop floor analytics. Throughout this manual, references to "PIRAS" or "RAS" refer to capabilities now unified within the Medhas Cortex system.
+                  This guide covers <strong>PIRAS</strong> — your operational intelligence workspace for real-time quality monitoring, inspection management, and shop floor analytics.
                 </p>
               </div>
             </div>

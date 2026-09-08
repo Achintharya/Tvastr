@@ -1,6 +1,6 @@
 // Three AI Cortexes
 export * from './vajra-cortex'
-export * from './medhas-cortex'
+export * from './piras'
 export * from './executive-mis-cortex'
 
 // Legacy products (kept for backwards compatibility)

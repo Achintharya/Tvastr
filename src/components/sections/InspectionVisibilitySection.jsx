@@ -94,7 +94,7 @@ export function InspectionVisibilitySection() {
         <SectionHeader
           title={title}
           subtitle={subtitle}
-          eyebrow="Medhas Cortex"
+          eyebrow="PIRAS"
         />
 
         {body && (

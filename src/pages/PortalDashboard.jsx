@@ -81,8 +81,8 @@ const STYLES = {
 // Product definitions - Cortex architecture
 const PRODUCTS = [
   {
-    id: "medhas",
-    name: "Medhas Cortex",
+    id: "piras",
+    name: "PIRAS",
     description:
       "Your operational intelligence workspace. Real-time quality monitoring, inspection management, process intelligence, and shop floor analytics unified in one system.",
     tag: "Operational Intelligence",
@@ -123,8 +123,8 @@ const PRODUCTS = [
  * PortalDashboard — Authenticated customer dashboard.
  *
  * Shows Cortex products based on user's license tier:
- *   - TIER_1: Medhas Cortex (active), Vajra (locked), Executive MIS (locked)
- *   - TIER_2: Medhas Cortex (active), Vajra Cortex (active), Executive MIS (locked)
+ *   - TIER_1: PIRAS (active), Vajra (locked), Executive MIS (locked)
+ *   - TIER_2: PIRAS (active), Vajra Cortex (active), Executive MIS (locked)
  *   - TIER_3: All three Cortexes active (future)
  *
  * UI is fully tier-driven — no hardcoded logic.
@@ -699,8 +699,8 @@ export function PortalDashboard() {
                     product.requiredTier === "TIER_3" 
                       ? "Complete Platform" 
                       : product.requiredTier === "TIER_2"
-                      ? "Medhas + Vajra"
-                      : "Medhas Cortex";
+                      ? "PIRAS + Vajra"
+                      : "PIRAS";
                   return (
                     <div key={product.id} className="mb-6">
                       <LockedProductCard

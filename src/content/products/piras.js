@@ -1,8 +1,8 @@
-export const medhasCortexProduct = {
-  id: "medhas-cortex",
+export const pirasCortexProduct = {
+  id: "piras",
   type: "product",
-  title: "Medhas Cortex",
-  tag: "Manufacturing Intelligence Platform",
+  title: "PIRAS",
+  tag: "Plant Intelligence & Rejection Analysis System",
   badge: "AI Cortex",
   description: "Comprehensive manufacturing intelligence platform combining inspection intelligence, process analytics, SPC monitoring, and quality frameworks for operational excellence and continuous improvement.",
   capabilities: [
@@ -22,5 +22,5 @@ export const medhasCortexProduct = {
     "Continuous learning from operator feedback and corrections"
   ],
   variants: ["manufacturing", "foundry", "enterprise"],
-  route: "/products/medhas-cortex"
+  route: "/products/piras"
 }

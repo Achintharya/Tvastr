@@ -144,8 +144,8 @@ export function tierToBadgeState(tier, productId) {
     case "ras_core":
     case "ras_enterprise":
     case "plant_intelligence":
-    case "medhas":
-      // Medhas Cortex (operational intelligence) is ACTIVE for all recognized tiers
+    case "piras":
+      // PIRAS (operational intelligence) is ACTIVE for all recognized tiers
       return "ACTIVE";
 
     case "vajra":

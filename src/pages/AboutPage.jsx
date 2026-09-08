@@ -24,7 +24,7 @@ export function AboutPage() {
     {
       title: "Manufacturing Intelligence",
       description:
-        "Medhas Cortex integrates inspection intelligence, process analytics, SPC monitoring, and quality frameworks for comprehensive operational excellence.",
+        "PIRAS integrates inspection intelligence, process analytics, SPC monitoring, and quality frameworks for comprehensive operational excellence.",
     },
     {
       title: "Executive Intelligence",
@@ -73,7 +73,7 @@ export function AboutPage() {
                 Tvastr is on a mission to enable digital transformation across manufacturing enterprises through an integrated industrial AI platform that delivers intelligence at every level—from operational decisions to executive insights.
               </p>
               <p className="text-base md:text-lg text-txt-secondary leading-relaxed">
-                We believe AI should be explainable, trustworthy, and deployed where it matters. Our three AI cortexes—Vajra, Medhas, and Executive MIS—work together to transform manufacturing data into actionable intelligence that drives continuous improvement.
+                We believe AI should be explainable, trustworthy, and deployed where it matters. Our three AI cortexes—Vajra, PIRAS, and Executive MIS—work together to transform manufacturing data into actionable intelligence that drives continuous improvement.
               </p>
             </div>
 

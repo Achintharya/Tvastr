@@ -10,11 +10,11 @@ export const platformOverviewContent = {
   
   cortexes: [
     {
-      id: "medhas",
-      name: "Medhas Cortex",
+      id: "piras",
+      name: "PIRAS",
       role: "Primary Operational Workspace",
       description: "Real-time operational interface for production teams. Unifies inspection intelligence, rejection analysis, process analytics, SPC monitoring, quality frameworks, and manufacturing dashboards into one workspace.",
-      route: "/products/medhas-cortex",
+      route: "/products/piras",
       visualEmphasis: "primary"
     },
     {
