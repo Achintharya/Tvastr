@@ -380,8 +380,7 @@ export function AdminDashboard() {
                 : STYLES.tab.inactive),
             }}
           >
-            <span className="hidden sm:inline">Cognition Visualizer</span>
-            <span className="sm:hidden">Visualizer</span>
+            Resources
           </button>
         </div>
 
