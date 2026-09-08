@@ -27,6 +27,11 @@ const PIRASCortex = lazy(() =>
     default: m.PIRASCortex,
   })),
 );
+const ExecutiveMISCortex = lazy(() =>
+  import("./pages/products/ExecutiveMISCortex").then((m) => ({
+    default: m.ExecutiveMISCortex,
+  })),
+);
 
 // Legacy system pages — lazy loaded (kept for backwards compatibility)
 const RejectionAnalysisSystem = lazy(() =>
