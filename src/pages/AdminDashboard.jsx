@@ -383,17 +383,6 @@ export function AdminDashboard() {
             <span className="hidden sm:inline">Cognition Visualizer</span>
             <span className="sm:hidden">Visualizer</span>
           </button>
-          <button
-            onClick={() => setActiveTab("presentation")}
-            style={{
-              ...STYLES.tab.base,
-              ...(activeTab === "presentation"
-                ? STYLES.tab.active
-                : STYLES.tab.inactive),
-            }}
-          >
-            Presentation
-          </button>
         </div>
 
         {/* Tab content */}
@@ -922,6 +911,75 @@ export function AdminDashboard() {
             </div>
           </div>
 
+          {/* Product Presentation Card */}
+          <div style={STYLES.card}>
+            <div className="p-8 md:p-12 flex flex-col items-center justify-center text-center gap-6">
+              {/* Icon */}
+              <div
+                className="w-16 h-16 flex items-center justify-center rounded-2xl"
+                style={{
+                  background: "rgba(0,60,51,0.06)",
+                  border: "1px solid rgba(0,60,51,0.12)",
+                }}
+              >
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <rect x="6" y="8" width="20" height="14" rx="1.5" stroke={colors.process.primary} strokeWidth="1.5"/>
+                  <path d="M6 11h20M11 14h6M11 17h8M11 20h5" stroke={colors.process.primary} strokeWidth="1.2" strokeLinecap="round"/>
+                  <circle cx="24" cy="24" r="4" fill={colors.process.primary} opacity="0.2"/>
+                  <path d="M22 24l2 1.5 2-3" stroke={colors.process.primary} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+
+              {/* Title */}
+              <div>
+                <h2
+                  className="text-xl md:text-2xl font-black tracking-tight mb-2"
+                  style={STYLES.titleGradient}
+                >
+                  Product Presentation
+                </h2>
+                <p className="text-xs md:text-sm text-txt-muted max-w-md">
+                  13-slide comprehensive presentation covering Tvastr's complete product suite, technology architecture, and industrial AI capabilities.
+                </p>
+              </div>
+
+              {/* Details badge */}
+              <div
+                className="flex items-center gap-2 px-4 py-2 rounded-lg"
+                style={{
+                  background: colors.background.secondary,
+                  border: "1px solid rgba(0,0,0,0.06)",
+                }}
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="opacity-40 shrink-0">
+                  <rect x="2" y="2" width="8" height="6" rx="1" stroke="currentColor" strokeWidth="1.2"/>
+                  <path d="M2 4h8" stroke="currentColor" strokeWidth="1.2"/>
+                </svg>
+                <span className="font-mono text-xs text-txt-muted">13 slides • Full product suite</span>
+              </div>
+
+              {/* Open button */}
+              <a
+                href="/tvastr-presentation.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold tracking-wider uppercase transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+                style={{
+                  background: colors.process.primary,
+                  color: "#ffffff",
+                  boxShadow: "0 4px 12px rgba(0,60,51,0.25)",
+                }}
+              >
+                Open Presentation
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M5 3h6v6M11 3L3 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+
+              <p className="text-[10px] text-txt-muted opacity-60">Opens in a new tab</p>
+            </div>
+          </div>
+
           {/* Control Panel Download Card */}
           <div style={STYLES.card}>
             <div className="p-8 md:p-12">
@@ -996,74 +1054,6 @@ export function AdminDashboard() {
             </div>
           </div>
 
-          </div>
-        )}
-
-        {activeTab === "presentation" && (
-          <div style={STYLES.card}>
-            <div className="p-4 md:p-6">
-              {/* Header */}
-              <div className="mb-4 flex items-center justify-between">
-                <div>
-                  <h2
-                    className="text-lg md:text-xl font-black tracking-tight mb-1"
-                    style={STYLES.titleGradient}
-                  >
-                    Product Presentation
-                  </h2>
-                  <p className="text-xs text-txt-muted">
-                    13-slide presentation covering Tvastr's complete product suite
-                  </p>
-                </div>
-                <a
-                  href="/tvastr-presentation.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-semibold tracking-wider uppercase transition-all duration-200 hover:opacity-90"
-                  style={{
-                    background: colors.process.primary,
-                    color: "#ffffff",
-                  }}
-                >
-                  <span className="hidden sm:inline">Open Fullscreen</span>
-                  <span className="sm:hidden">Fullscreen</span>
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M4 2h6v6M10 2L2 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </a>
-              </div>
-
-              {/* Presentation iframe */}
-              <div
-                className="w-full rounded-lg overflow-hidden"
-                style={{
-                  background: colors.background.secondary,
-                  border: "1px solid rgba(0,0,0,0.06)",
-                  height: "calc(100vh - 280px)",
-                  minHeight: "500px",
-                }}
-              >
-                <iframe
-                  src="/tvastr-presentation.html"
-                  title="Tvastr Product Presentation"
-                  className="w-full h-full"
-                  style={{
-                    border: "none",
-                  }}
-                />
-              </div>
-
-              {/* Instructions */}
-              <div className="mt-4 flex items-start gap-3 p-3 rounded-lg" style={{ background: "rgba(245,158,11,0.05)", border: "1px solid rgba(245,158,11,0.15)" }}>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5" style={{ color: colors.signal.warning }}>
-                  <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5"/>
-                  <path d="M8 4v4M8 10v1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                </svg>
-                <div className="text-xs text-txt-secondary">
-                  <strong className="text-signal-warning">Navigation:</strong> Use the Previous/Next buttons at the bottom of the presentation, or use keyboard arrows (← →). Press "Open Fullscreen" for the best viewing experience.
-                </div>
-              </div>
-            </div>
           </div>
         )}
 
