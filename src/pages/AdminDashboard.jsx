@@ -844,9 +844,13 @@ export function AdminDashboard() {
               </div>
             </div>
           </div>
+
         )}
 
         {activeTab === "visualizer" && (
+          <div className="space-y-6">
+            {/* Cognition Visualizer Card */}
+
           <div style={STYLES.card}>
             <div className="p-8 md:p-12 flex flex-col items-center justify-center text-center gap-6">
               {/* Icon */}
@@ -916,6 +920,82 @@ export function AdminDashboard() {
 
               <p className="text-[10px] text-txt-muted opacity-60">Opens in a new tab</p>
             </div>
+          </div>
+
+          {/* Control Panel Download Card */}
+          <div style={STYLES.card}>
+            <div className="p-8 md:p-12">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-4" style={{
+                  background: "rgba(245,158,11,0.08)",
+                  border: "1px solid rgba(245,158,11,0.15)",
+                }}>
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect x="6" y="8" width="20" height="16" rx="2" stroke={colors.signal.warning} strokeWidth="1.5"/>
+                    <path d="M10 12h12M10 16h8M10 20h6" stroke={colors.signal.warning} strokeWidth="1.5" strokeLinecap="round"/>
+                    <circle cx="22" cy="20" r="1.5" fill={colors.signal.warning}/>
+                  </svg>
+                </div>
+                <h3 className="text-xl font-black tracking-tight mb-2" style={STYLES.titleGradient}>
+                  Tvastr Control Panel
+                </h3>
+                <p className="text-xs md:text-sm text-txt-muted max-w-lg mx-auto">
+                  Desktop application for managing and monitoring Tvastr industrial intelligence systems. 
+                  Includes real-time diagnostics, configuration tools, and system health monitoring.
+                </p>
+              </div>
+
+              {/* File info grid */}
+              <div className="grid sm:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
+                <div className="p-4 rounded-lg text-center" style={{
+                  background: colors.background.secondary,
+                  border: "1px solid rgba(0,0,0,0.04)",
+                }}>
+                  <p className="text-[10px] uppercase tracking-wider text-txt-muted mb-1 font-semibold">File Size</p>
+                  <p className="text-base font-bold" style={{color: colors.signal.warning}}>145 MB</p>
+                </div>
+                <div className="p-4 rounded-lg text-center" style={{
+                  background: colors.background.secondary,
+                  border: "1px solid rgba(0,0,0,0.04)",
+                }}>
+                  <p className="text-[10px] uppercase tracking-wider text-txt-muted mb-1 font-semibold">File Type</p>
+                  <p className="text-base font-bold" style={{color: colors.signal.warning}}>ZIP Archive</p>
+                </div>
+                <div className="p-4 rounded-lg text-center" style={{
+                  background: colors.background.secondary,
+                  border: "1px solid rgba(0,0,0,0.04)",
+                }}>
+                  <p className="text-[10px] uppercase tracking-wider text-txt-muted mb-1 font-semibold">Platform</p>
+                  <p className="text-base font-bold" style={{color: colors.signal.warning}}>Windows</p>
+                </div>
+              </div>
+
+              {/* Download button */}
+              <div className="flex justify-center">
+                <a
+                  href="/TvastrControlPanel.zip"
+                  download="TvastrControlPanel.zip"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-lg text-sm font-semibold tracking-wider uppercase transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+                  style={{
+                    background: colors.signal.warning,
+                    color: "#ffffff",
+                    boxShadow: "0 4px 12px rgba(245,158,11,0.3)",
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 2v10M6 9l3 3 3-3M2 14v2h14v-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  Download Control Panel
+                </a>
+              </div>
+
+              <p className="text-[10px] text-txt-muted opacity-60 text-center mt-4">
+                TvastrControlPanel.zip • 145 MB
+              </p>
+            </div>
+          </div>
+
           </div>
         )}
 
