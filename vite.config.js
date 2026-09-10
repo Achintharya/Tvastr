@@ -9,9 +9,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Explicitly include .zip files as static assets (prevents build corruption)
+  assetsInclude: ['**/*.zip'],
   build: {
     target: 'es2020',
     sourcemap: false,
+    // Prevent inlining of assets to avoid processing large binary files
+    assetsInlineLimit: 0,
     rollupOptions: {
       output: {
         /**
