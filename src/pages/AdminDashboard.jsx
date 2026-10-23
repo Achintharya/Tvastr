@@ -1010,7 +1010,7 @@ export function AdminDashboard() {
                   border: "1px solid rgba(0,0,0,0.04)",
                 }}>
                   <p className="text-[10px] uppercase tracking-wider text-txt-muted mb-1 font-semibold">File Size</p>
-                  <p className="text-base font-bold" style={{color: colors.signal.warning}}>145 MB</p>
+                  <p className="text-base font-bold" style={{color: colors.signal.warning}}>~1.4 MB</p>
                 </div>
                 <div className="p-4 rounded-lg text-center" style={{
                   background: colors.background.secondary,
@@ -1048,8 +1048,24 @@ export function AdminDashboard() {
               </div>
 
               <p className="text-[10px] text-txt-muted opacity-60 text-center mt-4">
-                TvastrControlPanel.zip • 145 MB
+                TvastrControlPanel.zip • ~1.4 MB
               </p>
+
+              {/* Prerequisites callout */}
+              <div className="mt-6 p-4 rounded-lg border border-blue-50/30 bg-blue-50/5" style={{
+                background: "rgba(59,130,246,0.05)",
+                border: "1px solid rgba(59,130,246,0.2)",
+              }}>
+                <p className="text-[10px] uppercase tracking-wider text-blue-700 font-semibold mb-1">Prerequisites (target PC)</p>
+                <ul className="text-[10px] text-txt-muted space-y-1 list-disc list-inside">
+                  <li>Windows 10 / 11</li>
+                  <li>Python 3.11+ (added to PATH)</li>
+                  <li>Node.js 20+ (npm)</li>
+                </ul>
+                <p className="text-[10px] text-txt-muted mt-2">
+                  Extract the zip, then double-click &ldquo;TvastrControlPanel.vbs&rdquo; to start or &ldquo;Stop_TvastrControlPanel.vbs&rdquo; to stop. See QUICK_START.txt.
+                </p>
+              </div>
             </div>
           </div>
 
