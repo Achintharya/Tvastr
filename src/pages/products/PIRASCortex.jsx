@@ -89,12 +89,12 @@ export function PIRASCortex() {
       {/* ── SLIDE 3 — Inspection Intelligence ─────────────────────── */}
       <SystemDetailSection
         label="02 / Inspection Intelligence"
-        title="Real-time defect detection at every quality gate."
+        title="Defect detection from every quality gate."
         body="PIRAS delivers AI-powered inspection intelligence directly at the point of production—providing immediate quality decisions with full defect analysis and traceability."
         bullets={[
           'Computer vision defect detection across all casting surfaces',
           'Multi-signal fusion (YOLO + Signal Classifier + LLM)',
-          'Sub-100ms inspection decisions for production-speed operation',
+          'Inspection decisions for production-speed operation',
           'Defect type classification with confidence scoring',
           'Rejection vs. pass decisions with evidence documentation',
           'Batch processing for high-volume production environments',
