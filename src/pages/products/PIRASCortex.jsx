@@ -63,13 +63,13 @@ export function PIRASCortex() {
       <SystemDetailSection
         label="01 / Platform Overview"
         title="Unified manufacturing intelligence from inspection to optimization."
-        body="PIRAS integrates multiple intelligence layers into one cohesive platform—from real-time inspection at quality gates to plant-wide analytics and continuous improvement frameworks."
+        body="PIRAS integrates multiple intelligence layers into one cohesive platform—from inspection from quality gates to plant-wide analytics and continuous improvement frameworks."
       >
         <div className="mt-6 p-5" style={{ background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '8px', maxWidth: '680px' }}>
           <p className="text-sm font-bold text-gray-800 mb-4">Integrated Intelligence Layers</p>
           <div className="space-y-3">
             {[
-              { name: 'Rejection Analysis System (RAS)', desc: 'Real-time inspection intelligence at quality gates' },
+              { name: 'Rejection Analysis System (RAS)', desc: 'Inspection intelligence from quality gates' },
               { name: 'Plant Intelligence (PI)', desc: 'Process analytics, trends, and quality insights' },
               { name: 'Statistical Process Control (SPC)', desc: 'Automated monitoring with control limits' },
               { name: 'Quality Engineering', desc: 'FMEA, Fishbone, Pareto analysis frameworks' },
@@ -166,9 +166,9 @@ export function PIRASCortex() {
       <SystemDetailSection
         label="07 / ERP Integration"
         title="Seamless connection to your production data infrastructure."
-        body="PIRAS integrates directly with ERP and MES systems—automatically linking every inspection to its production context for complete traceability."
+        body="PIRAS integrates directly with supported ERP and MES systems—automatically linking every inspection to its production context for complete traceability."
         bullets={[
-          'Direct SQL Server integration for Production_Daywise data',
+          'Direct SQL Server integration for production data',
           'Automatic heat number and batch resolution',
           'Mould, shift, and operator context linking',
           'Material and alloy specification retrieval',
