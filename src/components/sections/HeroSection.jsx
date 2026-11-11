@@ -230,7 +230,7 @@ export function HeroSection() {
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
           <Link
             ref={ctaRef}
-            to="/portal"
+            to="/#contact"
             className="inline-flex items-center gap-2 px-7 py-3 text-sm font-medium tracking-wide rounded-full transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-process-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
             style={{
               background: "var(--process-primary)",
