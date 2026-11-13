@@ -14,7 +14,7 @@ export function DeploymentSection() {
 
   return (
     <SectionShell ref={sectionRef} id={id}>
-      <SectionHeader title={title} subtitle={subtitle} eyebrow="Deployment" />
+      <SectionHeader title={title} subtitle={subtitle} eyebrow="Getting started" />
 
       <p className="text-base md:text-lg text-txt-secondary leading-relaxed max-w-3xl mt-6">
         {body}
@@ -30,7 +30,7 @@ export function DeploymentSection() {
               className="font-mono text-[11px] tracking-[0.24em] uppercase mb-4"
               style={{ color: "var(--signal-glow)" }}
             >
-              Principle {String(i + 1).padStart(2, "0")}
+              Focus {String(i + 1).padStart(2, "0")}
             </p>
             <h4 className="text-lg font-medium text-txt-primary leading-tight mb-3">
               {principle.name}

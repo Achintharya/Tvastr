@@ -3,6 +3,7 @@ export const mainNavItems = [
   {
     label: "Products",
     children: [
+      { label: "Medhas", href: "/products/medhas" },
       { label: "Vajra Cortex", href: "/products/vajra-cortex" },
       { label: "PIRAS", href: "/products/piras" },
       { label: "Executive MIS Cortex", href: "/products/executive-mis-cortex" }

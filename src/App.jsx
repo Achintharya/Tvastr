@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { MarketingStructuredData } from "./components/MarketingStructuredData";
 import { SafeAnalytics } from "./components/SafeAnalytics";
 import { AuthProvider } from "./context/AuthContext";
 import { LicenseProvider } from "./context/LicenseContext";
@@ -16,7 +17,9 @@ import CornerGuides from "./components/decor/CornerGuides";
 // Landing page sections — loaded eagerly (above the fold)
 import { HomePage } from "./components/layout/HomePage";
 
-// Product pages — lazy loaded
+const Medhas = lazy(() => import("./pages/products/Medhas").then((m) => ({ default: m.Medhas })));
+
+// Product pages - lazy loaded
 const VajraCortex = lazy(() =>
   import("./pages/products/VajraCortex").then((m) => ({
     default: m.VajraCortex,
@@ -75,8 +78,8 @@ const AdminDashboard = lazy(() =>
 /** Main landing page — all sections stacked for infinite scroll */
 function HomePageWrapper() {
   useDocumentHead(
-    "Tvastr | Manufacturing Intelligence Infrastructure",
-    "Industrial intelligence platform for foundries. Signal-first defect detection, process reasoning, and manufacturing memory across every quality gate.",
+    "Tvastr | Manufacturing Software for Plant Teams",
+    "Medhas for manufacturing records, PIRAS for quality analysis, and Executive MIS for management reporting. Vajra Cortex is forthcoming.",
     "https://tvastr.co/",
   );
 
@@ -135,6 +138,7 @@ function NotFoundPage() {
 export default function App() {
   return (
     <BrowserRouter>
+      <MarketingStructuredData />
       <AuthProvider>
         <LicenseProvider>
           <MotionProvider>
@@ -153,7 +157,8 @@ export default function App() {
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/research" element={<ResearchPage />} />
 
-                  {/* Product pages — Three AI Cortexes */}
+                  {/* Product pages */}
+                  <Route path="/products/medhas" element={<Medhas />} />
                   <Route
                     path="/products/vajra-cortex"
                     element={<VajraCortex />}
@@ -165,7 +170,7 @@ export default function App() {
                   {/* Legacy redirect — preserves bookmarks/shared links to old URL */}
                   <Route
                     path="/products/medhas-cortex"
-                    element={<Navigate to="/products/piras" replace />}
+                    element={<Navigate to="/products/medhas" replace />}
                   />
                   <Route
                     path="/products/executive-mis-cortex"
@@ -175,11 +180,11 @@ export default function App() {
                   {/* Legacy system pages — kept for backwards compatibility */}
                   <Route
                     path="/systems/rejection-analysis-system"
-                    element={<RejectionAnalysisSystem />}
+                    element={<Navigate to="/products/piras" replace />}
                   />
                   <Route
                     path="/systems/plant-intelligence"
-                    element={<PlantIntelligence />}
+                    element={<Navigate to="/products/piras" replace />}
                   />
 
                   <Route path="/portal" element={<PortalLogin />} />

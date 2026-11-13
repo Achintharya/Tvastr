@@ -1,33 +1,21 @@
 export const industryProblemContent = {
-  id: "industry-problem",
-  type: "industry-problem",
-  title: "Manufacturing Generates Data. Digital Transformation Requires Intelligence.",
-  subtitle: "Traditional systems capture data but lack the intelligence needed for digitalization and Industry 4.0.",
-  body: "Manufacturing enterprises generate massive operational data daily, but it remains disconnected across systems. Quality issues repeat, root causes stay hidden, and executives lack real-time visibility—preventing true digital transformation.",
-  problems: [
+  "id": "industry-problem",
+  "type": "industry-problem",
+  "title": "The information exists. Finding the right view takes work.",
+  "subtitle": "Different people need different answers from their plant information.",
+  "body": "A quality engineer may need the history behind a defect. A manager may need a comparison across plants. An administrator needs reliable records. Tvastr gives these jobs their own workspace.",
+  "problems": [
     {
-      title: "Disconnected Data Systems",
-      description: "Production, quality, and business systems operate in silos with no unified intelligence."
+      "title": "Records in many places",
+      "description": "Teams spend time finding the latest document or business record."
     },
     {
-      title: "Operator-Dependent Decisions",
-      description: "Critical decisions vary by shift and individual expertise. No AI-powered consistency."
+      "title": "Quality questions to investigate",
+      "description": "Rejection counts alone do not tell the whole story."
     },
     {
-      title: "No Operational Memory",
-      description: "Manufacturing insights aren't retained or analyzed across production cycles. Organizations forget."
-    },
-    {
-      title: "Reactive Problem-Solving",
-      description: "Issues are addressed after they impact production. No predictive intelligence."
-    },
-    {
-      title: "Limited Executive Visibility",
-      description: "C-suite lacks real-time operational insights. Strategic decisions rely on delayed reports."
-    },
-    {
-      title: "Manual Analysis Requirements",
-      description: "Engineers spend time aggregating data instead of solving problems. No automated intelligence."
+      "title": "Reports to bring together",
+      "description": "Management needs a consistent view across plants and departments."
     }
   ]
 }

@@ -150,9 +150,9 @@ export function HeroSection() {
   // Hairline capability strip — three quiet product anchors that replace
   // the rotating Forge_Core as the visual centerpiece below the CTAs.
   const stripItems = [
-    { label: "Perception", value: "Signal-first detection" },
-    { label: "Process", value: "Reasoning across gates" },
-    { label: "Memory", value: "Persistent industrial record" },
+    { label: "Medhas", value: "Business records" },
+    { label: "PIRAS", value: "Quality analysis" },
+    { label: "MIS", value: "Management reporting" },
   ];
 
   return (
@@ -211,7 +211,7 @@ export function HeroSection() {
         <div className="mb-6">
           <h1
             ref={wordmarkRef}
-            className="text-5xl md:text-7xl lg:text-[88px] font-medium text-txt-primary leading-[1.02] tracking-[-0.02em] mb-6"
+            className="text-[clamp(2rem,10vw,3rem)] md:text-7xl lg:text-[88px] font-medium text-txt-primary leading-[1.02] tracking-[-0.02em] mb-6"
           >
             {heroContent.title}
           </h1>
@@ -305,9 +305,9 @@ export function HeroSection() {
             {stripItems.map((item, i) => (
               <div
                 key={i}
-                className={`flex items-start gap-3 md:gap-5 py-4 md:py-5 ${
-                  i > 0 ? "pl-5 md:pl-8" : ""
-                } ${i < stripItems.length - 1 ? "pr-5 md:pr-8" : ""}`}
+                className={`flex items-start gap-2 md:gap-5 py-4 md:py-5 ${
+                  i > 0 ? "pl-2 md:pl-8" : ""
+                } ${i < stripItems.length - 1 ? "pr-2 md:pr-8" : ""}`}
                 style={
                   i < stripItems.length - 1
                     ? { borderRight: "1px solid rgba(255,255,255,0.12)" }
@@ -324,7 +324,7 @@ export function HeroSection() {
                   <p className="font-mono text-[10px] md:text-[11px] tracking-[0.28em] uppercase text-white leading-tight">
                     {item.label}
                   </p>
-                  <p className="text-[12px] md:text-[13px] text-white/70 leading-snug mt-1.5 truncate">
+                  <p className="text-[12px] md:text-[13px] text-white/70 leading-snug mt-1.5 whitespace-normal">
                     {item.value}
                   </p>
                 </div>

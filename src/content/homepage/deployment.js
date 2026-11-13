@@ -1,26 +1,26 @@
 export const deploymentContent = {
-  id: "deployment",
-  type: "deployment",
-  title: "Edge-Native Platform. Complete Data Sovereignty.",
-  subtitle: "Deployed inside your enterprise network. No cloud dependency. Full control of your operational data.",
-  body: "All AI cortexes run on local hardware within your facility. Your manufacturing and business intelligence data never leaves your infrastructure. The platform operates fully offline with no internet required.",
-  principles: [
+  "id": "deployment",
+  "type": "deployment",
+  "title": "Start with your team's needs",
+  "subtitle": "A product conversation grounded in how your plant works.",
+  "body": "Tell us what your team needs to keep track of, investigate or report. We will walk through the relevant product and discuss the setup for your business.",
+  "principles": [
     {
-      name: "Edge-Native Deployment",
-      description: "All AI cortexes deployed within your enterprise. Complete data sovereignty and control."
+      "name": "Your people",
+      "description": "Identify the teams who will use the product and the information each role needs."
     },
     {
-      name: "Offline-Capable Platform",
-      description: "Full functionality without internet. No cloud dependency. Resilient to network outages."
+      "name": "Your records",
+      "description": "Review the records, documents and reporting sources involved."
     },
     {
-      name: "Real-Time Performance",
-      description: "Sub-second response times for operational decisions. Millisecond-latency AI inference."
+      "name": "Your priorities",
+      "description": "Focus the walkthrough on your everyday work and management questions."
     },
     {
-      name: "Enterprise Integration",
-      description: "Native integration with ERP, MES, and SQL databases using standard protocols."
+      "name": "Your setup",
+      "description": "Discuss product access and installation with your plant environment in mind."
     }
   ],
-  keyMessage: "Industrial AI platform built for manufacturing enterprises. Not cloud software adapted for factories."
+  "keyMessage": "See the Technology page for architecture and deployment details."
 }

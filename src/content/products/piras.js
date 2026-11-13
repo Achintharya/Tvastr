@@ -1,26 +1,29 @@
 export const pirasCortexProduct = {
-  id: "piras",
-  type: "product",
-  title: "PIRAS",
-  tag: "Plant Intelligence & Rejection Analysis System",
-  badge: "AI Cortex",
-  description: "Comprehensive manufacturing intelligence platform combining inspection intelligence, process analytics, SPC monitoring, and quality frameworks for operational excellence and continuous improvement.",
-  capabilities: [
-    "Rejection Analysis System (RAS) - Real-time inspection intelligence",
-    "Plant Intelligence (PI) - Process analytics and quality insights",
-    "Statistical Process Control (SPC) with automated monitoring",
-    "Defect pattern tracking and correlation analysis",
-    "Temporal trend analysis across production batches and heats",
-    "Quality engineering frameworks (FMEA, Fishbone, Pareto analysis)",
-    "Heat-level quality intelligence and defect clustering",
-    "Process drift detection and early warning indicators",
-    "Manufacturing context linking (defects to molds, shifts, operators)",
-    "Quality metrics dashboards and real-time visualization",
-    "Decision intelligence with prioritized corrective actions",
-    "Multi-gate intelligence across the entire production line",
-    "Complete traceability with ERP and MES integration",
-    "Continuous learning from operator feedback and corrections"
+  "id": "piras",
+  "type": "product",
+  "title": "PIRAS",
+  "tag": "Plant Intelligence & Rejection Analysis System",
+  "badge": "Tvastr product",
+  "description": "Understand what is being rejected and where to investigate next.",
+  "capabilities": [
+    "Inspect casting images and review defect findings",
+    "Keep rejection records linked to heats, parts and production context",
+    "Review batches and recurring defect patterns",
+    "Follow quality trends across production periods",
+    "Use process statistics and structured quality analysis",
+    "Prepare inspection reports for review"
   ],
-  variants: ["manufacturing", "foundry", "enterprise"],
-  route: "/products/piras"
+  "variants": [
+    "manufacturing"
+  ],
+  "route": "/products/piras",
+  "audience": "For quality teams and plant engineers",
+  "heading": "Bring inspection and quality analysis into the same workspace.",
+  "body": "PIRAS helps quality teams review inspection findings, trace rejection patterns and work with the production context behind them. Move from an individual casting to the patterns worth investigating across a batch or heat.",
+  "steps": [
+    "Review inspection findings and make informed quality decisions.",
+    "Trace recurring defects across parts, heats and production periods.",
+    "Use quality dashboards and reports to guide the next investigation."
+  ],
+  "relationship": "Use PIRAS as a separate quality workspace. Medhas customers can open it through a link in their Medhas interface."
 }

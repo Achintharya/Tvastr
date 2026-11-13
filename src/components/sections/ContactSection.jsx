@@ -22,10 +22,10 @@ export function ContactSection() {
             Get Started
           </p>
           <h2 className="text-3xl md:text-5xl font-medium text-txt-primary leading-[1.05] tracking-[-0.02em] mb-6">
-            Start Your Digital Transformation
+            See what fits your plant
           </h2>
           <p className="text-base md:text-lg text-txt-secondary leading-relaxed mb-10">
-            See the Tvastr Platform in action. Schedule a live demonstration to discover how integrated AI intelligence transforms manufacturing operations from shop floor to executive suite.
+            Tell us about your team and the records, quality questions or reports you work with. We can walk through the relevant product with you.
           </p>
           <dl className="space-y-5">
             <div>

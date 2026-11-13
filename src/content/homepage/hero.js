@@ -1,7 +1,6 @@
 export const heroContent = {
-  id: "hero",
-  type: "hero",
-  title: "Industrial AI Platform for Digital Transformation",
-  subtitle: "Tvastr enables manufacturing enterprises to achieve operational excellence through an integrated AI platform—delivering intelligence from shop floor operations to executive decision-making.",
-  visualDirection: "Platform architecture emphasizing unified intelligence ecosystem. Communicate: one integrated platform enabling enterprise transformation, not fragmented software."
+  "id": "hero",
+  "type": "hero",
+  "title": "A clearer view of your manufacturing business",
+  "subtitle": "Plant records, quality analysis and management reporting. Tvastr gives each team a focused place to work with the information that matters to them."
 }

@@ -36,6 +36,10 @@ export function Navbar() {
   const { capabilities } = useLicense();
   const { reducedMotion } = useReducedMotionContext();
   const location = useLocation();
+  // Technology and Research retain their original navigation without the new Medhas entry.
+  const visibleNavItems = ["/technology", "/research"].includes(location.pathname)
+    ? mainNavItems.map(item => item.children ? { ...item, children: item.children.filter(child => child.href !== "/products/medhas") } : item)
+    : mainNavItems;
   const isPortalPage = location.pathname.startsWith("/portal");
   const isSystemPage =
     location.pathname.startsWith("/systems") || location.pathname === "/system";
@@ -183,7 +187,7 @@ export function Navbar() {
 
             {/* ── ZONE 2 · Centered nav (desktop only) ──────────────── */}
             <div className="hidden md:flex items-center justify-center gap-7 lg:gap-10">
-              {mainNavItems.map((item) => {
+              {visibleNavItems.map((item) => {
                 if (item.children) {
                   // Dropdown menu — Cohere-style white panel with thin
                   // border, mono group label, and stacked links.
@@ -399,7 +403,7 @@ export function Navbar() {
               borderTop: "1px solid var(--border-subtle)",
             }}
           >
-            {mainNavItems.map((item) => {
+            {visibleNavItems.map((item) => {
               if (item.children) {
                 return (
                   <div key={item.label} className="px-6 py-2">

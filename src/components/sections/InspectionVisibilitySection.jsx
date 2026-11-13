@@ -142,7 +142,7 @@ export function InspectionVisibilitySection() {
                 className="font-mono text-[11px] tracking-[0.28em] uppercase mb-1.5"
                 style={{ color: "var(--signal-glow)" }}
               >
-                Surface · {String(active + 1).padStart(2, "0")} /{" "}
+                View · {String(active + 1).padStart(2, "0")} /{" "}
                 {String(total).padStart(2, "0")}
               </p>
               <AnimatePresence mode="wait" initial={false}>
@@ -213,9 +213,8 @@ export function InspectionVisibilitySection() {
 
           {/* ── Tab rail ── */}
           <div
-            className="mt-8 md:mt-10 grid gap-px overflow-hidden rounded-md border border-border-subtle"
+            className="mt-8 md:mt-10 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-px overflow-hidden rounded-md border border-border-subtle"
             style={{
-              gridTemplateColumns: `repeat(${total}, minmax(0, 1fr))`,
               background: "var(--border-subtle)",
             }}
             role="tablist"
@@ -244,7 +243,7 @@ export function InspectionVisibilitySection() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span
-                    className={`block text-[12px] md:text-[13px] leading-tight truncate transition-colors duration-200 ${
+                    className={`block text-[12px] md:text-[13px] leading-tight whitespace-normal transition-colors duration-200 ${
                       isActive
                         ? "text-txt-primary font-medium"
                         : "text-txt-secondary"
