@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useAuth } from "../../context/AuthContext";
-import { useLicense } from "../../context/LicenseContext";
+import { useAuth } from "../../context/auth-context";
+import { useLicense } from "../../context/license-context";
 import { Logo } from "../Logo";
 import { mainNavItems } from "@/config/navigation";
 import { durations } from "../../animation/motion";
-import { useReducedMotionContext } from "../../animation/MotionConfig";
+import { useReducedMotionContext } from "../../animation/reducedMotionContext";
 import { useMagnetic } from "../../hooks/useMagnetic";
-import { legacyColors as colors } from "../../design/colors";
 
 /**
  * Navbar — Three-zone fixed top navigation, Cohere-style.
@@ -20,8 +19,8 @@ import { legacyColors as colors } from "../../design/colors";
  *
  * Behavior:
  *   - Transparent at the top of page (< 16 px scroll), surfaces with
- *     `colors.background.primary` α 0.9 + 1 px `colors.border.subtle`
- *     bottom border at ≥ 16 px (Req 12.1, 12.2, 12.5, 12.6).
+ *     a translucent background + 1 px subtle bottom border at ≥ 16 px
+ *     (Req 12.1, 12.2, 12.5, 12.6).
  *   - Backdrop blur applied only when surfaced.
  *   - Active link gets a thin 1 px deep-green underline pinned to the
  *     baseline — matches the hero's "Explore the platform" treatment.
@@ -29,11 +28,21 @@ import { legacyColors as colors } from "../../design/colors";
  *   - Shows "Dashboard" link when user is logged in.
  *   - Conditionally renders Plant Intelligence link based on tier.
  */
+/**
+ * Full-page navigation back to a homepage section from another route.
+ * Kept at module scope: writing `window.location.href` is a navigation,
+ * not a mutation of render-scoped data.
+ */
+function navigateToHomeSection(id) {
+  window.location.href = `/#${id}`;
+}
+
 export function Navbar() {
-  const [surfaced, setSurfaced] = useState(false);
+  const [surfaced, setSurfaced] = useState(() => window.scrollY >= 16);
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, signOut } = useAuth();
-  const { capabilities } = useLicense();
+  // Subscribe to license context so nav re-renders if license state changes.
+  useLicense();
   const { reducedMotion } = useReducedMotionContext();
   const location = useLocation();
   // Technology and Research retain their original navigation without the new Medhas entry.
@@ -54,6 +63,14 @@ export function Navbar() {
   useMagnetic(portalCtaRef);
   useMagnetic(dashboardCtaRef);
 
+  // Close mobile menu on route change. Adjusting state during render is
+  // the documented alternative to a synchronously-set-state effect.
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname);
+    setMenuOpen(false);
+  }
+
   // Detect scroll position to toggle the surfaced state at the 16 px
   // threshold. Throttled to once per animation frame via
   // requestAnimationFrame, with a passive listener so scroll performance
@@ -67,7 +84,6 @@ export function Navbar() {
         raf = null;
       });
     };
-    setSurfaced(window.scrollY >= 16);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -75,16 +91,13 @@ export function Navbar() {
     };
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => setMenuOpen(false), [location.pathname]);
-
   // Hide main navbar on portal and system detail pages (they have their own navigation)
   if (isPortalPage || isSystemPage) return null;
 
   // Smooth scroll to section (only on home page)
   const scrollTo = (id) => {
     if (location.pathname !== "/") {
-      window.location.href = `/#${id}`;
+      navigateToHomeSection(id);
       return;
     }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });

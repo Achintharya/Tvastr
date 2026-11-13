@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import { durations } from "../../animation/motion";
-import { useReducedMotionContext } from "../../animation/MotionConfig";
+import { useReducedMotionContext } from "../../animation/reducedMotionContext";
 
 const RADIUS_PX = durations.cursorFollowerMaxRadiusPx; // 24
 const OPACITY_VISIBLE = durations.cursorFollowerOpacityMax; // 0.35

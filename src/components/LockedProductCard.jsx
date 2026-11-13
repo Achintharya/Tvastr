@@ -14,7 +14,7 @@ import { legacyColors as colors } from '../design/colors'
  *   requiredTier  — Which tier unlocks this (e.g., "PIRAS + Vajra", "Complete Platform")
  *   features      — Array of feature bullets specific to this tier
  */
-export function LockedProductCard({ title, description, tag, index, requiredTier, features }) {
+export function LockedProductCard({ title, description, tag, requiredTier, features }) {
   return (
     <div
       className="group relative flex flex-col transition-all duration-300 opacity-60 hover:opacity-75 rounded-xl"

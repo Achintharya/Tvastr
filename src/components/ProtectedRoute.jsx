@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
-import { useLicense } from '../context/LicenseContext'
+import { useAuth } from '../context/auth-context'
+import { useLicense } from '../context/license-context'
 import { LockedScreen } from './LockedScreen'
 import { ForgeLoader } from './ForgeLoader'
 
@@ -25,22 +25,34 @@ import { ForgeLoader } from './ForgeLoader'
 export function ProtectedRoute({ children, requiredCapability, adminOnly }) {
   const { session, loading: authLoading } = useAuth()
   const { capabilities, isAdmin, loading: licenseLoading, error: licenseError } = useLicense()
-  const [showError, setShowError] = useState(false)
+  // The error value whose 15-second grace period has elapsed.
+  const [timedOutError, setTimedOutError] = useState(null)
 
   const loading = authLoading || licenseLoading
 
+  // Reset the grace period whenever the error or loading state changes.
+  // Adjusting state during render is the documented alternative to a
+  // synchronously-set-state effect and avoids cascading renders.
+  const errorKey = `${loading}|${licenseError}`
+  const [prevErrorKey, setPrevErrorKey] = useState(errorKey)
+  if (prevErrorKey !== errorKey) {
+    setPrevErrorKey(errorKey)
+    setTimedOutError(null)
+  }
+
   // 15-second timeout before showing error card
   useEffect(() => {
-    if (licenseError && !loading) {
-      const timer = setTimeout(() => {
-        setShowError(true)
-      }, 15000)
+    if (!licenseError || loading) return undefined
 
-      return () => clearTimeout(timer)
-    } else {
-      setShowError(false)
-    }
+    const timer = setTimeout(() => {
+      setTimedOutError(licenseError)
+    }, 15000)
+
+    return () => clearTimeout(timer)
   }, [licenseError, loading])
+
+  const showError =
+    !loading && licenseError !== null && timedOutError === licenseError
 
   if (loading) {
     return (

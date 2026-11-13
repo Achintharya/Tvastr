@@ -8,7 +8,7 @@
 import { useEffect } from "react";
 
 import { gsap, ScrollTrigger } from "../animation/gsap";
-import { useReducedMotionContext } from "../animation/MotionConfig";
+import { useReducedMotionContext } from "../animation/reducedMotionContext";
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 

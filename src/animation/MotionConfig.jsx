@@ -21,43 +21,12 @@
  *     boot.
  */
 
-import { createContext, useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { MotionConfig } from "framer-motion";
 
 import { useReducedMotion } from "../hooks/useReducedMotion";
+import { ReducedMotionContext } from "./reducedMotionContext";
 import { validatePresets } from "./motion";
-
-/**
- * @typedef {{ reducedMotion: boolean, detectionFailed: boolean }} ReducedMotionState
- */
-
-/**
- * Context broadcast of the resolved reduced-motion state. Both
- * Motion_Layer and GSAP_Layer hooks read from this single source so the
- * two libraries can never drift on the user's preference.
- *
- * Default value matches the shape returned by `useReducedMotion` so
- * components rendered outside the provider (e.g. isolated tests) get a
- * safe `{ reducedMotion: false, detectionFailed: false }` rather than
- * `undefined`.
- *
- * @type {React.Context<ReducedMotionState>}
- */
-export const ReducedMotionContext = createContext({
-  reducedMotion: false,
-  detectionFailed: false,
-});
-
-/**
- * Read the broadcast reduced-motion state inside the Motion_Layer or
- * GSAP_Layer. Equivalent to `useContext(ReducedMotionContext)` but exposes
- * a stable hook name for consumers.
- *
- * @returns {ReducedMotionState}
- */
-export function useReducedMotionContext() {
-  return useContext(ReducedMotionContext);
-}
 
 /**
  * Application-wide Motion provider. Mount once at the application root
@@ -70,20 +39,14 @@ export default function MotionProvider({ children }) {
 
   // Dev-time preset validator — fires once per page load on first mount so
   // a numeric-bound regression in `motion.js` surfaces in the console at
-  // boot. Guarded by a `typeof process` check because Vite replaces
-  // `process.env.NODE_ENV` in client builds but does not provide `process`
-  // itself, so accessing it without the guard would throw in the browser
-  // when `process` happens to be undefined (e.g. tests, certain bundlers).
+  // boot. `import.meta.env.DEV` is statically replaced by Vite, so the
+  // check costs nothing and leaves no `process` reference in the browser
+  // bundle.
   useEffect(() => {
-    if (
-      typeof process !== "undefined" &&
-      process.env &&
-      process.env.NODE_ENV !== "production"
-    ) {
+    if (import.meta.env.DEV) {
       try {
         validatePresets();
       } catch (err) {
-        // eslint-disable-next-line no-console
         console.error(err);
       }
     }

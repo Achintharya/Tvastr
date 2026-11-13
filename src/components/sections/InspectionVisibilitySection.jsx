@@ -6,7 +6,7 @@ import { SectionHeader } from "@/components/primitives/SectionHeader";
 import { inspectionVisibilityContent } from "@/content/homepage/inspection-visibility";
 import { useSectionReveal } from "../../hooks/useSectionReveal";
 import { durations } from "../../animation/motion";
-import { useReducedMotionContext } from "../../animation/MotionConfig";
+import { useReducedMotionContext } from "../../animation/reducedMotionContext";
 
 /**
  * InspectionVisibilitySection — Operational Visibility

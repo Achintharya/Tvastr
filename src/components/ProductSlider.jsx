@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { ProductCard } from "./ProductCard";
 import { durations, easings } from "../animation/motion";
-import { useReducedMotionContext } from "../animation/MotionConfig";
+import { useReducedMotionContext } from "../animation/reducedMotionContext";
 
 /**
  * ProductSlider — Horizontal carousel for the ProductCard family.

@@ -25,7 +25,7 @@ import { useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { durations, easings } from "../../animation/motion";
-import { useReducedMotionContext } from "../../animation/MotionConfig";
+import { useReducedMotionContext } from "../../animation/reducedMotionContext";
 
 const ENTER_S = durations.pageEnterMs / 1000;
 const EXIT_S = durations.pageExitMs / 1000;
@@ -72,7 +72,6 @@ export default function PageTransition({ children }) {
       watchdogRef.current = setTimeout(() => {
         if (!warnedRef.current) {
           warnedRef.current = true;
-          // eslint-disable-next-line no-console
           console.warn(`page transition exceeded budget: ${from} → ${to}`);
         }
       }, WATCHDOG_MS);

@@ -29,8 +29,16 @@ const SNAPSHOT_NOT_REDUCED = "reduced:false";
 const SNAPSHOT_DETECTION_FAILED = "reduced:detection-failed";
 
 // Module-level latch so the detection-failure warning fires at most once per
-// page load, no matter how many components consume the hook.
+// page load, no matter how many components consume the hook. The write lives
+// in a module-scope helper so components never reassign a module variable.
 let warnedDetectionFailed = false;
+
+function warnDetectionFailedOnce() {
+  if (warnedDetectionFailed) return;
+  warnedDetectionFailed = true;
+  // Non-blocking surface — Req 5.8.
+  console.warn("Reduced motion preference detection failed");
+}
 
 /**
  * Resolve the `MediaQueryList` for the reduced-motion query, returning
@@ -102,12 +110,7 @@ export function useReducedMotion() {
   );
 
   if (snapshot === SNAPSHOT_DETECTION_FAILED) {
-    if (!warnedDetectionFailed) {
-      warnedDetectionFailed = true;
-      // Non-blocking surface — Req 5.8.
-      // eslint-disable-next-line no-console
-      console.warn("Reduced motion preference detection failed");
-    }
+    warnDetectionFailedOnce();
     return { reducedMotion: true, detectionFailed: true };
   }
 

@@ -1,5 +1,5 @@
 import { CONFIG, openContact } from '../lib/config'
-import { useLicense } from '../context/LicenseContext'
+import { useLicense } from '../context/license-context'
 
 /**
  * LockedScreen — Full-page locked state for tier-restricted features.

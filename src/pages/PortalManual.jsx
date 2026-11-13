@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useLicense } from "../context/LicenseContext";
+import { useAuth } from "../context/auth-context";
+import { useLicense } from "../context/license-context";
 import { Logo } from "../components/Logo";
 import { legacyColors as colors } from "../design/colors";
 
@@ -14,7 +14,8 @@ import { legacyColors as colors } from "../design/colors";
  */
 export function PortalManual() {
   const { user, signOut } = useAuth();
-  const { tier } = useLicense();
+  // Subscribe to license context; this page renders no license values.
+  useLicense();
   const [activeSection, setActiveSection] = useState("");
 
   // Track active section for TOC highlighting

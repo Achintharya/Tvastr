@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/primitives/SectionHeader";
 import { industryProblemContent } from "@/content/homepage/industry-problem";
 import { useSectionReveal } from "../../hooks/useSectionReveal";
 import { gsap, gsapContext, ScrollTrigger } from "../../animation/gsap";
-import { useReducedMotionContext } from "../../animation/MotionConfig";
+import { useReducedMotionContext } from "../../animation/reducedMotionContext";
 
 export function IndustryProblemSection() {
   const { id, title, subtitle, body, problems } = industryProblemContent;
@@ -16,6 +16,10 @@ export function IndustryProblemSection() {
   // Parallax reveal: section rises up from below as user scrolls past hero
   useLayoutEffect(() => {
     if (reducedMotion) return;
+
+    // Captured once when the effect runs so the cleanup never reads
+    // sectionRef.current after the ref may have been detached.
+    const el = sectionRef.current;
 
     const ctx = gsapContext(() => {
       gsap.fromTo(
@@ -36,7 +40,6 @@ export function IndustryProblemSection() {
 
     return () => {
       ctx.revert();
-      const el = sectionRef.current;
       if (el) {
         ScrollTrigger.getAll()
           .filter((t) => t.trigger === el || (t.trigger && el.contains(t.trigger)))

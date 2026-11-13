@@ -23,7 +23,16 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'no-unused-vars': [
+        'error',
+        {
+          varsIgnorePattern: '^[A-Z_]',
+          // Destructuring alongside a rest element, e.g. ({ node, ...props }),
+          // is the standard way to drop a value before spreading the rest;
+          // the discarded sibling is intentional.
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   },
 ])

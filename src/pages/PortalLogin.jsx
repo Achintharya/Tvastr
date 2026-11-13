@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useLicense } from "../context/LicenseContext";
+import { useAuth } from "../context/auth-context";
+import { useLicense } from "../context/license-context";
 import { Logo } from "../components/Logo";
 import { CONFIG, generateMailtoLink } from "../lib/config";
 import { useDocumentHead } from "../hooks/useDocumentHead";

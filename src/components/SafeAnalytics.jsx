@@ -30,9 +30,11 @@ class AnalyticsErrorBoundary extends Component {
     return { hasError: true };
   }
 
-  componentDidCatch(error, errorInfo) {
-    // Silently swallow analytics errors — they're non-critical
-    if (process.env.NODE_ENV === 'development') {
+  componentDidCatch(error) {
+    // Silently swallow analytics errors — they're non-critical.
+    // `import.meta.env.DEV` is statically replaced by Vite, so this leaves
+    // no `process` reference in the browser bundle.
+    if (import.meta.env.DEV) {
       console.debug('[SafeAnalytics] Analytics blocked or failed:', error.message);
     }
   }

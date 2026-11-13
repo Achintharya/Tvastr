@@ -1,19 +1,6 @@
-import { createContext, useContext, useEffect, useState, useCallback, useMemo } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
+import { AuthContext } from './auth-context'
 import { supabase } from '../lib/supabaseClient'
-
-/**
- * AuthContext — Provides authentication state and actions throughout the app.
- *
- * Exposes:
- *   session        — Supabase session object (null when logged out)
- *   user           — Supabase user object (null when logged out)
- *   loading        — true while initial session is being fetched
- *   signIn         — async (email, password) → { error }
- *   signOut        — async () → void
- *   resetPassword  — async (email) → { error }
- *   updatePassword — async (newPassword) → { error }
- */
-const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(null)
@@ -94,14 +81,4 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   )
-}
-
-/**
- * useAuth — Convenience hook for consuming AuthContext.
- * Must be used inside <AuthProvider>.
- */
-export function useAuth() {
-  const ctx = useContext(AuthContext)
-  if (!ctx) throw new Error('useAuth must be used within AuthProvider')
-  return ctx
 }

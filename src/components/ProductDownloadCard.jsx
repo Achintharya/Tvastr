@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLicense } from "../context/LicenseContext";
+import { useLicense } from "../context/license-context";
 import { getVersionLabel } from "../lib/capabilities";
 import { cardClipPath } from "../design/clipPaths";
 

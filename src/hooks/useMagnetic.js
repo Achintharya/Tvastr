@@ -16,7 +16,7 @@
 import { useEffect } from "react";
 
 import { durations } from "../animation/motion";
-import { useReducedMotionContext } from "../animation/MotionConfig";
+import { useReducedMotionContext } from "../animation/reducedMotionContext";
 
 /**
  * Pure clamp that guarantees Property 8: for any real pointer offset

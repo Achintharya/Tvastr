@@ -1,4 +1,4 @@
-import { useLicense } from '../context/LicenseContext'
+import { useLicense } from '../context/license-context'
 import { CONFIG, openContact } from '../lib/config'
 import { legacyColors as colors } from '../design/colors'
 

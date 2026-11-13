@@ -1,37 +1,35 @@
-import { createContext, useContext, useEffect, useState, useMemo } from 'react'
-import { useAuth } from './AuthContext'
+import { useEffect, useState, useMemo } from 'react'
+import { useAuth } from './auth-context'
+import { LicenseContext } from './license-context'
 import { supabase } from '../lib/supabaseClient'
 import { getCapabilities } from '../lib/capabilities'
 import { isAdmin as checkIsAdmin } from '../lib/admin'
-
-/**
- * LicenseContext — Provides license tier and capability information.
- *
- * Exposes:
- *   tier          — User's license tier ('TIER_1', 'TIER_2', 'TIER_3', or null)
- *   customerName  — Customer organization name
- *   licenseKey    — User's license key (for update server API calls)
- *   capabilities  — Capability flags derived from tier
- *   isAdmin       — True if user is admin (achintharya@gmail.com or TVASTR-ACHINTH license)
- *   loading       — True while fetching license data
- *   error         — Error message if license fetch fails
- */
-const LicenseContext = createContext(null)
 
 export function LicenseProvider({ children }) {
   const { user } = useAuth()
   const [tier, setTier] = useState(null)
   const [customerName, setCustomerName] = useState(null)
   const [licenseKey, setLicenseKey] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(() => !!user)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
+  // Reset license state when the user logs out. Adjusting state during
+  // render (the documented alternative to a synchronously-set-state effect)
+  // avoids a cascading render on every auth change.
+  const [prevUser, setPrevUser] = useState(user)
+  if (prevUser !== user) {
+    setPrevUser(user)
     if (!user) {
       // Not logged in → reset
       setTier(null)
       setLoading(false)
       setError(null)
+    }
+  }
+
+  useEffect(() => {
+    if (!user) {
+      // Not logged in → nothing to fetch; state was reset during render.
       return
     }
 
@@ -89,14 +87,4 @@ export function LicenseProvider({ children }) {
       {children}
     </LicenseContext.Provider>
   )
-}
-
-/**
- * useLicense — Convenience hook for consuming LicenseContext.
- * Must be used inside <LicenseProvider>.
- */
-export function useLicense() {
-  const ctx = useContext(LicenseContext)
-  if (!ctx) throw new Error('useLicense must be used within LicenseProvider')
-  return ctx
 }

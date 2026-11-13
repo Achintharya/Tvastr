@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useLicense } from "../context/LicenseContext";
+import { useAuth } from "../context/auth-context";
+import { useLicense } from "../context/license-context";
 import { supabase } from "../lib/supabaseClient";
 import { Logo } from "../components/Logo";
 import { LockedProductCard } from "../components/LockedProductCard";
@@ -144,7 +144,6 @@ export function PortalDashboard() {
   const [loadingVersions, setLoadingVersions] = useState(true);
   const [downloadingVersion, setDownloadingVersion] = useState(null);
   const [downloadError, setDownloadError] = useState(null);
-  const [expandedProduct, setExpandedProduct] = useState(null);
 
   // Fetch versions from Supabase
   useEffect(() => {

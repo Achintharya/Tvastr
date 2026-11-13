@@ -54,7 +54,6 @@ if (!registered) {
   } catch (err) {
     // Surface the failure in dev tools, then re-throw a typed error so callers
     // (and the watchdog in PageTransition / hero timeline) can react.
-    // eslint-disable-next-line no-console
     console.warn("GSAP ScrollTrigger registration failed", err);
     throw new RegistrationError("GSAP ScrollTrigger registration failed", err);
   }

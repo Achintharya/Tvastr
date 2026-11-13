@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { cardClipPath } from "../design/clipPaths";
 import { legacyColors as colors } from "../design/colors";
-import { useReducedMotionContext } from "../animation/MotionConfig";
+import { useReducedMotionContext } from "../animation/reducedMotionContext";
 
 /**
  * Convert a 6-digit hex into an `rgba()` string at the requested alpha.
@@ -166,8 +166,9 @@ function DataFlowNetwork({ paused = false }) {
 
   // Refs to every <animateMotion> so we can pause/resume the SVG SMIL
   // timeline manually when the card crosses the 50 % / 10 % viewport gate.
+  // Entries are attached by index from the ref callbacks below; the array
+  // is never reset during render.
   const motionRefs = useRef([]);
-  motionRefs.current = [];
 
   useEffect(() => {
     motionRefs.current.forEach((el) => {
@@ -207,7 +208,7 @@ function DataFlowNetwork({ paused = false }) {
             <circle r="0.8" fill={SIGNAL_WARNING} opacity="0.7">
               <animateMotion
                 ref={(el) => {
-                  if (el) motionRefs.current.push(el);
+                  motionRefs.current[i] = el;
                 }}
                 dur={`${1.8 + i * 0.4}s`}
                 repeatCount="indefinite"

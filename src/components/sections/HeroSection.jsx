@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { heroContent } from "@/content/homepage/hero";
 import { gsap, gsapContext, ScrollTrigger } from "../../animation/gsap";
 import { easings } from "../../animation/motion";
-import { useReducedMotionContext } from "../../animation/MotionConfig";
+import { useReducedMotionContext } from "../../animation/reducedMotionContext";
 import { useMagnetic } from "../../hooks/useMagnetic";
 
 /**
@@ -78,7 +78,11 @@ export function HeroSection() {
   }, [reducedMotion]);
 
   useLayoutEffect(() => {
-    const ctx = gsapContext(() => {
+    // Captured once when the effect runs so the cleanup never reads
+      // heroRef.current after the ref may have been detached.
+      const heroEl = heroRef.current;
+
+      const ctx = gsapContext(() => {
       // Entry animation timeline
       const tl = gsap.timeline({
         defaults: { ease: easings.gsap.standard },
@@ -135,7 +139,6 @@ export function HeroSection() {
       // Belt-and-suspenders (Req 8.4): explicitly kill any ScrollTrigger
       // whose trigger element is the hero (or is contained by it). This
       // preserves the contract if scroll-linked work is reintroduced.
-      const heroEl = heroRef.current;
       if (heroEl) {
         ScrollTrigger.getAll()
           .filter(

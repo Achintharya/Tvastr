@@ -18,7 +18,7 @@
  * @see design.md § Industrial decor layer
  */
 
-import { useReducedMotionContext } from "../../animation/MotionConfig";
+import { useReducedMotionContext } from "../../animation/reducedMotionContext";
 
 /**
  * Renders the fixed full-viewport industrial logo lattice.

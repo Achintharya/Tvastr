@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
-import { useLicense } from "../context/LicenseContext";
+import { useAuth } from "../context/auth-context";
+import { useLicense } from "../context/license-context";
 import { supabase } from "../lib/supabaseClient";
 import { isAllowed, TIER_LABELS, tierToBadgeState } from "../lib/capabilities";
 import { ProductDownloadCard } from "../components/ProductDownloadCard";
@@ -333,7 +333,7 @@ export function PortalDownloads() {
                 </div>
 
                 <div className="space-y-3">
-                  {olderVersions.map(({ product, version }, i) => (
+                  {olderVersions.map(({ product, version }) => (
                     <RollbackVersionCard
                       key={`${product.id}-${version.version_number}`}
                       product={product}

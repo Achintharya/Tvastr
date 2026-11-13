@@ -5,7 +5,7 @@
  * on a moving conveyor belt. Containers fill ONE-BY-ONE as they pass under
  * the stationary pour point. Matches the amber/orange LaserFlow aesthetic.
  */
-export function ForgeLoader({ message = 'Loading...' }) {
+export function ForgeLoader() {
   return (
     <div className="forge-loader-container">
       <div className="forge-loader">
