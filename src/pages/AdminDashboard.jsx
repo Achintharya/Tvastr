@@ -938,7 +938,7 @@ export function AdminDashboard() {
                   Product Presentation
                 </h2>
                 <p className="text-xs md:text-sm text-txt-muted max-w-md">
-                  13-slide comprehensive presentation covering Tvastr's complete product suite, technology architecture, and industrial AI capabilities.
+                  From rejection records to better plant decisions. Explore PIRAS, Medhas, Executive MIS and planned Vajra capabilities in this 13-slide customer presentation.
                 </p>
               </div>
 
@@ -954,7 +954,7 @@ export function AdminDashboard() {
                   <rect x="2" y="2" width="8" height="6" rx="1" stroke="currentColor" strokeWidth="1.2"/>
                   <path d="M2 4h8" stroke="currentColor" strokeWidth="1.2"/>
                 </svg>
-                <span className="font-mono text-xs text-txt-muted">13 slides • Full product suite</span>
+                <span className="font-mono text-xs text-txt-muted">13 slides • Customer marketing</span>
               </div>
 
               {/* Open button */}
@@ -976,6 +976,28 @@ export function AdminDashboard() {
               </a>
 
               <p className="text-[10px] text-txt-muted opacity-60">Opens in a new tab</p>
+            </div>
+          </div>
+
+          {/* ISO Audit resource placeholder. Report and PDF will be added later. */}
+          <div style={STYLES.card}>
+            <div className="p-8 md:p-12 flex flex-col items-center text-center gap-5">
+              <div className="w-16 h-16 flex items-center justify-center rounded-2xl" style={{ background: "rgba(0,60,51,0.06)", border: "1px solid rgba(0,60,51,0.12)" }} aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M9 5h14v22H9z" stroke={colors.process.primary} strokeWidth="1.5" />
+                  <path d="M13 11h6M13 16h6M13 21h6" stroke={colors.process.primary} strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-xl md:text-2xl font-black tracking-tight mb-2" style={STYLES.titleGradient}>ISO Audit</h2>
+                <p className="text-xs md:text-sm text-txt-muted max-w-lg">
+                  A planned report on how PIRAS, Medhas, MIS and Vajra can support a company during ISO audits, from organising operational records and inspection evidence to reviewing management information and supporting audit preparation.
+                </p>
+              </div>
+              <span className="text-xs font-semibold px-4 py-2 rounded-lg" style={{ background: colors.background.secondary, color: colors.process.primary }}>
+                Coming later · Report and PDF
+              </span>
+              <p className="text-xs text-txt-muted max-w-md">The report content and PDF will be added later.</p>
             </div>
           </div>
 
