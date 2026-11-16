@@ -28,7 +28,7 @@ export function RollbackVersionCard({ product, version }) {
     }
 
     if (!UPDATE_SERVER_URL) {
-      setError('Update server URL not configured.')
+      setError('Server URL not configured.')
       return
     }
 
