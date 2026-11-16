@@ -75,6 +75,7 @@ const AdminDashboard = lazy(() =>
   import("./pages/AdminDashboard").then((m) => ({ default: m.AdminDashboard })),
 );
 
+const OwnerDownload = lazy(() => import('./pages/OwnerDownload').then(m=>({default:m.OwnerDownload})));
 const OwnerApproval = lazy(() => import("./pages/OwnerApproval").then(m=>({default:m.OwnerApproval})));
 
 /** Main landing page — all sections stacked for infinite scroll */
@@ -191,6 +192,7 @@ export default function App() {
 
                   <Route path="/portal" element={<PortalLogin />} />
                   <Route path="/owner/approve" element={<OwnerApproval />} />
+                  <Route path="/owner/download" element={<OwnerDownload />} />
 
                   <Route
                     path="/portal/dashboard"
@@ -240,4 +242,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-

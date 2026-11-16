@@ -1,15 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
-
-const service = (import.meta.env.VITE_OWNER_SERVICE_URL || import.meta.env.VITE_UPDATE_SERVER_URL || '').replace(/\/$/,'');
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-const configured = /^https:\/\/[a-zA-Z0-9.-]+(?::443)?$/.test(service) && /^https:\/\/[a-z0-9]+\.supabase\.co$/.test(supabaseUrl) && !!supabaseKey;
+import { createOwnerClient, ownerConfigured as configured, ownerService as service } from '../lib/ownerIdentity';
 
 export function OwnerApproval() {
   // Per-mount, memory-only identity client. Never reuse or broadcast to the
   // normal customer portal session. Unmount ends this isolated sign-in.
-  const auth = useMemo(() => configured ? createClient(supabaseUrl, supabaseKey, {auth:{storageKey:'tvastr-owner-approval-ephemeral',persistSession:false, autoRefreshToken:false, detectSessionInUrl:false}}) : null, []);
+  const auth = useMemo(() => createOwnerClient('approval'), []);
   useEffect(() => () => { if(auth) void auth.auth.signOut({scope:'local'}).catch(()=>{}); }, [auth]);
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
