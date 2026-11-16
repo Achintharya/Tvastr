@@ -1,6 +1,6 @@
 # Software Update System
 
-Technical reference for OTA updates, update server setup, and release versioning.
+Technical reference for OTA updates, server setup, and release versioning.
 
 ---
 
@@ -37,7 +37,7 @@ update:
 
 ---
 
-## Update Server API
+## Server API
 
 **Endpoint:**
 ```
@@ -87,7 +87,7 @@ GET https://tvastr-update-server.onrender.com/api/check-update
 
 ## Tier-Aware Updates
 
-Update server can specify `tier` field. Launcher validates:
+Server can specify `tier` field. Launcher validates:
 
 ```
 if manifest.tier != local_tier:
@@ -127,7 +127,7 @@ Prevents TIER_1 customers receiving TIER_3 updates.
 
 ---
 
-## Setting Up Update Server
+## Setting Up Server
 
 ### Minimal FastAPI Server
 
@@ -325,7 +325,7 @@ python core/update/update_client.py
 Could not check for updates
 ```
 
-**Cause:** Update server unreachable (no internet).
+**Cause:** Server unreachable (no internet).
 
 **Fix:** System continues with current version. Update check optional.
 
