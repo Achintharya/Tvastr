@@ -9,7 +9,7 @@ import { createContext, useContext } from 'react'
  * Exposes:
  *   tier          — User's license tier ('TIER_1', 'TIER_2', 'TIER_3', or null)
  *   customerName  — Customer organization name
- *   licenseKey    — User's license key (for update server API calls)
+ *   licenseKey    — User's license key (for server API calls)
  *   capabilities  — Capability flags derived from tier
  *   isAdmin       — True if user is admin (achintharya@gmail.com or TVASTR-ACHINTH license)
  *   loading       — True while fetching license data
