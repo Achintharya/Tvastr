@@ -15,7 +15,7 @@ const UPDATE_SERVER_URL = import.meta.env.VITE_UPDATE_SERVER_URL;
  *
  * Download flow:
  *   1. User clicks Download
- *   2. Client calls update server API to get S3 pre-signed URL
+ *   2. Client calls server API to get S3 pre-signed URL
  *   3. Browser opens the signed URL in a new tab
  */
 export function ProductDownloadCard({ product, version, index }) {
@@ -35,7 +35,7 @@ export function ProductDownloadCard({ product, version, index }) {
     }
 
     if (!UPDATE_SERVER_URL) {
-      setError("Update server URL not configured.");
+      setError("Server URL not configured.");
       return;
     }
 
@@ -43,7 +43,7 @@ export function ProductDownloadCard({ product, version, index }) {
     setError(null);
 
     try {
-      // Call update server API to get S3 pre-signed URL
+      // Call server API to get S3 pre-signed URL
       const response = await fetch(
         `${UPDATE_SERVER_URL}/api/download/${encodeURIComponent(product.name)}/${encodeURIComponent(version.version_number)}?license_key=${encodeURIComponent(licenseKey)}`,
       );
