@@ -17,7 +17,8 @@ dist-ssr
 .env.local
 .env.production
 
-# Update server (lives in separate repo)
+# Server (lives in separate repo; keep ignoring the old folder too)
+server/
 tvastr-update-server/
 
 # Editor directories and files
