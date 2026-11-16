@@ -75,6 +75,8 @@ const AdminDashboard = lazy(() =>
   import("./pages/AdminDashboard").then((m) => ({ default: m.AdminDashboard })),
 );
 
+const OwnerApproval = lazy(() => import("./pages/OwnerApproval").then(m=>({default:m.OwnerApproval})));
+
 /** Main landing page — all sections stacked for infinite scroll */
 function HomePageWrapper() {
   useDocumentHead(
@@ -188,6 +190,7 @@ export default function App() {
                   />
 
                   <Route path="/portal" element={<PortalLogin />} />
+                  <Route path="/owner/approve" element={<OwnerApproval />} />
 
                   <Route
                     path="/portal/dashboard"
