@@ -255,7 +255,7 @@ Image Upload/Batch
 - **Write:** `AI_Inspections`, `AI_Defects`, `AI_Defect_Clusters` tables
 - **Fallback:** CSV files in `runtime/process_logs/`
 
-### Update Server
+### Server
 - **URL:** Configured in `configs/system.yaml`
 - **Protocol:** HTTPS, signed manifests
 - **Trigger:** Startup check + periodic polling
