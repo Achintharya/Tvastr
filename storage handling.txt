@@ -136,14 +136,14 @@ INSERT INTO versions (
 **What happens immediately:**
 - ✅ Customer portal shows new version
 - ✅ TIER_1+ users see "Download v2.1" button
-- ✅ Update server validates and serves downloads
+- ✅ Server validates and serves downloads
 - ✅ No code deployment needed!
 
 ### **Step 4: (Optional) Update Static Config**
 
-If this is the new **stable rollback version**, update the update server config:
+If this is the new **stable rollback version**, update the server config:
 
-Edit `app/config.py` in the update server repo:
+Edit `app/config.py` in the server repo:
 ```python
 DOWNLOADS = {
     "Rejection Analysis System": {
@@ -179,7 +179,7 @@ WHERE version_number = '2.0'
   AND product_id = 'a1b2c3d4-5678-90ab-cdef-1234567890ab';
 ```
 
-Deploy update server (auto-deploys from Git on Render).
+Deploy server (auto-deploys from Git on Render).
 
 ---
 
@@ -203,7 +203,7 @@ Deploy update server (auto-deploys from Git on Render).
 
 **The `file_path` column is the critical link:**
 - Database stores: `installers/ras-setup-2.1.exe`
-- Update server constructs: `s3://tvastr-installers/installers/ras-setup-2.1.exe`
+- Server constructs: `s3://tvastr-installers/installers/ras-setup-2.1.exe`
 - Generates pre-signed URL: `https://s3.amazonaws.com/tvastr-installers/installers/ras-setup-2.1.exe?signature=...`
 
 ---
@@ -327,7 +327,7 @@ async def upload_version(
                       │
                       ▼
             ┌───────────────────┐
-            │  Update Server    │
+            │  Server           │
             │  (Middleware)     │
             │                   │
             │  • Validates      │
@@ -344,7 +344,7 @@ async def upload_version(
 **Key Takeaway:**
 - **S3 stores the files** (binary data)
 - **Supabase stores the metadata** (JSON/text data)
-- **Update server bridges them** (validates + generates URLs)
+- **Server bridges them** (validates + generates URLs)
 - **Admin manually handles both** (current state)
 - **Should be automated** (future enhancement)
 
