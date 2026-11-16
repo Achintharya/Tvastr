@@ -224,7 +224,7 @@ export function PortalDashboard() {
       return;
     }
     if (!UPDATE_SERVER_URL) {
-      setDownloadError("Update server not configured.");
+      setDownloadError("Server not configured.");
       return;
     }
 
