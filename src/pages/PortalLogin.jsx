@@ -26,7 +26,7 @@ export function PortalLogin() {
 
   useDocumentHead(
     "Client Portal Login | Tvastr Industrial Intelligence",
-    "Access your Tvastr Industrial Intelligence client portal for system downloads, documentation, and support.",
+    "Access your Tvastr Industrial Intelligence client portal for documentation and support.",
     "https://tvastr.co/portal",
   );
 
