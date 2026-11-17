@@ -1,20 +1,14 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import { useLicense } from "../context/license-context";
-import { supabase } from "../lib/supabaseClient";
 import { Logo } from "../components/Logo";
 import { LockedProductCard } from "../components/LockedProductCard";
 import { UpgradeBanner } from "../components/UpgradeBanner";
-import { RollbackVersionCard } from "../components/RollbackVersionCard";
-import { ProductDownloadCard } from "../components/ProductDownloadCard";
 import { ForgeLoader } from "../components/ForgeLoader";
-import { TIER_LABELS, isAllowed, tierToBadgeState } from "../lib/capabilities";
+import { TIER_LABELS, tierToBadgeState } from "../lib/capabilities";
 import { CONFIG, openContact } from "../lib/config";
 import { legacyColors as colors } from "../design/colors";
 import { TierBadge } from "../components/portal/TierBadge";
-
-const UPDATE_SERVER_URL = import.meta.env.VITE_UPDATE_SERVER_URL;
 
 // Styles extracted to constants for performance - Light Theme
 const STYLES = {
@@ -57,12 +51,6 @@ const STYLES = {
     background: "rgba(255,136,0,0.08)",
     border: "1px solid rgba(255,136,0,0.2)",
     borderRadius: "0.375rem",
-  },
-  downloadButton: {
-    background: colors.process.primary,
-    border: "1px solid " + colors.process.primary,
-    color: "#ffffff",
-    borderRadius: "0.5rem",
   },
   supportCard: {
     background: colors.background.secondary,
@@ -128,7 +116,7 @@ const PRODUCTS = [
  *   - TIER_3: All three Cortexes active (future)
  *
  * UI is fully tier-driven — no hardcoded logic.
- * Download functionality is inline — no redirect to separate downloads page.
+ * Installation and updates are arranged through Tvastr support.
  */
 export function PortalDashboard() {
   const { user, signOut } = useAuth();
@@ -137,120 +125,8 @@ export function PortalDashboard() {
     customerName,
     capabilities,
     loading: licenseLoading,
-    licenseKey,
     isAdmin,
   } = useLicense();
-  const [versions, setVersions] = useState({}); // { productId: { latest: version, older: [versions] } }
-  const [loadingVersions, setLoadingVersions] = useState(true);
-  const [downloadingVersion, setDownloadingVersion] = useState(null);
-  const [downloadError, setDownloadError] = useState(null);
-
-  // Fetch versions from Supabase
-  useEffect(() => {
-    if (!tier) return;
-
-    async function fetchVersions() {
-      setLoadingVersions(true);
-      try {
-        const { data: allVersions, error } = await supabase
-          .from("versions")
-          .select(
-            `
-            version_number,
-            release_date,
-            changelog,
-            file_path,
-            checksum,
-            required_tier,
-            includes_pi,
-            product_id,
-            is_stable_rollback,
-            products (
-              id,
-              name,
-              description
-            )
-          `,
-          )
-          .order("release_date", { ascending: false });
-
-        if (error) throw error;
-
-        // Filter by tier and organize by product
-        const allowedVersions = allVersions.filter((v) => isAllowed(v, tier));
-        const versionsByProduct = {};
-
-        allowedVersions.forEach((version) => {
-          const productId = version.products.id;
-          if (!versionsByProduct[productId]) {
-            versionsByProduct[productId] = {
-              latest: null,
-              stable: null,
-              older: [],
-            };
-          }
-
-          // Identify stable rollback version
-          if (version.is_stable_rollback) {
-            versionsByProduct[productId].stable = version;
-          } else if (!versionsByProduct[productId].latest) {
-            // Latest non-stable version
-            versionsByProduct[productId].latest = version;
-          } else {
-            // Older versions (neither stable nor latest)
-            versionsByProduct[productId].older.push(version);
-          }
-        });
-
-        setVersions(versionsByProduct);
-      } catch (err) {
-        console.error("[Dashboard] Error fetching versions:", err);
-      } finally {
-        setLoadingVersions(false);
-      }
-    }
-
-    fetchVersions();
-  }, [tier]);
-
-  // Handle download with bucket support
-  const handleDownload = async (
-    productName,
-    versionNumber,
-    bucket = "installers",
-  ) => {
-    if (!licenseKey) {
-      setDownloadError("License key not found.");
-      return;
-    }
-    if (!UPDATE_SERVER_URL) {
-      setDownloadError("Server not configured.");
-      return;
-    }
-
-    setDownloadingVersion(`${productName}-${versionNumber}-${bucket}`);
-    setDownloadError(null);
-
-    try {
-      const response = await fetch(
-        `${UPDATE_SERVER_URL}/api/download/${encodeURIComponent(productName)}/${encodeURIComponent(versionNumber)}?license_key=${encodeURIComponent(licenseKey)}&bucket=${bucket}`,
-      );
-
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        throw new Error(errData.detail || "Download failed");
-      }
-
-      const data = await response.json();
-      window.open(data.download_url, "_blank", "noopener,noreferrer");
-    } catch (err) {
-      setDownloadError(err.message || "Download failed. Please try again.");
-      console.error("[Download]", err);
-    } finally {
-      setDownloadingVersion(null);
-    }
-  };
-
   return (
     <div className="min-h-screen relative" style={STYLES.background}>
       {/* Top nav */}
@@ -341,15 +217,12 @@ export function PortalDashboard() {
             {/* Upgrade Banner */}
             <UpgradeBanner />
 
-            {/* Products - unified card showing product info + download */}
+            {/* Products and license entitlements */}
             <div className="mb-10">
               {PRODUCTS.map((product, i) => {
                 const isActive = capabilities?.[product.capability];
-                const productVersions =
-                  versions[product.id] || Object.values(versions)[0];
-
                 if (isActive) {
-                  // Unified active product card with download functionality.
+                  // Active product card with license status and installation guidance.
                   // Status badge derives from the canonical tier → badge mapper
                   // (Reqs 15.5, 15.6, 15.7) so the dashboard chip stays aligned
                   // with LockedProductCard / LockedScreen / UpgradeBanner.
@@ -395,300 +268,11 @@ export function PortalDashboard() {
                           </div>
                         </div>
 
-                        {/* Version and download section */}
-                        {loadingVersions ? (
-                          <div className="flex items-center justify-center py-8 text-xs text-txt-muted">
-                            Loading versions...
-                          </div>
-                        ) : productVersions?.latest ||
-                          productVersions?.stable ? (
-                          <div className="space-y-4">
-                            {/* Version info box - show latest or stable */}
-                            <div
-                              className="p-6 space-y-4"
-                              style={{
-                                background: colors.background.secondary,
-                                border: "1px solid rgba(0,0,0,0.06)",
-                                borderRadius: "0.75rem",
-                                boxShadow: "0 1px 2px rgba(0,0,0,0.04)",
-                              }}
-                            >
-                              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                                <div>
-                                  <p className="text-xs text-txt-muted tracking-widest uppercase mb-1">
-                                    {productVersions?.latest
-                                      ? "Latest Version"
-                                      : "Current Version"}
-                                  </p>
-                                  <p className="text-2xl font-black text-signal-warning font-mono">
-                                    v
-                                    {
-                                      (
-                                        productVersions?.latest ||
-                                        productVersions?.stable
-                                      )?.version_number
-                                    }
-                                  </p>
-                                </div>
-                                <div className="md:text-right">
-                                  <p className="text-xs text-txt-muted tracking-widest uppercase mb-1">
-                                    Released
-                                  </p>
-                                  <p className="text-sm text-txt-secondary">
-                                    {new Date(
-                                      (
-                                        productVersions?.latest ||
-                                        productVersions?.stable
-                                      )?.release_date,
-                                    ).toLocaleDateString("en-IN", {
-                                      year: "numeric",
-                                      month: "long",
-                                      day: "numeric",
-                                    })}
-                                  </p>
-                                </div>
-                              </div>
-
-                              {(
-                                productVersions?.latest ||
-                                productVersions?.stable
-                              )?.changelog && (
-                                <div>
-                                  <p className="text-xs text-txt-muted tracking-widest uppercase mb-2">
-                                    Release Notes
-                                  </p>
-                                  <p className="text-sm text-txt-secondary leading-relaxed">
-                                    {
-                                      (
-                                        productVersions?.latest ||
-                                        productVersions?.stable
-                                      )?.changelog
-                                    }
-                                  </p>
-                                </div>
-                              )}
-                            </div>
-
-                            {/* Download error */}
-                            {downloadError && (
-                              <p className="text-xs text-red-400">
-                                {downloadError}
-                              </p>
-                            )}
-
-                            {/* Dual download buttons or single button */}
-                            {productVersions?.latest &&
-                            productVersions?.stable ? (
-                              // Both latest update and stable rollback exist - show dual buttons
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                {/* Latest update button (updates bucket) */}
-                                <button
-                                  onClick={() =>
-                                    handleDownload(
-                                      productVersions.latest.products.name,
-                                      productVersions.latest.version_number,
-                                      "updates",
-                                    )
-                                  }
-                                  disabled={
-                                    downloadingVersion ===
-                                    `${productVersions.latest.products.name}-${productVersions.latest.version_number}-updates`
-                                  }
-                                  className="flex items-center justify-center gap-2 py-4 text-sm font-semibold tracking-[0.15em] uppercase transition-all duration-200 disabled:opacity-50 relative overflow-hidden group"
-                                  style={STYLES.downloadButton}
-                                >
-                                  <span
-                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                    style={{
-                                      background: "rgba(245,158,11,0.08)",
-                                    }}
-                                  />
-                                  <span className="relative flex items-center gap-2">
-                                    <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 12 12"
-                                      fill="none"
-                                    >
-                                      <path
-                                        d="M6 1v7M3 5l3 3 3-3"
-                                        stroke="currentColor"
-                                        strokeWidth="1.2"
-                                        strokeLinecap="round"
-                                      />
-                                      <path
-                                        d="M1 10h10"
-                                        stroke="currentColor"
-                                        strokeWidth="1.2"
-                                        strokeLinecap="round"
-                                      />
-                                    </svg>
-                                    {downloadingVersion ===
-                                    `${productVersions.latest.products.name}-${productVersions.latest.version_number}-updates`
-                                      ? "Generating..."
-                                      : `Download v${productVersions.latest.version_number}`}
-                                  </span>
-                                </button>
-
-                                {/* Stable rollback button (installers bucket) */}
-                                <button
-                                  onClick={() =>
-                                    handleDownload(
-                                      productVersions.stable.products.name,
-                                      productVersions.stable.version_number,
-                                      "installers",
-                                    )
-                                  }
-                                  disabled={
-                                    downloadingVersion ===
-                                    `${productVersions.stable.products.name}-${productVersions.stable.version_number}-installers`
-                                  }
-                                  className="flex items-center justify-center gap-2 py-4 text-sm font-semibold tracking-[0.15em] uppercase transition-all duration-200 disabled:opacity-50 relative overflow-hidden group"
-                                  style={{
-                                    background: "rgba(168,168,180,0.06)",
-                                    border: "1px solid rgba(168,168,180,0.15)",
-                                    color: colors.text.muted,
-                                    borderRadius: "0.5rem",
-                                  }}
-                                >
-                                  <span
-                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                    style={{
-                                      background: "rgba(168,168,180,0.08)",
-                                    }}
-                                  />
-                                  <span className="relative flex items-center gap-2">
-                                    <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 12 12"
-                                      fill="none"
-                                    >
-                                      <path
-                                        d="M6 1v7M3 5l3 3 3-3"
-                                        stroke="currentColor"
-                                        strokeWidth="1.2"
-                                        strokeLinecap="round"
-                                      />
-                                      <path
-                                        d="M1 10h10"
-                                        stroke="currentColor"
-                                        strokeWidth="1.2"
-                                        strokeLinecap="round"
-                                      />
-                                    </svg>
-                                    {downloadingVersion ===
-                                    `${productVersions.stable.products.name}-${productVersions.stable.version_number}-installers`
-                                      ? "Generating..."
-                                      : `Stable v${productVersions.stable.version_number}`}
-                                  </span>
-                                </button>
-                              </div>
-                            ) : productVersions?.stable ? (
-                              // Only stable rollback exists (no newer version) - single button
-                              <button
-                                onClick={() =>
-                                  handleDownload(
-                                    productVersions.stable.products.name,
-                                    productVersions.stable.version_number,
-                                    "installers",
-                                  )
-                                }
-                                disabled={
-                                  downloadingVersion ===
-                                  `${productVersions.stable.products.name}-${productVersions.stable.version_number}-installers`
-                                }
-                                className="w-full flex items-center justify-center gap-2 py-4 text-sm font-semibold tracking-[0.15em] uppercase transition-all duration-200 disabled:opacity-50 relative overflow-hidden group"
-                                style={STYLES.downloadButton}
-                              >
-                                <span
-                                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                  style={{
-                                    background: "rgba(245,158,11,0.08)",
-                                  }}
-                                />
-                                <span className="relative flex items-center gap-2">
-                                  <svg
-                                    width="12"
-                                    height="12"
-                                    viewBox="0 0 12 12"
-                                    fill="none"
-                                  >
-                                    <path
-                                      d="M6 1v7M3 5l3 3 3-3"
-                                      stroke="currentColor"
-                                      strokeWidth="1.2"
-                                      strokeLinecap="round"
-                                    />
-                                    <path
-                                      d="M1 10h10"
-                                      stroke="currentColor"
-                                      strokeWidth="1.2"
-                                      strokeLinecap="round"
-                                    />
-                                  </svg>
-                                  {downloadingVersion ===
-                                  `${productVersions.stable.products.name}-${productVersions.stable.version_number}-installers`
-                                    ? "Generating link..."
-                                    : `Download v${productVersions.stable.version_number}`}
-                                </span>
-                              </button>
-                            ) : productVersions?.latest ? (
-                              // Only latest version exists (no stable rollback) - single button
-                              <button
-                                onClick={() =>
-                                  handleDownload(
-                                    productVersions.latest.products.name,
-                                    productVersions.latest.version_number,
-                                    "installers",
-                                  )
-                                }
-                                disabled={
-                                  downloadingVersion ===
-                                  `${productVersions.latest.products.name}-${productVersions.latest.version_number}-installers`
-                                }
-                                className="w-full flex items-center justify-center gap-2 py-4 text-sm font-semibold tracking-[0.15em] uppercase transition-all duration-200 disabled:opacity-50 relative overflow-hidden group"
-                                style={STYLES.downloadButton}
-                              >
-                                <span
-                                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                  style={{
-                                    background: "rgba(245,158,11,0.08)",
-                                  }}
-                                />
-                                <span className="relative flex items-center gap-2">
-                                  <svg
-                                    width="12"
-                                    height="12"
-                                    viewBox="0 0 12 12"
-                                    fill="none"
-                                  >
-                                    <path
-                                      d="M6 1v7M3 5l3 3 3-3"
-                                      stroke="currentColor"
-                                      strokeWidth="1.2"
-                                      strokeLinecap="round"
-                                    />
-                                    <path
-                                      d="M1 10h10"
-                                      stroke="currentColor"
-                                      strokeWidth="1.2"
-                                      strokeLinecap="round"
-                                    />
-                                  </svg>
-                                  {downloadingVersion ===
-                                  `${productVersions.latest.products.name}-${productVersions.latest.version_number}-installers`
-                                    ? "Generating link..."
-                                    : `Download v${productVersions.latest.version_number}`}
-                                </span>
-                              </button>
-                            ) : null}
-                          </div>
-                        ) : (
-                          <div className="flex items-center justify-center py-8 text-sm text-txt-muted">
-                            No releases available yet.
-                          </div>
-                        )}
+                        <p className="text-sm text-txt-secondary leading-relaxed" style={STYLES.supportCard}>
+                          <span className="block p-5">
+                            Installation and updates are handled by Tvastr. Contact support to arrange assistance.
+                          </span>
+                        </p>
                       </div>
                     </div>
                   );
