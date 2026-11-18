@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import { useLicense } from "../context/license-context";
+import { useAdminAccess } from "../context/admin-access-context";
+import { ADMIN_IDENTIFIERS } from "../lib/admin";
 import { Logo } from "../components/Logo";
 import { CONFIG, generateMailtoLink } from "../lib/config";
 import { useDocumentHead } from "../hooks/useDocumentHead";
@@ -19,6 +21,11 @@ export function PortalLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [code, setCode] = useState('');
+  const [factorId, setFactorId] = useState('');
+  const admin = useAdminAccess();
+  const adminPending = admin.factors.length > 0;
+  const isBusy = loading || admin.busy;
 
   const { signIn, session } = useAuth();
   const { isAdmin, loading: licenseLoading } = useLicense();
@@ -32,14 +39,21 @@ export function PortalLogin() {
 
   // Redirect if already logged in
   useEffect(() => {
-    if (session && !licenseLoading) {
-      const destination = isAdmin ? "/portal/admin" : "/portal/dashboard";
-      navigate(destination, { replace: true });
+    if (admin.access) {
+      navigate('/portal/admin', { replace: true });
+    } else if (session && !licenseLoading && !isAdmin && !adminPending) {
+      navigate('/portal/dashboard', { replace: true });
     }
-  }, [session, isAdmin, licenseLoading, navigate]);
+  }, [session, isAdmin, licenseLoading, navigate, admin.access, adminPending]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (adminPending) {
+      if (!/^[0-9]{6}$/.test(code)) { setError('Enter the current six-digit app code.'); return; }
+      setError('');
+      await admin.verify(factorId || admin.factors[0].id, code);
+      setCode(''); return;
+    }
     if (!email || !password) {
       setError("Please enter your email and password.");
       return;
@@ -48,7 +62,15 @@ export function PortalLogin() {
     setLoading(true);
     setError("");
 
+    // This email chooses the admin UI only. The server still authorizes the
+    // immutable owner UUID, fresh password and TOTP before the page opens.
+    if (email.trim().toLowerCase() === ADMIN_IDENTIFIERS.email) {
+      setLoading(false); setFactorId('');
+      await admin.start(email.trim(), password);
+      setPassword(''); return;
+    }
     const { error: authError } = await signIn(email, password);
+    setPassword('');
 
     if (authError) {
       setError(
@@ -123,6 +145,7 @@ export function PortalLogin() {
 
           {/* Login form */}
           <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+            {!adminPending && <>
             {/* Email field */}
             <div>
               <label
@@ -169,8 +192,15 @@ export function PortalLogin() {
               />
             </div>
 
+            </>}
+            {adminPending && <>
+              <p className="text-sm text-txt-secondary">Verify your Microsoft Authenticator code to open the admin page. The customer list may take about a minute while the free server wakes.</p>
+              {admin.factors.length > 1 && <label className="block text-sm">Use authenticator<select className="block w-full border rounded-lg px-3 py-3 mt-2 bg-bg-primary" value={factorId || admin.factors[0].id} onChange={e => setFactorId(e.target.value)} disabled={isBusy}>{admin.factors.map(f => <option key={f.id} value={f.id}>{f.friendly_name || 'Authenticator'}</option>)}</select></label>}
+              <label className="block font-mono text-[11px] tracking-[0.24em] uppercase text-txt-muted">Authenticator code<input className="block w-full px-4 py-3 mt-2 rounded-lg text-sm border border-border-subtle text-txt-primary bg-bg-primary" inputMode="numeric" pattern="[0-9]{6}" maxLength={6} autoComplete="one-time-code" value={code} onChange={e => setCode(e.target.value)} disabled={isBusy} autoFocus /></label>
+            </>}
+
             {/* Error message */}
-            {error && (
+            {(error || admin.error) && (
               <div
                 className="px-4 py-3 rounded-lg text-sm"
                 style={{
@@ -179,21 +209,21 @@ export function PortalLogin() {
                   color: "var(--signal-danger)",
                 }}
               >
-                {error}
+                {error || admin.error}
               </div>
             )}
 
             {/* Submit button */}
             <button
               type="submit"
-              disabled={loading}
+              disabled={isBusy}
               className="w-full py-3.5 rounded-full text-sm font-medium tracking-wide transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-process-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
               style={{
                 background: "var(--process-primary)",
                 color: "var(--bg-primary)",
               }}
             >
-              {loading ? (
+              {isBusy ? (
                 <span className="flex items-center justify-center gap-2">
                   <span
                     className="w-3 h-3 border-2 border-white/40 border-t-white rounded-full"
@@ -202,9 +232,10 @@ export function PortalLogin() {
                   Authenticating...
                 </span>
               ) : (
-                "Sign in"
+                adminPending ? "Verify and open admin" : "Sign in"
               )}
             </button>
+            {adminPending && <button type="button" className="w-full text-sm underline text-txt-muted" disabled={isBusy} onClick={() => { admin.clear(); setCode(''); setError(''); setFactorId(''); }}>Use a different account</button>}
           </form>
 
           {/* Divider */}
