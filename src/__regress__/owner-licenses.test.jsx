@@ -40,6 +40,11 @@ describe('owner-only read-only license list',()=>{
     expect(mock.signOut).toHaveBeenCalledWith({scope:'local'});expect(localStorage.length).toBe(0);expect(sessionStorage.length).toBe(0);
     fireEvent.click(screen.getByRole('button',{name:'Clear list'}));expect(screen.queryByText('synthetic-key')).toBeNull();
   });
+  it('allows a verified backup factor to be selected for inventory',async()=>{
+    mock.factors.mockResolvedValue({data:{totp:[{id:'primary',status:'verified',friendly_name:'Phone'},{id:'backup',status:'verified',friendly_name:'Backup'}]}});
+    await password();fireEvent.change(screen.getByLabelText('Use authenticator'),{target:{value:'backup'}});await load();
+    expect(mock.mfa).toHaveBeenCalledWith({factorId:'backup',code:'123456'});
+  });
   it('refuses password-only identity',async()=>{
     mock.factors.mockResolvedValue({data:{totp:[]},error:null});await password();
     expect(screen.getByRole('alert').textContent).toContain('authenticator');expect(fetch).not.toHaveBeenCalled();expect(mock.signOut).toHaveBeenCalled();
