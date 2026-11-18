@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import { useAuth } from "../context/auth-context";
 import { useLicense } from "../context/license-context";
 import { OwnerLicenses } from "./OwnerLicenses";
+import { OwnerAuthenticator } from "./OwnerAuthenticator";
 import { Logo } from "../components/Logo";
 import { legacyColors as colors } from "../design/colors";
 
@@ -352,7 +353,7 @@ export function AdminDashboard() {
         </div>
 
         {/* Tab content */}
-        {activeTab === "customers" && <div style={STYLES.card}><OwnerLicenses /></div>}
+        {activeTab === "customers" && <div style={STYLES.card}><OwnerLicenses /><OwnerAuthenticator expectedUser={user} /></div>}
 
         {activeTab === "docs" && (
           <div style={STYLES.card}>
