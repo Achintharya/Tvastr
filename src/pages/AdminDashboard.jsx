@@ -268,10 +268,14 @@ export function AdminDashboard() {
             <Link
               to="/portal/dashboard"
               className="text-xs font-semibold tracking-wider md:tracking-widest uppercase transition-colors duration-200 text-txt-muted hover:text-txt-primary"
+              aria-label="Customer View"
               title="Customer View"
             >
               <span className="hidden sm:inline">Customer View</span>
-              <span className="sm:hidden">👤</span>
+              <svg className="sm:hidden w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.5" />
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2" />
+              </svg>
             </Link>
             <div className="hidden sm:flex items-center gap-2">
               <div
