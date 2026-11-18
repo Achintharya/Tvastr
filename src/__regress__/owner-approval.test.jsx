@@ -133,3 +133,38 @@ it.each(['medhas','piras'])('keeps selected %s maintenance product bound through
   expect(fetch).not.toHaveBeenCalled();
   expect(screen.getByRole('alert').textContent).toContain('Challenge product does not match');
 });
+
+it('uses one PIRAS approval for labels and basic health with no extra health selection',async()=>{
+  render(<OwnerApproval/>);
+  const choice=screen.getByLabelText('Approval purpose');
+  expect([...choice.options].map(o=>o.value)).toEqual(['panel','maintenance','medhas']);
+  fireEvent.change(choice,{target:{value:'maintenance'}});
+  fireEvent.change(screen.getByLabelText('Website email'),{target:{value:'owner@example.invalid'}});
+  fireEvent.change(screen.getByLabelText('Website password'),{target:{value:'synthetic'}});
+  await act(async()=>{fireEvent.click(screen.getByRole('button',{name:/Continue to authenticator/}));});
+  await screen.findByLabelText('Authenticator code');
+  const installation='11111111-1111-4111-8111-111111111111';
+  const scope=['display_names.read','display_names.write','product.health.read'];
+  const challenge=btoa(JSON.stringify({payload:btoa(JSON.stringify({purpose:'tvastr-maintenance-challenge-v1',product:'piras',installation,scope})),signature:'synthetic'}));
+  fireEvent.change(screen.getByLabelText('Challenge from your local panel'),{target:{value:challenge}});
+  expect(screen.getByRole('status').textContent).toContain('basic service/version/cached-readiness');
+  expect(screen.getByRole('status').textContent).toContain('No customer data');
+  fetch.mockResolvedValue({ok:true,json:async()=>({approval:'synthetic',instance:installation,product:'piras',expires_at:Math.floor(Date.now()/1000)+800})});
+  fireEvent.change(screen.getByLabelText('Authenticator code'),{target:{value:'123456'}});
+  await act(async()=>{fireEvent.click(screen.getByRole('button',{name:/Approve this PIRAS installation/}));});
+  expect(fetch).toHaveBeenCalledTimes(1);
+});
+
+it.each([['medhas',['display_names.read','display_names.write','product.health.read']],['piras',['customer.read']]])('refuses unsupported %s challenge capabilities',async(product,scope)=>{
+  render(<OwnerApproval/>);
+  fireEvent.change(screen.getByLabelText('Approval purpose'),{target:{value:product==='medhas'?'medhas':'maintenance'}});
+  fireEvent.change(screen.getByLabelText('Website email'),{target:{value:'owner@example.invalid'}});
+  fireEvent.change(screen.getByLabelText('Website password'),{target:{value:'synthetic'}});
+  await act(async()=>{fireEvent.click(screen.getByRole('button',{name:/Continue to authenticator/}));});
+  await screen.findByLabelText('Authenticator code');
+  const challenge=btoa(JSON.stringify({payload:btoa(JSON.stringify({purpose:'tvastr-maintenance-challenge-v1',product,installation:'11111111-1111-4111-8111-111111111111',scope})),signature:'synthetic'}));
+  fireEvent.change(screen.getByLabelText('Challenge from your local panel'),{target:{value:challenge}});
+  fireEvent.change(screen.getByLabelText('Authenticator code'),{target:{value:'123456'}});
+  await act(async()=>{fireEvent.click(screen.getByRole('button',{name:/Approve this .* installation/}));});
+  expect(fetch).not.toHaveBeenCalled();
+});
