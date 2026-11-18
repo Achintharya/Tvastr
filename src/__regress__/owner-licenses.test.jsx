@@ -31,7 +31,9 @@ async function load(){
 }
 describe('owner-only read-only license list',()=>{
   it('isolates memory-only credentials and uses only the authenticated server route',async()=>{
+    const timeout = vi.spyOn(AbortSignal, 'timeout');
     await password();expect(fetch).not.toHaveBeenCalled();await load();
+    expect(timeout).toHaveBeenCalledWith(75000);timeout.mockRestore();
     expect(screen.getByText('Synthetic customer')).toBeTruthy();
     expect(mock.create.mock.calls.at(-1)[2].auth).toEqual({storageKey:'tvastr-owner-licenses-ephemeral',persistSession:false,autoRefreshToken:false,detectSessionInUrl:false});
     const [url,request]=fetch.mock.calls[0];expect(url).toBe('https://owner.example/api/owner/licenses');
