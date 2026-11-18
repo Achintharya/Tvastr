@@ -4,9 +4,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useAuth } from "../context/auth-context";
 import { useLicense } from "../context/license-context";
-import { supabase } from "../lib/supabaseClient";
+import { OwnerLicenses } from "./OwnerLicenses";
 import { Logo } from "../components/Logo";
-import { TIER_LABELS } from "../lib/capabilities";
 import { legacyColors as colors } from "../design/colors";
 
 // Mobile-friendly section selector for docs
@@ -172,10 +171,6 @@ export function AdminDashboard() {
   const { user, signOut } = useAuth();
   const { isAdmin } = useLicense();
   const [activeTab, setActiveTab] = useState("customers");
-  const [customers, setCustomers] = useState([]);
-  const [loadingCustomers, setLoadingCustomers] = useState(true);
-  const [error, setError] = useState(null);
-
   // Documentation state
   const [manifest, setManifest] = useState(null);
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -233,34 +228,6 @@ export function AdminDashboard() {
 
     fetchDocContent();
   }, [selectedDoc]);
-
-  // Fetch all customers
-  useEffect(() => {
-    if (activeTab !== "customers") return;
-
-    async function fetchCustomers() {
-      setLoadingCustomers(true);
-      setError(null);
-
-      try {
-        // Call the PostgreSQL function via RPC
-        const { data, error: rpcError } = await supabase.rpc(
-          "get_all_licenses_with_email",
-        );
-
-        if (rpcError) throw rpcError;
-
-        setCustomers(data || []);
-      } catch (err) {
-        console.error("[AdminDashboard] Error fetching customers:", err);
-        setError(err.message || "Failed to load customer data.");
-      } finally {
-        setLoadingCustomers(false);
-      }
-    }
-
-    fetchCustomers();
-  }, [activeTab]);
 
   // Safeguard: if not admin, don't render
   if (!isAdmin) {
@@ -385,174 +352,7 @@ export function AdminDashboard() {
         </div>
 
         {/* Tab content */}
-        {activeTab === "customers" && (
-          <div style={STYLES.card}>
-            {loadingCustomers ? (
-              <div className="flex items-center justify-center py-16">
-                <div className="flex flex-col items-center gap-4">
-                  <div
-                    className="w-8 h-8"
-                    style={{
-                      background: "rgba(245,158,11,0.1)",
-                      border: "1px solid rgba(245,158,11,0.3)",
-                      borderRadius: "0.375rem",
-                      transform: "rotate(45deg)",
-                      animation: "pulse 1.5s ease-in-out infinite",
-                    }}
-                  />
-                  <span className="text-xs text-txt-muted tracking-widest uppercase">
-                    Loading customers...
-                  </span>
-                </div>
-              </div>
-            ) : error ? (
-              <div className="p-8 text-center">
-                <p className="text-sm text-red-400">{error}</p>
-              </div>
-            ) : customers.length === 0 ? (
-              <div className="p-8 text-center">
-                <p className="text-sm text-txt-muted">No customers found.</p>
-              </div>
-            ) : (
-              <>
-                {/* Desktop table view */}
-                <div className="hidden md:block overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr>
-                        <th className="text-left" style={STYLES.table.header}>
-                          Customer Name
-                        </th>
-                        <th className="text-left" style={STYLES.table.header}>
-                          Email
-                        </th>
-                        <th className="text-left" style={STYLES.table.header}>
-                          License Key
-                        </th>
-                        <th className="text-left" style={STYLES.table.header}>
-                          Tier
-                        </th>
-                        <th className="text-left" style={STYLES.table.header}>
-                          Created
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {customers.map((customer) => (
-                        <tr
-                          key={customer.user_id}
-                          className="hover:bg-[rgba(245,158,11,0.02)] transition-colors"
-                        >
-                          <td style={STYLES.table.cell}>
-                            {customer.customer_name}
-                          </td>
-                          <td style={STYLES.table.cell}>
-                            <span className="font-mono text-xs">
-                              {customer.email || "N/A"}
-                            </span>
-                          </td>
-                          <td style={STYLES.table.cell}>
-                            <span className="font-mono text-xs text-signal-warning">
-                              {customer.license_key}
-                            </span>
-                          </td>
-                          <td style={STYLES.table.cell}>
-                            <span
-                              className="px-2 py-1 text-xs font-semibold rounded"
-                              style={{
-                                background: "rgba(16,185,129,0.1)",
-                                color: colors.process.primary,
-                                border: "1px solid rgba(16,185,129,0.2)",
-                              }}
-                            >
-                              {TIER_LABELS[customer.tier] || customer.tier}
-                            </span>
-                          </td>
-                          <td style={STYLES.table.cell}>
-                            <span className="text-xs text-txt-muted">
-                              {new Date(customer.created_at).toLocaleDateString(
-                                "en-IN",
-                                {
-                                  year: "numeric",
-                                  month: "short",
-                                  day: "numeric",
-                                },
-                              )}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Mobile card view */}
-                <div className="md:hidden p-4 space-y-4">
-                  {customers.map((customer) => (
-                    <div
-                      key={customer.user_id}
-                      className="p-4 rounded-lg"
-                      style={{
-                        background: colors.background.secondary,
-                        border: "1px solid rgba(0,0,0,0.06)",
-                      }}
-                    >
-                      <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-sm font-bold text-txt-primary">
-                          {customer.customer_name}
-                        </h3>
-                        <span
-                          className="px-2 py-1 text-xs font-semibold rounded"
-                          style={{
-                            background: "rgba(16,185,129,0.1)",
-                            color: colors.process.primary,
-                            border: "1px solid rgba(16,185,129,0.2)",
-                          }}
-                        >
-                          {TIER_LABELS[customer.tier] || customer.tier}
-                        </span>
-                      </div>
-
-                      <div className="space-y-2 text-xs">
-                        <div>
-                          <span className="text-txt-muted uppercase tracking-wider">
-                            Email:
-                          </span>
-                          <span className="ml-2 font-mono text-txt-secondary">
-                            {customer.email || "N/A"}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-txt-muted uppercase tracking-wider">
-                            License:
-                          </span>
-                          <span className="ml-2 font-mono text-signal-warning">
-                            {customer.license_key}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-txt-muted uppercase tracking-wider">
-                            Created:
-                          </span>
-                          <span className="ml-2 text-txt-muted">
-                            {new Date(customer.created_at).toLocaleDateString(
-                              "en-IN",
-                              {
-                                year: "numeric",
-                                month: "short",
-                                day: "numeric",
-                              },
-                            )}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-        )}
+        {activeTab === "customers" && <div style={STYLES.card}><OwnerLicenses /></div>}
 
         {activeTab === "docs" && (
           <div style={STYLES.card}>
