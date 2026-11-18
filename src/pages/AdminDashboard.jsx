@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { useAuth } from "../context/auth-context";
-import { useLicense } from "../context/license-context";
+import { useAdminAccess } from "../context/admin-access-context";
 import { OwnerLicenses } from "./OwnerLicenses";
 import { OwnerAuthenticator } from "./OwnerAuthenticator";
 import { Logo } from "../components/Logo";
@@ -166,11 +165,11 @@ const STYLES = {
  *   1. Customers — Lists all customers with their license info
  *   2. System Documentation — Renders markdown docs (placeholder for now)
  *
- * Only accessible to achintharya@gmail.com or TVASTR-ACHINTH license.
+ * Accessible only after the server accepts fresh owner password + TOTP inventory access.
  */
 export function AdminDashboard() {
-  const { user, signOut } = useAuth();
-  const { isAdmin } = useLicense();
+  const { access, clear: signOut } = useAdminAccess();
+  const user = access?.user;
   const [activeTab, setActiveTab] = useState("customers");
   // Documentation state
   const [manifest, setManifest] = useState(null);
@@ -231,7 +230,7 @@ export function AdminDashboard() {
   }, [selectedDoc]);
 
   // Safeguard: if not admin, don't render
-  if (!isAdmin) {
+  if (!access) {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
@@ -284,7 +283,7 @@ export function AdminDashboard() {
               </span>
             </div>
             <button
-              onClick={signOut}
+              onClick={() => signOut()}
               className="text-xs font-medium tracking-wider md:tracking-widest uppercase text-txt-muted hover:text-txt-primary transition-colors duration-200"
             >
               Logout
@@ -353,7 +352,7 @@ export function AdminDashboard() {
         </div>
 
         {/* Tab content */}
-        {activeTab === "customers" && <div style={STYLES.card}><OwnerLicenses /><OwnerAuthenticator expectedUser={user} /></div>}
+        {activeTab === "customers" && <div style={STYLES.card}><OwnerLicenses /><details className="border-t border-current/10 text-txt-muted text-xs"><summary className="cursor-pointer px-5 py-3 md:px-8">Security settings</summary><OwnerAuthenticator expectedUser={user} /></details></div>}
 
         {activeTab === "docs" && (
           <div style={STYLES.card}>

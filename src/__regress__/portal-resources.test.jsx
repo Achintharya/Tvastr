@@ -5,6 +5,7 @@ import { render, screen, fireEvent, cleanup, act } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { AuthContext } from '../context/auth-context'
 import { LicenseContext } from '../context/license-context'
+import { AdminAccessContext } from '../context/admin-access-context'
 
 vi.mock('../lib/supabaseClient', () => ({ supabase: { rpc: vi.fn(() => Promise.resolve({ data: [], error: null })) } }))
 import { AdminDashboard } from '../pages/AdminDashboard'
@@ -44,7 +45,7 @@ describe('customer presentation viewer', () => {
 
 describe('portal resources', () => {
   it('shows updated marketing summary and ISO placeholder without a fake download', async () => {
-    render(<MemoryRouter><AuthContext.Provider value={{ user: { email: 'fixture@example.com' }, signOut: vi.fn() }}><LicenseContext.Provider value={{ isAdmin: true }}><AdminDashboard /></LicenseContext.Provider></AuthContext.Provider></MemoryRouter>)
+    render(<MemoryRouter><AuthContext.Provider value={{ user: { email: 'fixture@example.com' }, signOut: vi.fn() }}><LicenseContext.Provider value={{ isAdmin: true }}><AdminAccessContext.Provider value={{access:{user:{email:'fixture@example.com'},rows:[]},clear:vi.fn()}}><AdminDashboard /></AdminAccessContext.Provider></LicenseContext.Provider></AuthContext.Provider></MemoryRouter>)
     await act(async () => {})
     fireEvent.click(screen.getByRole('button', { name: 'Resources' }))
     expect(screen.getByText(/From rejection records to better plant decisions/)).toBeTruthy()

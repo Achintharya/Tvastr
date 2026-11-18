@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { MarketingStructuredData } from "./components/MarketingStructuredData";
 import { SafeAnalytics } from "./components/SafeAnalytics";
 import { AuthProvider } from "./context/AuthContext";
+import { AdminAccessProvider } from "./context/AdminAccessProvider";
+import { AdminRoute } from "./components/AdminRoute";
 import { LicenseProvider } from "./context/LicenseContext";
 import { Navbar } from "./components/navigation/Navbar";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -142,6 +144,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <MarketingStructuredData />
+      <AdminAccessProvider>
       <AuthProvider>
         <LicenseProvider>
           <MotionProvider>
@@ -215,9 +218,9 @@ export default function App() {
                   <Route
                     path="/portal/admin"
                     element={
-                      <ProtectedRoute adminOnly>
+                      <AdminRoute>
                         <AdminDashboard />
-                      </ProtectedRoute>
+                      </AdminRoute>
                     }
                   />
 
@@ -239,6 +242,7 @@ export default function App() {
           </MotionProvider>
         </LicenseProvider>
       </AuthProvider>
+      </AdminAccessProvider>
     </BrowserRouter>
   );
 }
