@@ -6,7 +6,11 @@ function maintenanceSummary(encoded,product="piras") {
     const decode=value=>JSON.parse(atob(value.replace(/-/g,'+').replace(/_/g,'/')));
     const data=decode(decode(encoded.trim()).payload);
     if(data.purpose!=='tvastr-maintenance-challenge-v1'||data.product!==product||!/^[-a-f0-9]{36}$/.test(data.installation)) throw new Error();
-    return `${product==='medhas'?'Medhas':'PIRAS'} installation: ${data.installation}. Compare this ID with the selected local product. Display Names only.`;
+    const labels=['display_names.read','display_names.write'];
+    const health=[...labels,'product.health.read'];
+    if(data.scope && JSON.stringify(data.scope)!==JSON.stringify(labels) && !(product==='piras'&&JSON.stringify(data.scope)===JSON.stringify(health))) throw new Error();
+    const combined=product==='piras'&&JSON.stringify(data.scope)===JSON.stringify(health);
+    return `${product==='medhas'?'Medhas':'PIRAS'} installation: ${data.installation}. Compare this ID with the selected local product. ${combined?"Display Names and basic service/version/cached-readiness status. No customer data, database queries or service control.":"Display Names only (legacy label approval)."}`;
   } catch { return 'Paste a valid product maintenance challenge. This summary is informational; the service verifies it before approval.'; }
 }
 
@@ -69,8 +73,8 @@ export function OwnerApproval() {
     <div className="mx-auto max-w-xl">
       <p className="text-xs uppercase tracking-[.2em] text-txt-muted">Tvastr / Owner access</p>
       <h1 className="mt-5 text-4xl leading-tight">Approve your<br/><span className="text-txt-muted">local workspace.</span></h1>
-      <p className="mt-5 text-sm leading-relaxed text-txt-muted">Only continue if you started this sign-in in Tvastr Control Panel. This approval opens a product-only local workspace for up to 15 minutes. Panel approvals allow health and maintenance audit only. Separately selected product maintenance approves Display Names for the exact product installation in your challenge. Neither grants customer-data access.</p>
-      <label className="block mt-6 text-sm">Approval purpose<select className={input} value={purpose} disabled={busy||Boolean(factor)||Boolean(approval)} onChange={e=>{setPurpose(e.target.value);setChallenge('');}}><option value="panel">Panel workspace only</option><option value="maintenance">PIRAS Display Names maintenance</option><option value="medhas">Medhas Display Names maintenance</option></select></label>
+      <p className="mt-5 text-sm leading-relaxed text-txt-muted">Approve only challenges you started. The panel workspace includes selected-folder discovery, inventory, panel health and audit. One installation approval covers PIRAS labels and basic health; legacy PIRAS and Medhas remain labels-only. Basic health is a cached snapshot, not a database/model test. No customer-data access.</p>
+      <label className="block mt-6 text-sm">Approval purpose<select className={input} value={purpose} disabled={busy||Boolean(factor)||Boolean(approval)} onChange={e=>{setPurpose(e.target.value);setChallenge('');}}><option value="panel">Panel workspace only</option><option value="maintenance">PIRAS maintenance (labels + basic health)</option><option value="medhas">Medhas Display Names maintenance</option></select></label>
       {!configured && <p role="alert" className="mt-5 text-sm text-red-600">Owner approval is not configured. No local or password-only fallback is enabled.</p>}
       {approval ? <section className="mt-8 space-y-4">
         <p>{purpose!=='panel'?`Approved ${purpose==='medhas'?'Medhas':'PIRAS'} installation: `:'Approved panel instance: '}<span className="break-all">{instance}</span></p>
