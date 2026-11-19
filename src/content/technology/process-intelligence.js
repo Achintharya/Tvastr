@@ -10,10 +10,8 @@ export const processIntelligenceContent = {
       description: "Real-time control charts with Western Electric rules for process stability monitoring and drift detection.",
       features: [
         "X-bar control charts with UCL/LCL tracking",
-        "CUSUM charts for detecting gradual shifts",
-        "Western Electric pattern detection rules",
-        "Process capability indices (Cpk, Ppk)",
-        "Sigma level calculation and trending"
+        "Moving range charts",
+        "Process capability index (Cpk)"
       ]
     },
     {

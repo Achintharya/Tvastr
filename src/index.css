@@ -119,6 +119,16 @@
     border-radius: 2px;
   }
 
+
+  /* Scrollbar-free horizontal scrollers (pill tab bars) */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
   ::selection {
     background: rgba(0, 60, 51, 0.85);
     color: #ffffff;

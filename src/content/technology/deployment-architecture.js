@@ -2,49 +2,28 @@ export const deploymentArchitectureContent = {
   id: "deployment-architecture",
   type: "deployment-architecture",
   title: "Deployment Architecture",
-  subtitle: "Edge-native, on-premise deployment with offline capability and deterministic performance for industrial environments.",
-  body: "Tvastr is deployed inside the plant network on dedicated hardware. All inference, reasoning, and persistence operates locally. The system requires no internet connectivity, provides deterministic latency, and scales from single inspection stations to plant-wide multi-gate deployments.",
-  deploymentModels: [
-    {
-      name: "Single Station",
-      description: "Self-contained inspection point with local GPU processing and SQL storage.",
-      components: ["Workstation PC with GPU", "Industrial camera", "Local SQL database", "Tvastr RAS runtime"],
-      useCase: "Pilot deployment, single quality gate, targeted inspection"
-    },
-    {
-      name: "Multi-Gate",
-      description: "Multiple inspection stations with centralized database and cross-gate intelligence.",
-      components: ["Multiple edge workstations", "Centralized SQL server", "Network-attached image storage", "RAS + PI stack"],
-      useCase: "Pattern, mold, knockout, fettling, and final inspection gates"
-    },
-    {
-      name: "Plant-Wide",
-      description: "Full deployment with process intelligence, analytics dashboards, and ERP integration.",
-      components: ["Multi-station inspection network", "Central database server", "API server for PI dashboards", "ERP integration layer", "Backup and archival systems"],
-      useCase: "Complete manufacturing intelligence infrastructure"
-    }
-  ],
+  subtitle: "Edge-native, on-premise deployment with offline capability for industrial environments.",
+  body: "Tvastr is installed on a Windows machine inside the plant network. Inspection, reasoning, analytics and storage run on the local network. Internet is used for license renewal and software updates.",
   infrastructure: {
     database: {
       title: "SQL Integration",
-      description: "Native SQL Server integration with connection pooling, automatic schema migration, and JSON fallback for offline operation."
+      description: "Native SQL Server integration with connection pooling and automatic schema migration."
     },
     api: {
       title: "API Architecture",
-      description: "FastAPI REST server with 25 endpoints, WebSocket real-time updates, OpenAPI documentation, and license-based feature gating."
+      description: "FastAPI REST server with WebSocket real-time updates, OpenAPI documentation, and license-based feature gating."
     },
     network: {
       title: "Network Requirements",
-      description: "Gigabit Ethernet for multi-station deployments. Local network only — no internet required. Optional VPN for remote support."
+      description: "Runs on the plant's local network."
     }
   },
   coreProperties: [
     "Edge-native: all processing inside the plant firewall",
-    "Offline-capable: full functionality without internet",
-    "Deterministic: sub-200ms inspection latency",
-    "Industrial-grade: designed for 24/7 continuous operation",
-    "Data sovereignty: no data leaves the facility",
+    "Offline-capable: inspection continues without internet within the license's offline allowance",
+    "Automatic start: launches with Windows and restarts automatically on failure",
+    "Local storage: inspection images and records are stored on the plant's own server",
     "API-first: standard integration protocols"
   ],
-  keyMessage: "Industrial deployment architecture. Not cloud software adapted for factory use. All intelligence runs locally, deterministically, and offline."
+  keyMessage: "Industrial deployment architecture, installed inside the plant. Not cloud software adapted for factory use."
 }
