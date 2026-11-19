@@ -18,7 +18,7 @@ import { useDocumentHead } from '../../hooks/useDocumentHead'
 export function RejectionAnalysisSystem() {
   useDocumentHead(
     'Rejection Analysis System — Inspection Intelligence Runtime | Tvastr Industrial Intelligence',
-    'Industrial inspection intelligence runtime. Real-time defect detection, process-aware reasoning, and manufacturing traceability within a unified cognition platform.',
+    'Industrial inspection intelligence runtime. Automated defect detection, process-aware reasoning, and manufacturing traceability within a unified cognition platform.',
     'https://tvastr.co/systems/rejection-analysis-system'
   )
 
@@ -46,7 +46,7 @@ export function RejectionAnalysisSystem() {
             Rejection Analysis System
           </h1>
           <p className="text-xl text-slate-500 font-light max-w-[680px] leading-relaxed">
-            The inspection intelligence layer of the Tvastr industrial cognition runtime. Transforms casting inspection into structured operational intelligence with real-time defect analysis and traceability.
+            The inspection intelligence layer of the Tvastr industrial cognition runtime. Transforms casting inspection into structured operational intelligence with automated defect analysis and traceability.
           </p>
         </div>
         <div className="slide-footer">
@@ -89,7 +89,7 @@ export function RejectionAnalysisSystem() {
           </div>
         </div>
         <p className="mt-5 text-sm text-slate-500 italic" style={{ maxWidth: '680px' }}>
-          One unified runtime. Edge-native deployment. No cloud dependency.
+          One unified runtime. Edge-native deployment.
         </p>
       </SystemDetailSection>
 
@@ -111,7 +111,7 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="03 / The Opportunity"
         title="Every casting is inspected. That makes inspection the largest scalable data stream in a foundry."
-        body="If structured properly, inspection becomes far more than a quality gate. It becomes a real-time process diagnostic layer, running automatically on every part at production speed."
+        body="If structured properly, inspection becomes far more than a quality gate. It becomes a process diagnostic layer, running automatically on every inspected part."
         bullets={[
           'A standardised decision engine operating at casting level',
           'A process diagnostic layer linked to manufacturing context',
@@ -145,12 +145,12 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="05 / Application — Inspection"
         title="Inspection Interface"
-        body="Operators work through a unified dashboard that captures casting images with manufacturing context. The inspection runtime processes each casting through the full intelligence pipeline in real time."
+        body="Operators work through a unified dashboard that captures casting images with manufacturing context. The inspection runtime processes each casting through the full intelligence pipeline automatically."
       >
         <SystemImageBlock
           src="/inspection_tab.png"
           alt="Rejection Analysis System — Inspection Interface"
-          caption="Unified inspection interface with real-time defect intelligence and manufacturing context capture."
+          caption="Unified inspection interface with automated defect intelligence and manufacturing context capture."
         />
       </SystemDetailSection>
 
@@ -163,7 +163,7 @@ export function RejectionAnalysisSystem() {
         <SystemImageBlock
           src="/single_inspection_tab.png"
           alt="Rejection Analysis System — Single Inspection"
-          caption="Single casting inspection with real-time defect intelligence and manufacturing context."
+          caption="Single casting inspection with automated defect intelligence and manufacturing context."
         />
       </SystemDetailSection>
 
@@ -189,7 +189,7 @@ export function RejectionAnalysisSystem() {
         <div className="mt-6 p-5" style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px' }}>
           <p className="text-sm font-semibold text-gray-700 mb-3">Reasoning Components</p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {['Signal-first classification', 'Multi-signal fusion', 'Energy-based reasoning', 'Topology analysis', 'Defectograph matching', 'Process-aware severity'].map((rule, i) => (
+            {['Signal-first classification', 'Multi-signal fusion', 'Agreement validation', 'Topology analysis', 'Defectograph matching', 'Process-aware severity'].map((rule, i) => (
               <div key={i} className="text-sm text-slate-600 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-slate-300" />{rule}
               </div>
@@ -317,13 +317,13 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="10 / Deployment Architecture"
         title="Edge-native deployment within the plant network."
-        body="The unified runtime runs entirely on-premise on dedicated industrial hardware. No casting images or production data leave the plant network with full offline operation capability."
+        body="The unified runtime runs on-premise on industrial hardware inside the plant network. Casting images and production data stay on the plant network, and inspection keeps running without internet within the license's offline allowance."
         bullets={[
           'Local FastAPI runtime with Next.js dashboard',
-          'GPU-accelerated inference on local hardware',
+          'Local inference on industrial hardware',
           'Local telemetry and artifact serving',
           'SQL database with ERP integration',
-          'Full data sovereignty — no cloud dependency',
+          'Inspection data stays on the plant network',
           'Automatic recovery on network restoration',
         ]}
       />
@@ -347,15 +347,15 @@ export function RejectionAnalysisSystem() {
       <SystemDetailSection
         label="12 / Continuous Learning"
         title="Inspection intelligence evolves with plant operations."
-        body="Disagreements between decisions and supervisor corrections become training signals to improve subsequent model versions."
+        body="Disagreements between decisions and supervisor corrections are captured as tracked corrections that improve subsequent classifications, without retraining."
       >
         <SystemWorkflow
           steps={[
             'Identify disagreement cases',
-            'Curate correction datasets',
-            'Retrain model',
+            'Capture supervisor corrections',
+            'Update reference examples',
             'Evaluate agreement rate',
-            'Deploy updated model',
+            'Apply to future inspections',
           ]}
         />
       </SystemDetailSection>

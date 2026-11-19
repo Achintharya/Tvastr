@@ -80,7 +80,7 @@ export function PlantIntelligence() {
               <span className="w-2 h-2 rounded-full bg-slate-400 flex-shrink-0" />
               <p className="text-sm font-bold text-gray-800">Inspection Intelligence Layer</p>
             </div>
-            <p className="text-xs text-slate-400 mb-3">Real-time operational intelligence.</p>
+            <p className="text-xs text-slate-400 mb-3">Automated operational intelligence.</p>
             <ul className="space-y-1.5">
               {['Defect detection and classification','Root cause diagnostics','Traceable inspection records','Shop-floor decision support'].map((c, i) => (
                 <li key={i} className="flex items-center gap-2 text-sm text-gray-600">
