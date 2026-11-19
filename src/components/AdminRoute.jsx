@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { useAdminAccess } from '../context/admin-access-context';
 
-// No portal session, profile metadata or license hint grants admin access.
+// Password opens the shell only. Customers and private assets remain server-authorized.
 export function AdminRoute({ children }) {
-  const { access } = useAdminAccess();
-  return access ? children : <Navigate to="/portal" replace />;
+  const { portal } = useAdminAccess();
+  return portal ? children : <Navigate to="/portal" replace />;
 }

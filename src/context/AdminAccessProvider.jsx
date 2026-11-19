@@ -1,109 +1,78 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AdminAccessContext } from './admin-access-context';
 import { createOwnerClient, ownerService } from '../lib/ownerIdentity';
-
+import { ADMIN_IDENTIFIERS } from '../lib/admin';
 const FIELDS = ['user_id', 'customer_name', 'license_key', 'tier', 'email', 'created_at'];
-const FRESH_WINDOW = 300000;
+const WINDOW = 300000;
 
-// Admin sign-in never passes through the persistent customer Supabase client.
-// The server, not the email hint or customer license, decides owner authorization.
+// Password opens only the shell. Every private request is authorized by server UUID policy.
+// Neither password nor bearer tokens are persisted by this provider.
 export function AdminAccessProvider({ children }) {
-  const auth = useRef(null);
-  const [access, setAccess] = useState(null);
-  const [factors, setFactors] = useState([]);
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState('');
-  const sequence = useRef(0);
-  const timer = useRef(null);
-  const controller = useRef(null);
-  const passwordAt = useRef(0);
-  const pendingUser = useRef(null);
-
-  const signOutLocal = useCallback(async (client) => {
-    if (client) await client.auth.signOut({ scope: 'local' }).catch(() => {});
+  const auth = useRef(null), generation = useRef(0), timer = useRef(null), controller = useRef(null);
+  const [portal, setPortal] = useState(null), [access, setAccess] = useState(null);
+  const [factors, setFactors] = useState([]), [busy, setBusy] = useState(false), [error, setError] = useState('');
+  const signOutLocal = useCallback(async c => { if (c) await c.auth.signOut({ scope: 'local' }).catch(() => {}); }, []);
+  const lock = useCallback((message = '') => {
+    generation.current++; clearTimeout(timer.current); controller.current?.abort(); controller.current = null;
+    setAccess(null); setBusy(false); setError(message);
   }, []);
   const clear = useCallback((message = '') => {
-    sequence.current += 1;
-    clearTimeout(timer.current); controller.current?.abort(); controller.current = null;
-    passwordAt.current = 0; pendingUser.current = null;
-    setAccess(null); setFactors([]); setBusy(false); setError(message);
-    const previous = auth.current; auth.current = null;
-    void signOutLocal(previous);
-  }, [signOutLocal]);
+    lock(message); setPortal(null); setFactors([]); const c = auth.current; auth.current = null; void signOutLocal(c);
+  }, [lock, signOutLocal]);
   useEffect(() => () => {
-    sequence.current += 1; clearTimeout(timer.current); controller.current?.abort();
-    const previous = auth.current; auth.current = null;
-    void signOutLocal(previous);
+    generation.current++; clearTimeout(timer.current); controller.current?.abort(); void signOutLocal(auth.current); auth.current = null;
   }, [signOutLocal]);
-
   const start = useCallback(async (email, password) => {
-    const run = ++sequence.current;
-    const previous = auth.current;
-    const client = createOwnerClient('admin-login');
-    auth.current = client;
-    void signOutLocal(previous);
-    clearTimeout(timer.current); controller.current?.abort();
-    setAccess(null); setFactors([]); setError(''); setBusy(true); pendingUser.current = null;
+    clear(); const run = ++generation.current; const c = createOwnerClient('admin-login'); auth.current = c; setBusy(true);
     try {
-      if (!client) throw new Error('Admin access is not configured.');
-      const result = await client.auth.signInWithPassword({ email, password });
-      if (run !== sequence.current) return false;
+      if (!c) throw new Error('Portal access is not configured.');
+      const result = await c.auth.signInWithPassword({ email, password });
       if (result.error) throw new Error('Invalid email or password.');
-      const { data: identity, error: userError } = await client.auth.getUser();
-      if (run !== sequence.current) return false;
-      if (userError || !identity?.user?.id) throw new Error('Could not verify the signed-in account.');
-      const { data, error: factorError } = await client.auth.mfa.listFactors();
-      if (run !== sequence.current) return false;
-      const verified = data?.totp?.filter(item => item.status === 'verified') || [];
-      if (factorError || !verified.length) throw new Error('No verified authenticator found. Contact support for secure account setup.');
-      pendingUser.current = { id: identity.user.id, email: identity.user.email };
-      passwordAt.current = Date.now(); setFactors(verified);
-      timer.current = setTimeout(() => clear('Admin sign-in expired. Enter your password again.'), FRESH_WINDOW);
-      return true;
-    } catch (err) {
-      if (run === sequence.current) { setError(err.message); await signOutLocal(client); }
-      return false;
-    } finally {
-      if (run === sequence.current) setBusy(false);
-      else void signOutLocal(client);
-    }
+      const { data, error: e } = await c.auth.getUser();
+      if (e || !data?.user?.id || data.user.email?.toLowerCase() !== ADMIN_IDENTIFIERS.email.toLowerCase()) throw new Error('Could not verify the signed-in owner account.');
+      if (run !== generation.current) return false;
+      setPortal({ user: { id: data.user.id, email: data.user.email } }); return true;
+    } catch (e) { if (run === generation.current) { setError(e.message); void signOutLocal(c); auth.current = null; } return false; }
+    finally { if (run === generation.current) setBusy(false); }
   }, [clear, signOutLocal]);
-
-  const verify = useCallback(async (factorId, code) => {
-    const run = sequence.current;
-    const client = auth.current;
-    setBusy(true); setError('');
+  const prepare = useCallback(async () => {
+    if (!auth.current || !portal) return false;
+    const run = generation.current; setBusy(true); setError('');
     try {
-      if (!client || !pendingUser.current || !factors.some(item => item.id === factorId) || Date.now() - passwordAt.current >= FRESH_WINDOW) throw new Error('Admin sign-in expired. Enter your password again.');
-      const { error: factorError } = await client.auth.mfa.challengeAndVerify({ factorId, code });
-      if (run !== sequence.current) return false;
-      if (factorError) throw new Error('Authenticator verification failed. Sign in again with a current code.');
-      const { data: { session } } = await client.auth.getSession();
-      if (run !== sequence.current) return false;
-      if (!session) throw new Error('Admin session expired. Sign in again.');
-      controller.current = new AbortController();
-      const signal = AbortSignal.any([controller.current.signal, AbortSignal.timeout(75000)]);
-      const response = await fetch(ownerService + '/api/owner/licenses', { headers: { Authorization: 'Bearer ' + session.access_token }, credentials: 'omit', cache: 'no-store', signal });
-      if (run !== sequence.current) return false;
-      if (!response.ok) throw new Error('Admin access denied or customer list unavailable. Start a fresh sign-in.');
+      const { data, error: e } = await auth.current.auth.mfa.listFactors();
+      if (run !== generation.current) return false;
+      const verified = data?.totp?.filter(f => f.status === 'verified') || [];
+      if (e || !verified.length) throw new Error('No verified authenticator found. Open Security settings for secure account setup.');
+      setFactors(verified); return true;
+    } catch (e) { if (run === generation.current) setError(e.message); return false; }
+    finally { if (run === generation.current) setBusy(false); }
+  }, [portal]);
+  const request = useCallback(async (path, options = {}) => {
+    const c = auth.current; if (!c || !portal) throw new Error('Sign into the portal again.');
+    const { data: { session } } = await c.auth.getSession();
+    if (!session) { clear('Portal session expired. Sign in again.'); throw new Error('Portal session expired. Sign in again.'); }
+    return fetch(ownerService + path, { ...options, headers: { ...options.headers, Authorization: 'Bearer ' + session.access_token }, credentials: 'omit', cache: 'no-store' });
+  }, [portal, clear]);
+  const verify = useCallback(async (factorId, code) => {
+    if (!auth.current || !portal || !factors.some(f => f.id === factorId)) return false;
+    const run = ++generation.current; clearTimeout(timer.current); controller.current?.abort(); controller.current = new AbortController();
+    const began = Date.now(); setAccess(null); setBusy(true); setError('');
+    // Expiry starts with the challenge, not after a slow server response.
+    timer.current = setTimeout(() => lock('Customer access expired. Enter a new authenticator code.'), WINDOW);
+    try {
+      const { error: e } = await auth.current.auth.mfa.challengeAndVerify({ factorId, code });
+      if (run !== generation.current) return false;
+      if (e) throw new Error('Authenticator verification failed. Try a current code.');
+      const response = await request('/api/owner/licenses', { signal: AbortSignal.any([controller.current.signal, AbortSignal.timeout(75000)]) });
+      if (run !== generation.current) return false;
+      if (!response.ok) throw new Error('Customer list unavailable. Check the code or retry when the server is ready.');
       const data = await response.json();
-      if (run !== sequence.current) return false;
-      if (!Array.isArray(data.licenses) || data.licenses.length > 200 || data.count !== data.licenses.length || data.licenses.some(row => !row || FIELDS.some(key => row[key] !== null && (typeof row[key] !== 'string' || row[key].length > 512)))) throw new Error('Invalid license list response.');
-      const user = pendingUser.current;
-      pendingUser.current = null; passwordAt.current = 0; clearTimeout(timer.current);
-      setFactors([]); setAccess({ user, rows: data.licenses });
-      timer.current = setTimeout(() => clear('Admin access expired. Sign in again.'), FRESH_WINDOW);
-      return true;
-    } catch (err) {
-      if (run === sequence.current) clear(err.name === 'TimeoutError' ? 'Server timed out. Sign in again.' : err.message);
-      return false;
-    } finally {
-      await signOutLocal(client);
-      if (auth.current === client) auth.current = null;
-      if (run === sequence.current) setBusy(false);
-    }
-  }, [factors, clear, signOutLocal]);
-
-  const value = useMemo(() => ({ access, factors, busy, error, start, verify, clear }), [access, factors, busy, error, start, verify, clear]);
+      if (run !== generation.current || Date.now() - began >= WINDOW) return false;
+      if (!Array.isArray(data.licenses) || data.licenses.length > 200 || data.count !== data.licenses.length || data.licenses.some(row => !row || FIELDS.some(k => row[k] !== null && (typeof row[k] !== 'string' || row[k].length > 512)))) throw new Error('Invalid license list response.');
+      setAccess({ user: portal.user, rows: data.licenses }); return true;
+    } catch (e) { if (run === generation.current) lock(e.name === 'TimeoutError' ? 'Customer server timed out. Resources and Docs remain available.' : e.message); return false; }
+    finally { if (run === generation.current) setBusy(false); }
+  }, [portal, factors, request, lock]);
+  const value = useMemo(() => ({ portal, access, factors, busy, error, start, prepare, verify, lock, clear, request }), [portal, access, factors, busy, error, start, prepare, verify, lock, clear, request]);
   return <AdminAccessContext.Provider value={value}>{children}</AdminAccessContext.Provider>;
 }

@@ -21,10 +21,7 @@ export function PortalLogin() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [code, setCode] = useState('');
-  const [factorId, setFactorId] = useState('');
   const admin = useAdminAccess();
-  const adminPending = admin.factors.length > 0;
   const isBusy = loading || admin.busy;
 
   const { signIn, session } = useAuth();
@@ -39,21 +36,15 @@ export function PortalLogin() {
 
   // Redirect if already logged in
   useEffect(() => {
-    if (admin.access) {
+    if (admin.portal) {
       navigate('/portal/admin', { replace: true });
-    } else if (session && !licenseLoading && !isAdmin && !adminPending) {
+    } else if (session && !licenseLoading && !isAdmin) {
       navigate('/portal/dashboard', { replace: true });
     }
-  }, [session, isAdmin, licenseLoading, navigate, admin.access, adminPending]);
+  }, [session, isAdmin, licenseLoading, navigate, admin.portal]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (adminPending) {
-      if (!/^[0-9]{6}$/.test(code)) { setError('Enter the current six-digit app code.'); return; }
-      setError('');
-      await admin.verify(factorId || admin.factors[0].id, code);
-      setCode(''); return;
-    }
     if (!email || !password) {
       setError("Please enter your email and password.");
       return;
@@ -62,10 +53,9 @@ export function PortalLogin() {
     setLoading(true);
     setError("");
 
-    // This email chooses the admin UI only. The server still authorizes the
-    // immutable owner UUID, fresh password and TOTP before the page opens.
+    // This email chooses the admin UI only. The server authorizes private assets and customer records separately.
     if (email.trim().toLowerCase() === ADMIN_IDENTIFIERS.email) {
-      setLoading(false); setFactorId('');
+      setLoading(false);
       await admin.start(email.trim(), password);
       setPassword(''); return;
     }
@@ -145,7 +135,7 @@ export function PortalLogin() {
 
           {/* Login form */}
           <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-            {!adminPending && <>
+            <>
             {/* Email field */}
             <div>
               <label
@@ -192,13 +182,7 @@ export function PortalLogin() {
               />
             </div>
 
-            </>}
-            {adminPending && <>
-              <p className="text-sm text-txt-secondary">Verify your Microsoft Authenticator code to open the admin page. The customer list may take about a minute while the free server wakes.</p>
-              {admin.factors.length > 1 && <label className="block text-sm">Use authenticator<select className="block w-full border rounded-lg px-3 py-3 mt-2 bg-bg-primary" value={factorId || admin.factors[0].id} onChange={e => setFactorId(e.target.value)} disabled={isBusy}>{admin.factors.map(f => <option key={f.id} value={f.id}>{f.friendly_name || 'Authenticator'}</option>)}</select></label>}
-              <label className="block font-mono text-[11px] tracking-[0.24em] uppercase text-txt-muted">Authenticator code<input className="block w-full px-4 py-3 mt-2 rounded-lg text-sm border border-border-subtle text-txt-primary bg-bg-primary" inputMode="numeric" pattern="[0-9]{6}" maxLength={6} autoComplete="one-time-code" value={code} onChange={e => setCode(e.target.value)} disabled={isBusy} autoFocus /></label>
-            </>}
-
+            </>
             {/* Error message */}
             {(error || admin.error) && (
               <div
@@ -232,10 +216,10 @@ export function PortalLogin() {
                   Authenticating...
                 </span>
               ) : (
-                adminPending ? "Verify and open admin" : "Sign in"
+                "Sign in"
               )}
             </button>
-            {adminPending && <button type="button" className="w-full text-sm underline text-txt-muted" disabled={isBusy} onClick={() => { admin.clear(); setCode(''); setError(''); setFactorId(''); }}>Use a different account</button>}
+
           </form>
 
           {/* Divider */}

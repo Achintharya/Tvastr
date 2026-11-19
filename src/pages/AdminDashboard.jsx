@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useAdminAccess } from "../context/admin-access-context";
+import { PirasDemoResource } from "../components/PirasDemoResource";
 import { OwnerLicenses } from "./OwnerLicenses";
 import { OwnerAuthenticator } from "./OwnerAuthenticator";
 import { Logo } from "../components/Logo";
@@ -161,16 +162,14 @@ const STYLES = {
 /**
  * AdminDashboard — Admin-only dashboard.
  *
- * Two tabs:
- *   1. Customers — Lists all customers with their license info
- *   2. System Documentation — Renders markdown docs (placeholder for now)
+ * Customers, System Documentation and Resources.
  *
- * Accessible only after the server accepts fresh owner password + TOTP inventory access.
+ * Password opens the portal shell; customer records require a separate fresh TOTP check.
  */
 export function AdminDashboard() {
-  const { access, clear: signOut } = useAdminAccess();
-  const user = access?.user;
-  const [activeTab, setActiveTab] = useState("customers");
+  const { portal, clear: signOut } = useAdminAccess();
+  const user = portal?.user;
+  const [activeTab, setActiveTab] = useState("visualizer");
   // Documentation state
   const [manifest, setManifest] = useState(null);
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -230,7 +229,7 @@ export function AdminDashboard() {
   }, [selectedDoc]);
 
   // Safeguard: if not admin, don't render
-  if (!access) {
+  if (!portal) {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
@@ -320,6 +319,7 @@ export function AdminDashboard() {
         {/* Tabs */}
         <div className="mb-6 md:mb-8 flex flex-wrap gap-2 md:gap-3">
           <button
+            aria-pressed={activeTab === "customers"}
             onClick={() => setActiveTab("customers")}
             style={{
               ...STYLES.tab.base,
@@ -331,6 +331,7 @@ export function AdminDashboard() {
             Customers
           </button>
           <button
+            aria-pressed={activeTab === "docs"}
             onClick={() => setActiveTab("docs")}
             style={{
               ...STYLES.tab.base,
@@ -343,6 +344,7 @@ export function AdminDashboard() {
             <span className="sm:hidden">Docs</span>
           </button>
           <button
+            aria-pressed={activeTab === "visualizer"}
             onClick={() => setActiveTab("visualizer")}
             style={{
               ...STYLES.tab.base,
@@ -713,6 +715,8 @@ export function AdminDashboard() {
               <p className="text-[10px] text-txt-muted opacity-60">Opens in a new tab</p>
             </div>
           </div>
+
+          <div style={STYLES.card}><PirasDemoResource /></div>
 
           {/* Product Presentation Card */}
           <div style={STYLES.card}>
