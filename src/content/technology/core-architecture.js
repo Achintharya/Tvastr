@@ -8,7 +8,7 @@ export const coreArchitectureContent = {
     {
       id: "perception",
       name: "Perception Layer",
-      description: "Captures and processes raw manufacturing signals — visual inspection, surface texture, thermal data, and sensor inputs. Produces structured feature vectors for downstream reasoning.",
+      description: "Captures and processes casting inspection images, extracting texture, edge, geometry, and intensity features. Produces structured feature vectors for downstream reasoning.",
       responsibilities: [
         "Image capture and quality validation",
         "Neural object localization",
@@ -24,7 +24,6 @@ export const coreArchitectureContent = {
       responsibilities: [
         "Signal-first classification with hard threshold rules",
         "Multi-signal fusion and weighted agreement",
-        "Energy-based reasoning with stability validation",
         "Topology and spatial analysis",
         "Explainable decision generation"
       ]
