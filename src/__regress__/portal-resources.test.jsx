@@ -45,7 +45,7 @@ describe('customer presentation viewer', () => {
 
 describe('portal resources', () => {
   it('shows updated marketing summary and ISO placeholder without a fake download', async () => {
-    render(<MemoryRouter><AuthContext.Provider value={{ user: { email: 'fixture@example.com' }, signOut: vi.fn() }}><LicenseContext.Provider value={{ isAdmin: true }}><AdminAccessContext.Provider value={{access:{user:{email:'fixture@example.com'},rows:[]},clear:vi.fn()}}><AdminDashboard /></AdminAccessContext.Provider></LicenseContext.Provider></AuthContext.Provider></MemoryRouter>)
+    render(<MemoryRouter><AuthContext.Provider value={{ user: { email: 'fixture@example.com' }, signOut: vi.fn() }}><LicenseContext.Provider value={{ isAdmin: true }}><AdminAccessContext.Provider value={{portal:{user:{email:'fixture@example.com'}},access:null,clear:vi.fn(),request:vi.fn()}}><AdminDashboard /></AdminAccessContext.Provider></LicenseContext.Provider></AuthContext.Provider></MemoryRouter>)
     await act(async () => {})
     fireEvent.click(screen.getByRole('button', { name: 'Resources' }))
     expect(screen.getByText(/From rejection records to better plant decisions/)).toBeTruthy()
