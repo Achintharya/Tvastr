@@ -169,7 +169,7 @@ const STYLES = {
 export function AdminDashboard() {
   const { portal, clear: signOut } = useAdminAccess();
   const user = portal?.user;
-  const [activeTab, setActiveTab] = useState("visualizer");
+  const [activeTab, setActiveTab] = useState("resources");
   // Documentation state
   const [manifest, setManifest] = useState(null);
   const [selectedDoc, setSelectedDoc] = useState(null);
@@ -344,11 +344,11 @@ export function AdminDashboard() {
             <span className="sm:hidden">Docs</span>
           </button>
           <button
-            aria-pressed={activeTab === "visualizer"}
-            onClick={() => setActiveTab("visualizer")}
+            aria-pressed={activeTab === "resources"}
+            onClick={() => setActiveTab("resources")}
             style={{
               ...STYLES.tab.base,
-              ...(activeTab === "visualizer"
+              ...(activeTab === "resources"
                 ? STYLES.tab.active
                 : STYLES.tab.inactive),
             }}
@@ -641,7 +641,7 @@ export function AdminDashboard() {
 
         )}
 
-        {activeTab === "visualizer" && (
+        {activeTab === "resources" && (
           <div className="space-y-6">
           <div style={STYLES.card}><PirasDemoResource /></div>
 

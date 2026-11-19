@@ -3,7 +3,7 @@ export const processIntelligenceContent = {
   type: "process-intelligence",
   title: "Process Intelligence",
   subtitle: "Manufacturing analytics that transform inspection data into operational insights, early warnings, and continuous improvement intelligence.",
-  body: "Tvastr PI aggregates individual inspection decisions into plant-wide manufacturing intelligence. SPC monitoring detects process drift. Pareto analysis prioritizes defect types. Root cause analysis connects patterns to process parameters. Risk scoring identifies high-risk heats and molds before they produce scrap.",
+  body: "Tvastr PI aggregates individual inspection decisions into plant-level manufacturing intelligence. SPC monitoring detects process drift. Pareto analysis prioritizes defect types. Root cause analysis connects patterns to process parameters. Risk scoring identifies high-risk heats and molds before they produce scrap.",
   capabilities: [
     {
       name: "Statistical Process Control",

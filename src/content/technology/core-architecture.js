@@ -2,7 +2,7 @@ export const coreArchitectureContent = {
   id: "core-architecture",
   type: "core-architecture",
   title: "Layered Intelligence Architecture",
-  subtitle: "Five architectural layers from signal capture to plant-wide process intelligence.",
+  subtitle: "Five architectural layers from signal capture to plant process intelligence.",
   body: "The Tvastr architecture separates concerns into distinct layers — each independently testable, each producing traceable outputs, and each contributing to the manufacturing intelligence that flows upward through the system.",
   layers: [
     {

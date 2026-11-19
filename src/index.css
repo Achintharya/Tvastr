@@ -491,3 +491,14 @@
     padding-top: 8px;
   }
 }
+
+/* Technology page: the fixed navbar (~5rem) plus the fixed pill tab bar
+   (~3.5rem) must never cover the hero or anchored section headings.
+   Unlayered on purpose: layered rules lose to Tailwind's utilities, and
+   @layer additions can be tree-shaken. */
+#technology-hero {
+  padding-top: 10rem;
+}
+#technology-page section[id] {
+  scroll-margin-top: 9.5rem;
+}

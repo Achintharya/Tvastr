@@ -48,6 +48,10 @@ describe('portal resources', () => {
     render(<MemoryRouter><AuthContext.Provider value={{ user: { email: 'fixture@example.com' }, signOut: vi.fn() }}><LicenseContext.Provider value={{ isAdmin: true }}><AdminAccessContext.Provider value={{portal:{user:{email:'fixture@example.com'}},access:null,clear:vi.fn(),request:vi.fn()}}><AdminDashboard /></AdminAccessContext.Provider></LicenseContext.Provider></AuthContext.Provider></MemoryRouter>)
     await act(async () => {})
     fireEvent.click(screen.getByRole('button', { name: 'Resources' }))
+    // The cognition visualizer moved to the public Technology page; the
+    // Resources tab keeps the demo video, presentation and ISO placeholder.
+    expect(screen.queryByText(/visualizer/i)).toBeNull()
+    expect(screen.getByRole('heading', { name: 'PIRAS Demo' })).toBeTruthy()
     expect(screen.getByText(/From rejection records to better plant decisions/)).toBeTruthy()
     const link = screen.getByRole('link', { name: 'Open Presentation' })
     expect(link.getAttribute('href')).toBe('/tvastr-presentation.html')
